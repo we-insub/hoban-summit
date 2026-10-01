@@ -1,4 +1,5 @@
 import { consentPolicy } from "./consent-policy.ts";
+import { legacyConsentPolicy } from "./consent-policy-v1.ts";
 const projectUrl = Deno.env.get("SUPABASE_URL")!;
 const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const webhook = Deno.env.get("SLACK_HOBAN_WEBHOOK_URL") || Deno.env.get("SLACK_RESERVATION_WEBHOOK_URL") || "";
@@ -33,16 +34,20 @@ Deno.serve(async (req: Request) => {
     const requestId = data.requestId;
     const interest = typeof data.interest === "string" ? data.interest : "";
     const variant = typeof data.sourceVariant === "string" ? data.sourceVariant : "";
-    if (!["", "84A", "84B", "117A", "117B", "135"].includes(interest) || !["01","02","03"].includes(variant)) return reply(400,{error:"주택형과 페이지 정보를 확인해주세요."});
+    if (!["", "84A", "84B", "117A", "117B", "135"].includes(interest) || !/^(0[1-9]|10)$/.test(variant)) return reply(400,{error:"주택형과 페이지 정보를 확인해주세요."});
     if (data.privacyConsent !== true || data.adultConsent !== true)
       return reply(400,{error:"필수 개인정보 수집·이용 동의와 만 14세 이상 여부를 확인해주세요."});
-    if (data.consentVersion !== consentPolicy.version)
+    const selectedPolicy = data.consentVersion === legacyConsentPolicy.version ? legacyConsentPolicy : consentPolicy;
+    if (data.consentVersion !== selectedPolicy.version)
       return reply(409,{error:"동의 안내가 변경되었습니다. 페이지를 새로고침해주세요."});
+    const smsAdConsent = selectedPolicy === consentPolicy ? data.smsAdConsent : false;
+    if (typeof smsAdConsent !== "boolean" || (smsAdConsent && !data.marketingConsent))
+      return reply(400,{error:"문자 수신 동의 내용을 확인해주세요."});
     if (typeof data.marketingConsent !== "boolean" || typeof data.phoneAdConsent !== "boolean"
       || (data.phoneAdConsent && !data.marketingConsent))
       return reply(400,{error:"선택 동의 내용을 확인해주세요."});
     const consent = {privacyConsent:true,adultConsent:true,marketingConsent:data.marketingConsent,
-      phoneAdConsent:data.phoneAdConsent,policy:consentPolicy};
+      phoneAdConsent:data.phoneAdConsent,...(selectedPolicy === consentPolicy ? {smsAdConsent} : {}),policy:selectedPolicy};
     if (data.website) return reply(400,{error:"입력을 확인해주세요."});
     if (!/^[가-힣]{1,6}$/.test(name))
       return reply(400,{error:"이름은 한글로 최대 6자까지 입력해주세요."});
@@ -87,7 +92,7 @@ Deno.serve(async (req: Request) => {
             blocks:[
               {type:"header",text:{type:"plain_text",text:"호반써밋 첨단3지구 방문 상담 예약"}},
               {type:"section",text:{type:"plain_text",
-                text:`이름: ${name}\n전화번호: ${formattedPhone}\n방문 희망: ${visit.replace("T"," ")} (한국 시간)\n홍보 이용 동의: ${data.marketingConsent ? "동의" : "미동의"}\n광고성 전화 수신: ${data.phoneAdConsent ? "동의" : "미동의"}\n관심 주택형: ${interest || "미선택"}\n시안: ${variant}\nctx: 호반써밋첨단3지구\n접수번호: ${row.id}`}}
+                text:`이름: ${name}\n전화번호: ${formattedPhone}\n방문 희망: ${visit.replace("T"," ")} (한국 시간)\n홍보 이용 동의: ${data.marketingConsent ? "동의" : "미동의"}\n광고성 전화 수신: ${data.phoneAdConsent ? "동의" : "미동의"}\n광고성 문자 수신: ${smsAdConsent ? "동의" : "미동의"}\n관심 주택형: ${interest || "미선택"}\n시안: ${variant}\nctx: 호반써밋첨단3지구\n접수번호: ${row.id}`}}
             ]
           })
         });

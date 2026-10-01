@@ -1,5 +1,7 @@
 # 부동산 모델하우스 페이지용 SEO·AEO·GEO 컨텍스트 템플릿
 
+1번 원본으로 01~10을 생성할 때 TEN_VERSION_WORKFLOW.md와 concepts/version-plan.json을 입력으로 사용하고 버전별 PROJECT.md를 결과물로 작성합니다. 공통 예약 기능은 LIVE_RESERVATION_GUIDE.md를 따르고 검색 콘텐츠 판단과 구분합니다.
+
 ## 신규 페이지·색인 등록 필수 공통 지침
 
 새 페이지 작업은 [검색어·콘텐츠 적용 기준](KEYWORD_CONTENT_GUIDE.md)을 읽고 약 20개 검색어 후보를 의도별로 묶어 실제 답변 위치와 연결한다. 도메인 공개와 구글·네이버 등록은 [색인 등록 인수인계](SEARCH_INDEXING_HANDOFF.md)를 따른다. 작업 AI의 기본 읽기 순서는 [AGENTS.md](AGENTS.md)에 명시했다. 후보와 실제 검색 수요를 구분하고, 등록 요청과 색인 결과도 별도로 기록한다.

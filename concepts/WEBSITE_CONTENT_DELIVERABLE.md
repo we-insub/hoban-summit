@@ -165,3 +165,7 @@ GEO는 여기서 생성형 검색을 뜻한다. 지리 정보는 별도로 A7의
 ## 2026-10-01 공식 내용 재검수
 
 [공식 자료 대조 기록](OFFICIAL_CONTENT_REVIEW.md): 구체적인 생활시설·교육·교통·산업 입지 설명, A8 규모·입주 예정일·면적, A8 커뮤니티 계획을 세 버전에 반영했다. 이미지 속 일정과 실제 최신 일정을 구분한다.
+
+## 2026-10-01: ten designs
+
+See [VARIANT_GUIDE.md](VARIANT_GUIDE.md) for current 01-10 roles and review status.

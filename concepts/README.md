@@ -1,4 +1,4 @@
-# 호반써밋 첨단3지구 · 3가지 시안
+# 호반써밋 첨단3지구 · 10가지 시안
 
 ## 한국어 작성 필수 기준
 
@@ -12,7 +12,7 @@
 | 02 | 네이비·샌드, 설명과 이미지를 나란히 배치 | http://127.0.0.1:4173/concepts/02/ |
 | 03 | 아이보리·브론즈, 밝은 갤러리형 | http://127.0.0.1:4173/concepts/03/ |
 
-세 시안의 첫 화면은 공식 투시도를 바탕으로 재생성한 단지 이미지를 사용한다. 본문의 공식 도면은 3개 모두 제공한다. 3개는 디자인 비교용이며 현재 noindex다. 같은 사실을 보여주는 디자인 시안 3개가 각각 독립적인 SEO 콘텐츠로 검증된 것은 아니다.
+세 시안의 첫 화면은 공식 투시도를 바탕으로 재생성한 단지 이미지를 사용한다. 본문의 공식 도면은 10개 모두 제공한다. 10개는 디자인 비교용이며 현재 noindex다. 같은 사실을 보여주는 디자인 시안 10개가 각각 독립적인 SEO 콘텐츠로 검증된 것은 아니다.
 
 ## 디자인·콘텐츠 결과물
 
@@ -49,7 +49,7 @@
 
 ## Supabase 연결
 
-공개 복사본은 미리보기 모드다. 예약을 실제로 저장하거나 Slack 알림을 보내지 않는다. 운영 설정은 루트 PARTNER_HANDOFF.md를 따른다. 운영 코드의 서버 ctx는 `호반써밋첨단3지구`이고 관심 주택형·시안을 상담 내용에 기록한다. 화면·서버 동의 정책은 동일하게 유지한다.
+01~10과 전달용 로컬 복사본 모두 실제 예약 접수에 연결한다. 운영 설정은 루트 LIVE_RESERVATION_GUIDE.md를 따른다. 서버 ctx는 `호반써밋첨단3지구`이고 관심 주택형·시안을 상담 내용에 기록한다. 화면·서버 동의 정책은 동일하게 유지한다.
 
 ## 빌드·배포 인수인계
 
@@ -99,3 +99,11 @@ python3 scripts/verify_concepts.py
 ## 공식 홈페이지 대조 검수
 
 2026-10-01 사업개요·입지 지도·프리미엄·세대안내·오시는 길·A8 모집공고를 대조하고 공통 빌더에 반영했다. [수정 내역과 출처](OFFICIAL_CONTENT_REVIEW.md)를 다음 페이지 제작과 갱신 때 함께 읽는다.
+
+## 추가 시안 04~10
+
+[버전별 디자인·콘텐츠·공개 판단 기준](VARIANT_GUIDE.md)을 먼저 읽는다. 7개 추가 시안의 비교표·방문 준비 목록·직접 답변은 scripts/concept_variants.py, 디자인은 variants.css에 있다. 10개 모두 같은 실제 예약 기능을 사용한다. 메뉴·본문 순서·질문과 검색어 후보는 version-plan.json에서 관리하고 01~10의 PROJECT.md에 기록한다.
+
+## 2026-10-01 live reservation update
+
+Read LIVE_RESERVATION_GUIDE.md. All variants 01-10 now use the same live reservation endpoint. Variant-specific preview overrides were removed. This supersedes previous preview-only notes. The user authorized the GitHub update on 2026-10-01. Website deployment and domain purchases are separate tasks.

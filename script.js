@@ -57,13 +57,15 @@ renderConsent(document.querySelector('#required-consent-details'), [
 renderConsent(document.querySelector('#marketing-consent-details'), [
   ['목적', consentPolicy.marketing.purpose], ['항목', consentPolicy.marketing.items],
   ['보유기간', consentPolicy.marketing.retention], ['거부권', consentPolicy.marketing.refusal],
-  ['광고성 전화', consentPolicy.marketing.phone], ['문의·철회', consentPolicy.contact]
+  ['광고성 전화', consentPolicy.marketing.phone], ...(consentPolicy.marketing.sms ? [['광고성 문자', consentPolicy.marketing.sms]] : []), ['문의·철회', consentPolicy.contact]
 ]);
 const marketingInput = reservationForm.elements.marketingConsent;
 const phoneAdInput = reservationForm.elements.phoneAdConsent;
+const smsAdInput = reservationForm.elements.smsAdConsent;
 const updatePhoneAdChoice = () => {
   phoneAdInput.disabled = !marketingInput.checked;
   if (!marketingInput.checked) phoneAdInput.checked = false;
+  if (smsAdInput) { smsAdInput.disabled = !marketingInput.checked; if (!marketingInput.checked) smsAdInput.checked = false; }
 };
 marketingInput.addEventListener('change', updatePhoneAdChoice);
 let pendingRequest = null;
@@ -115,6 +117,7 @@ reservationForm.addEventListener('submit', async (event) => {
     adultConsent: values.get('adultConsent') === 'on',
     marketingConsent: values.get('marketingConsent') === 'on',
     phoneAdConsent: values.get('phoneAdConsent') === 'on',
+    ...(consentPolicy.marketing.sms ? {smsAdConsent: values.get('smsAdConsent') === 'on'} : {}),
     consentVersion: consentPolicy.version,
     interest: String(values.get('interest') || ''),
     sourceVariant: String(window.RESERVATION_CONFIG?.sourceVariant || ''),

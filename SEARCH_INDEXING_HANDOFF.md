@@ -1,4 +1,4 @@
-# 동업자·작업 AI용 구글·네이버 색인 등록 가이드
+# 동업자·작업 AI용 구글·빙·네이버 색인 등록 가이드
 
 공식 지침 확인일: 2026-10-01. 등록 시 UI나 지침이 달라졌다면 최신 공식 문서를 다시 확인한다.
 
@@ -8,7 +8,7 @@
 
 ## 현재 프로젝트 상태
 
-- 호반 시안: `concepts/01/`, `concepts/02/`, `concepts/03/`. 배포 초안: `dist/hoban/01–03`.
+- 호반 01~10: `concepts/01/`~`concepts/10/`. 독립 배포 폴더: `dist/hoban/01`~`dist/hoban/10`.
 - HTML은 `noindex,follow`, 배포 `_headers`는 `X-Robots-Tag: noindex`다. 두 곳 모두 공개 전 확인해야 한다.
 - 실제 도메인과 canonical·사이트맵은 미확정이다. `scripts/build_concepts.py`는 현재 검토용 빌더이며 공개 모드를 제공하지 않는다. 빌더가 noindex를 다시 생성하므로 생성된 HTML만 수동 수정하고 끝내지 않는다.
 - 챔피언스시티 `scripts/build_projects.py`의 설정을 호반에 그대로 적용하지 않는다. 단지별 ctx·문의 번호·사업지·동의 문구를 확인한다.
@@ -53,7 +53,16 @@
 4. 콘텐츠와 공개 상태가 정상인 중요 URL에 ‘색인 생성 요청’을 실행한다. 페이지가 많은 경우 사이트맵으로 발견을 돕는다. 요청했다고 색인된 것으로 기록하지 않는다. [URL 검사](https://support.google.com/webmasters/answer/9012289?hl=ko), [재수집 요청 안내](https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl)
 5. 이후 페이지 색인 보고서와 URL 검사에서 결과·제외 이유·선택된 canonical을 확인한다.
 
-## 4. 네이버 서치어드바이저
+## 4. Bing Webmaster Tools
+
+1. 도메인별 사이트를 추가하고 DNS·XML 파일·메타태그 등 계정에 표시되는 방식으로 소유권을 확인합니다. 소유권이 확인된 Google Search Console 사이트를 가져오는 방법도 있습니다.
+2. 공개 canonical URL을 담은 sitemap.xml을 제출하고 사이트맵 처리 결과를 확인합니다. robots.txt에도 사이트맵 주소를 넣습니다.
+3. URL 검사와 제출 도구로 실제 페이지 상태를 확인하고 필요한 URL의 수집을 요청합니다. 요청과 실제 색인을 구분합니다.
+4. 이후 색인 상태와 검색 노출·클릭·유입 검색어를 기록합니다. Bing 등록만으로 다른 AI 서비스의 인용을 보장하지 않습니다.
+
+공식 확인일 2026-10-01. [사이트 추가·소유권 확인](https://www2.bing.com/webmasters/help/add-and-verify-site-12184f8b), [사이트맵 제출](https://www.bing.com/webmasters/help/sitemaps-3b5cf6ed). 로그인·계정 권한이 필요한 단계는 실제 실행 여부를 기록합니다.
+
+## 5. 네이버 서치어드바이저
 
 1. 웹마스터 도구에 대표 사이트 주소를 등록하고 HTML 파일이나 메타태그 등 제공된 방법으로 소유확인을 완료한다. 확인 값은 해당 계정에서 발급된 실제 값만 사용한다.
 2. robots와 웹페이지 최적화 진단으로 접근, 제목·설명 등 기본 상태를 확인한다.
@@ -61,7 +70,7 @@
 4. ‘요청 → 웹페이지 수집’에서 중요한 실제 공개 URL을 수집 요청한다. 수집 요청은 수집·색인·노출 보장이 아니다. [네이버 수집 요청 지침](https://searchadvisor.naver.com/guide/request-crawl)
 5. 수집 결과와 진단 보고서를 확인한다. 미노출 시 접근 차단·noindex·콘텐츠·내부 링크를 검토한다. [네이버 미노출 안내](https://searchadvisor.naver.com/guide/faq-serpmissing)
 
-## 5. 요청·결과·검색어 측정 기록
+## 6. 요청·결과·검색어 측정 기록
 
 | URL | 검색 의도 / 담당 검색어 묶음 | 콘텐츠·기술 검수일 | Google 요청일 / 색인 결과 | 네이버 요청일 / 수집·노출 결과 | 후속 조치 |
 |---|---|---|---|---|---|
@@ -78,3 +87,6 @@
 ## 동업자가 작업 AI에 전달할 문장
 
 > 저장소의 AGENTS.md와 KEYWORD_CONTENT_GUIDE.md, SEO_AEO_GEO_CONTEXT.md, SEARCH_INDEXING_HANDOFF.md를 먼저 읽어 주세요. 대상 단지와 실제 도메인을 확인하고 검색어 후보 약 20개를 의도별로 묶어 현재 페이지에 적용해 주세요. 확인되지 않은 검색량·지역·가격은 만들지 마세요. 공개 원본 설정에서 canonical·사이트맵·robots·HTML 및 HTTP 헤더의 noindex를 점검하고, 배포된 실제 URL을 검증한 뒤 구글 서치콘솔과 네이버 서치어드바이저 등록·수집 요청을 진행해 주세요. 계정 접근이 필요한 단계는 실행하지 않은 것으로 구분하고, 적용 표와 요청·결과 기록을 남겨 주세요. 등록만으로 검색 순위나 색인 완료를 주장하지 마세요.
+# 01~10 작업 시 추가 필수 문서
+
+TEN_VERSION_WORKFLOW.md, LIVE_RESERVATION_GUIDE.md, concepts/version-plan.json 및 배포할 번호의 PROJECT.md를 읽습니다. 10개 모두 실제 접수 모드지만 도메인별 색인·검색 유입·AI 인용은 미확인입니다. 메뉴·문장 순서만으로 중복 문제를 해결했다고 판단하지 않습니다. 후보 검색어와 실제 답변 위치를 확인한 후 공개 URL·canonical·noindex·사이트맵·소유권 등록을 검증합니다.

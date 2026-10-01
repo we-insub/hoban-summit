@@ -1,11 +1,3 @@
--- Add one fixed server-side context; preserve the Champions endpoint and records.
-ALTER TABLE public.consultation_requests DROP CONSTRAINT consultation_requests_ctx_check;
-ALTER TABLE public.consultation_requests ADD CONSTRAINT consultation_requests_ctx_check
- CHECK (ctx IN ('광주_챔피언스시티', '호반써밋첨단3지구'));
-ALTER TABLE public.consultation_marketing_contacts DROP CONSTRAINT consultation_marketing_contacts_ctx_check;
-ALTER TABLE public.consultation_marketing_contacts ADD CONSTRAINT consultation_marketing_contacts_ctx_check
- CHECK (ctx IN ('광주_챔피언스시티', '호반써밋첨단3지구'));
-
 CREATE OR REPLACE FUNCTION public.submit_hoban_summit_consented(
  p_id uuid, p_name text, p_phone text, p_visit_at timestamptz,
  p_submission_key text, p_notifications_enabled boolean, p_consent jsonb,

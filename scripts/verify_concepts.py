@@ -7,26 +7,53 @@ from pathlib import Path
 import re
 import subprocess
 ROOT = Path(__file__).resolve().parents[1]
+plan=json.loads((ROOT/'concepts/version-plan.json').read_text())
+profiles={v['id']:v for v in plan['versions']}
+assert set(profiles)=={str(i).zfill(2) for i in range(1,11)}
+assert len({tuple(v['menu']) for v in profiles.values()})==10
+assert len(plan['keywords'])==20
 class Page(HTMLParser):
  def __init__(self):
-  super().__init__(); self.ids=[]; self.refs=[]; self.h1=0
+  super().__init__(); self.ids=[]; self.refs=[]; self.h1=0; self.current_nav=None; self.menus={}
  def handle_starttag(self,tag,attrs):
   attrs=dict(attrs)
+  if tag=='nav' and (attrs.get('class')=='desktop-nav' or attrs.get('id')=='mobile-menu'):
+   self.current_nav=attrs.get('id','desktop');self.menus[self.current_nav]=[]
+  if tag=='a' and self.current_nav:self.menus[self.current_nav].append(attrs.get('href'))
   if 'id' in attrs:self.ids.append(attrs['id'])
   if tag=='h1':self.h1+=1
   for key in ['href','src']:
    if key in attrs:self.refs.append(attrs[key])
-for ident in ['01','02','03']:
+ def handle_endtag(self,tag):
+  if tag=='nav':self.current_nav=None
+for ident in [str(n).zfill(2) for n in range(1,11)]:
  for bundle in [ROOT/'concepts'/ident,ROOT/'dist'/'hoban'/ident]:
   source=(bundle/'index.html').read_text();page=Page();page.feed(source)
   assert page.h1==1 and len(page.ids)==len(set(page.ids)),f'{bundle}: heading/IDs'
+  profile=profiles[ident]
+  expected=['https://mohamoa.com/' if key=='mohamoa' else '#'+key for key in profile['menu']]
+  assert expected[0]=='#overview' and expected[-1]=='https://mohamoa.com/'
+  assert page.menus['desktop']==page.menus['mobile-menu']==expected,f'{ident}: nav mismatch'
+  positions=[source.index('<section id="'+key+'"') for key in profile['order']]
+  assert positions==sorted(positions),f'{ident}: body order mismatch'
+  assert all(k['section'] in page.ids for k in plan['keywords']),f'{ident}: keyword answer missing'
+  assert (ROOT/'concepts'/ident/'PROJECT.md').exists()
   for ref in page.refs:
    if ref.startswith('#'): assert ref[1:] in page.ids,ref
    elif not re.match(r'^[a-z]+:',ref): assert (bundle/ref.split('#')[0]).exists(),f'{bundle}: missing {ref}'
   assert 'noindex,follow' in source
+  assert 'previewMode=true' not in source
+  assert 'name="smsAdConsent"' in source
+  assert 'window.RESERVATION_CONFIG.sourceVariant="'+ident+'";' in source
+  config=(bundle.parent/'reservation-config.js' if bundle.parent.name=='concepts' else bundle/'reservation-config.js').read_text()
+  assert 'previewMode = false' in config
+  assert 'hoban-summit-reservation' in config
   assert '호반써밋 첨단3지구 상담예약' in source and '챔피언스시티' not in source
   schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',source).group(1))
-  assert len(schema['mainEntity'])==8
+  assert len(schema['mainEntity'])==9
+  assert schema['mainEntity'][0]['name']==profile['question']
+  if int(ident)>3:
+   assert 'id="focus"' in source
   for faq in schema['mainEntity']:
    assert html.escape(faq['name'],quote=True) in source
    assert html.escape(faq['acceptedAnswer']['text'],quote=True) in source

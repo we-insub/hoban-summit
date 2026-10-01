@@ -1,0 +1,407 @@
+{
+  "checked_at": "2026-10-01",
+  "keywords": [
+    {
+      "keyword": "광주 호반써밋",
+      "section": "overview",
+      "condition": "A7은 광주 북구 월출동, A8은 전남 장성군 진원면",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구",
+      "section": "overview",
+      "condition": "단지 공식 명칭과 공급 규모",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "첨단3지구 호반써밋",
+      "section": "overview",
+      "condition": "동일 검색 의도로 묶음",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 A7",
+      "section": "overview",
+      "condition": "356세대·84A·84B",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 A8",
+      "section": "overview",
+      "condition": "449세대·117A·117B·135",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "월출동 호반써밋",
+      "section": "overview",
+      "condition": "A7 사업지에 한함",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "장성 진원면 호반써밋",
+      "section": "overview",
+      "condition": "A8 사업지에 한함",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 모델하우스",
+      "section": "directions",
+      "condition": "마륵동 방문 주소",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "광주 호반써밋 모델하우스",
+      "section": "directions",
+      "condition": "모델하우스와 사업지 구분",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 분양가",
+      "section": "cost",
+      "condition": "2026.06.05 공고의 주택형·층별 공급금액",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 계약금",
+      "section": "cost",
+      "condition": "전체 5%·1차 1,000만원",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 중도금",
+      "section": "cost",
+      "condition": "공고 기준 60%·예상 대출은 개인 조건에 따름",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 평면도",
+      "section": "types",
+      "condition": "공식 확장형·비확장형 평면",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 84A",
+      "section": "types",
+      "condition": "A7 주택형",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 117A",
+      "section": "types",
+      "condition": "A8 주택형",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 135",
+      "section": "types",
+      "condition": "A8 주택형",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 단지배치",
+      "section": "arrangement",
+      "condition": "블록별 동·출입구·배치도",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 커뮤니티",
+      "section": "premium",
+      "condition": "A8 계획·운영 방식과 이용료 확인 필요",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 입지환경",
+      "section": "location",
+      "condition": "현재 시설과 학교·교통 계획 구분",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    },
+    {
+      "keyword": "호반써밋 첨단3지구 입주예정",
+      "section": "overview",
+      "condition": "A7 2028년 9월·A8 2028년 10월 예정",
+      "status": "공식 자료 기반 후보 / 검색 수요 확인 필요"
+    }
+  ],
+  "versions": [
+    {
+      "id": "01",
+      "focus": "overview",
+      "question": "광주 호반써밋 첨단3지구는 어디에 들어서나요?",
+      "answer": "A7블록은 광주 북구 월출동, A8블록은 전남 장성군 진원면에 들어섭니다. 두 블록의 전체 공급 규모는 805세대입니다.",
+      "order": [
+        "overview",
+        "location",
+        "premium",
+        "arrangement",
+        "types",
+        "directions",
+        "cost",
+        "faq",
+        "sources"
+      ],
+      "menu": [
+        "overview",
+        "location",
+        "premium",
+        "arrangement",
+        "types",
+        "directions",
+        "mohamoa"
+      ],
+      "publication_status": "domain_pending_noindex",
+      "search_demand": "확인 필요"
+    },
+    {
+      "id": "02",
+      "focus": "cost",
+      "question": "계약부터 입주까지 얼마를 준비해야 하나요?",
+      "answer": "공고 기준 계약금은 분양가의 5%, 중도금은 60%, 잔금은 35%입니다. 확장·옵션·기타 비용은 별도로 확인하고 보유 현금과 예상 대출금으로 필요한 자금을 계산해 보세요.",
+      "order": [
+        "cost",
+        "overview",
+        "types",
+        "premium",
+        "arrangement",
+        "location",
+        "directions",
+        "faq",
+        "sources"
+      ],
+      "menu": [
+        "overview",
+        "types",
+        "arrangement",
+        "location",
+        "premium",
+        "directions",
+        "mohamoa"
+      ],
+      "publication_status": "domain_pending_noindex",
+      "search_demand": "확인 필요"
+    },
+    {
+      "id": "03",
+      "focus": "types",
+      "question": "호반써밋 첨단3지구에는 어떤 주택형이 있나요?",
+      "answer": "A7블록은 84A·84B, A8블록은 117A·117B·135형입니다. 평면도에서 방과 거실 배치를 비교하고 단지배치도에서 동의 위치를 함께 살펴보세요.",
+      "order": [
+        "types",
+        "arrangement",
+        "overview",
+        "premium",
+        "location",
+        "directions",
+        "cost",
+        "faq",
+        "sources"
+      ],
+      "menu": [
+        "overview",
+        "arrangement",
+        "types",
+        "premium",
+        "location",
+        "directions",
+        "mohamoa"
+      ],
+      "publication_status": "domain_pending_noindex",
+      "search_demand": "확인 필요"
+    },
+    {
+      "id": "04",
+      "focus": "overview",
+      "question": "A7과 A8은 무엇이 다른가요?",
+      "answer": "A7은 84A·84B형 356세대, A8은 117A·117B·135형 449세대입니다. 사업지와 입주 예정 시기도 다릅니다.",
+      "order": [
+        "overview",
+        "arrangement",
+        "types",
+        "premium",
+        "location",
+        "directions",
+        "cost",
+        "faq",
+        "sources"
+      ],
+      "menu": [
+        "overview",
+        "arrangement",
+        "location",
+        "types",
+        "directions",
+        "premium",
+        "mohamoa"
+      ],
+      "publication_status": "domain_pending_noindex",
+      "search_demand": "확인 필요"
+    },
+    {
+      "id": "05",
+      "focus": "cost",
+      "question": "주택형별 분양가는 얼마인가요?",
+      "answer": "분양가는 주택형과 층에 따라 다릅니다. 아래 표는 2026년 6월 5일 모집공고의 공급금액이며 발코니 확장과 유상옵션 비용은 별도입니다.",
+      "order": [
+        "cost",
+        "overview",
+        "types",
+        "premium",
+        "arrangement",
+        "location",
+        "directions",
+        "faq",
+        "sources"
+      ],
+      "menu": [
+        "overview",
+        "types",
+        "directions",
+        "location",
+        "arrangement",
+        "premium",
+        "mohamoa"
+      ],
+      "publication_status": "domain_pending_noindex",
+      "search_demand": "확인 필요"
+    },
+    {
+      "id": "06",
+      "focus": "types",
+      "question": "84·117·135는 정확한 면적인가요?",
+      "answer": "주택형 이름의 숫자는 전용면적을 줄여 쓴 표기입니다. 정확한 전용면적과 공용부분을 포함한 공급면적은 아래 표에서 확인할 수 있습니다.",
+      "order": [
+        "types",
+        "overview",
+        "arrangement",
+        "premium",
+        "cost",
+        "location",
+        "directions",
+        "faq",
+        "sources"
+      ],
+      "menu": [
+        "overview",
+        "types",
+        "arrangement",
+        "premium",
+        "directions",
+        "location",
+        "mohamoa"
+      ],
+      "publication_status": "domain_pending_noindex",
+      "search_demand": "확인 필요"
+    },
+    {
+      "id": "07",
+      "focus": "location",
+      "question": "입지 지도에 있는 시설을 모두 바로 이용할 수 있나요?",
+      "answer": "아닙니다. 생활권의 기존 시설과 학교·도시철도·연결도로 계획이 함께 표시돼 있습니다. 예정 연도와 실제 이용 가능 시기는 구분해야 합니다.",
+      "order": [
+        "location",
+        "overview",
+        "premium",
+        "arrangement",
+        "types",
+        "directions",
+        "cost",
+        "faq",
+        "sources"
+      ],
+      "menu": [
+        "overview",
+        "location",
+        "directions",
+        "premium",
+        "types",
+        "arrangement",
+        "mohamoa"
+      ],
+      "publication_status": "domain_pending_noindex",
+      "search_demand": "확인 필요"
+    },
+    {
+      "id": "08",
+      "focus": "premium",
+      "question": "A8블록에는 어떤 커뮤니티 시설이 계획돼 있나요?",
+      "answer": "A8 모집공고에는 피트니스, 골프연습장, 작은도서관, 에듀센터, 게스트하우스 등이 포함돼 있습니다. 운영 방식과 이용료는 확정된 안내를 확인해야 합니다.",
+      "order": [
+        "premium",
+        "arrangement",
+        "overview",
+        "types",
+        "location",
+        "directions",
+        "cost",
+        "faq",
+        "sources"
+      ],
+      "menu": [
+        "overview",
+        "premium",
+        "arrangement",
+        "types",
+        "location",
+        "directions",
+        "mohamoa"
+      ],
+      "publication_status": "domain_pending_noindex",
+      "search_demand": "확인 필요"
+    },
+    {
+      "id": "09",
+      "focus": "directions",
+      "question": "모델하우스 방문은 어떻게 준비하나요?",
+      "answer": "관심 주택형을 고른 뒤 방문 희망 날짜와 시간을 신청해 주세요. 모하모아 담당자의 연락을 받아 시간을 확인한 후 모델하우스로 방문하시면 됩니다.",
+      "order": [
+        "directions",
+        "types",
+        "overview",
+        "premium",
+        "arrangement",
+        "location",
+        "cost",
+        "faq",
+        "sources"
+      ],
+      "menu": [
+        "overview",
+        "directions",
+        "types",
+        "location",
+        "premium",
+        "arrangement",
+        "mohamoa"
+      ],
+      "publication_status": "domain_pending_noindex",
+      "search_demand": "확인 필요"
+    },
+    {
+      "id": "10",
+      "focus": "types",
+      "question": "집을 고를 때 어떤 자료부터 보면 좋을까요?",
+      "answer": "공간이 중요하면 평면도, 예산이 중요하면 분양가와 납부계획, 생활권이 중요하면 입지 지도를 먼저 확인해 보세요. 방문 전 궁금한 점을 정리하면 상담에 도움이 됩니다.",
+      "order": [
+        "overview",
+        "types",
+        "cost",
+        "location",
+        "premium",
+        "arrangement",
+        "directions",
+        "faq",
+        "sources"
+      ],
+      "menu": [
+        "overview",
+        "types",
+        "location",
+        "directions",
+        "arrangement",
+        "premium",
+        "mohamoa"
+      ],
+      "publication_status": "domain_pending_noindex",
+      "search_demand": "확인 필요"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
-// Keep this policy identical to the server's consent-policy.ts when changing it.
+// Keep identical to the server consent-policy.ts.
 window.CONSENT_POLICY = {
-  "version": "hoban-consent-2026-10-01-v1",
+  "version": "hoban-consent-2026-10-01-v2",
   "controller": "모하모아",
   "businessNumber": "597-17-02567",
   "contact": "1555-1698",
@@ -15,7 +15,8 @@ window.CONSENT_POLICY = {
     "items": "이름, 전화번호, 선택 동의 여부·시각·문구 버전",
     "retention": "동의일로부터 최대 3년. 목적 달성으로 더 이상 필요하지 않거나 동의 철회 시 먼저 파기하며, 기간 연장은 별도 동의를 받습니다.",
     "refusal": "동의하지 않아도 상담 예약 신청이 가능합니다.",
-    "phone": "모하모아의 분양·모델하우스 광고성 전화 수신에 동의합니다. 동의 철회 또는 동의일로부터 3년 중 먼저 도래하는 때까지 적용하며, 1555-1698로 언제든 수신을 거부할 수 있습니다."
+    "phone": "모하모아의 분양·모델하우스 광고성 전화 수신에 동의합니다. 동의 철회 또는 동의일로부터 3년 중 먼저 도래하는 때까지 적용하며, 1555-1698로 언제든 수신을 거부할 수 있습니다.",
+    "sms": "모하모아의 분양·모델하우스 광고성 문자 수신에 동의합니다. 동의 철회 또는 동의일로부터 3년 중 먼저 도래하는 때까지 적용하며, 1555-1698로 언제든 수신을 거부할 수 있습니다."
   },
   "thirdParty": "현재 외부 홍보 업체에 제공하지 않습니다. 업체가 정해지면 업체명·목적·항목·기간·거부권을 안내하고 별도로 동의를 받습니다.",
   "processors": "상담 접수는 Supabase에 저장되고 담당자 알림은 Slack을 통해 전송됩니다. 이 동의는 제3자 홍보 제공 동의 또는 국외 이전에 대한 별도 동의를 대신하지 않습니다."
