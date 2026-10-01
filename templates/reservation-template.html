@@ -1,0 +1,43 @@
+    <div class="reservation-modal is-open" role="dialog" aria-modal="true" aria-labelledby="reservation-title">
+      <section class="reservation-dialog">
+        <button class="modal-close" type="button" aria-label="예약 팝업 닫기">×</button>
+        <p class="modal-kicker">CHAMPIONS CITY</p>
+        <h2 id="reservation-title">챔피언스시티 상담 내용 예약</h2>
+        <form class="reservation-form">
+          <label>
+            <span>이름</span>
+            <input name="name" type="text" autocomplete="name" maxlength="6" pattern="[가-힣]{1,6}" placeholder="한글 이름, 최대 6자" title="완성된 한글로 1~6자를 입력해주세요." required />
+          </label>
+          <label>
+            <span>전화번호</span>
+            <input name="phone" type="tel" autocomplete="tel" inputmode="numeric" maxlength="13" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="000-0000-0000" title="숫자 11자리를 입력해주세요. 하이픈은 자동으로 표시됩니다." required />
+          </label>
+          <label>
+            <span>방문 일시</span>
+            <input name="visitDateTime" type="datetime-local" required />
+          </label>
+          <label class="reservation-trap" aria-hidden="true">웹사이트<input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+          <p class="reservation-note">방문 일시는 한국 시간 기준입니다. 입력한 정보는 모하모아에 상담 예약 신청 목적으로 전달됩니다.</p>
+          <fieldset class="consent-group">
+            <legend>개인정보 및 연락 동의</legend>
+            <details class="consent-details">
+              <summary>개인정보 수집·이용 안내 보기</summary>
+              <div id="required-consent-details"></div>
+            </details>
+            <label class="consent-check"><input type="checkbox" name="privacyConsent" required /><span>[필수] 상담 예약 개인정보 수집·이용에 동의합니다.</span></label>
+            <label class="consent-check"><input type="checkbox" name="adultConsent" required /><span>[필수] 만 14세 이상입니다.</span></label>
+            <details class="consent-details">
+              <summary>선택 홍보 동의 안내 보기 · 최대 3년</summary>
+              <div id="marketing-consent-details"></div>
+            </details>
+            <label class="consent-check"><input type="checkbox" name="marketingConsent" /><span>[선택] 모하모아의 홍보를 위한 이름·전화번호 이용에 동의합니다.</span></label>
+            <label class="consent-check"><input type="checkbox" name="phoneAdConsent" disabled /><span>[선택] 모하모아의 광고성 전화 수신에 동의합니다.</span></label>
+            <p class="consent-note">선택 동의 없이도 상담 예약이 가능합니다. 외부 업체의 홍보 목적 제공은 업체가 정해진 후 별도 동의를 받습니다.</p>
+          </fieldset>
+          <p class="reservation-status" role="status" aria-live="polite"></p>
+          <button class="reservation-submit" type="submit">예약</button>
+        </form>
+      </section>
+    </div>
+
+    <main id="content">

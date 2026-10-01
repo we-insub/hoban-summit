@@ -1,0 +1,64 @@
+{
+  "checked_at": "2026-10-01",
+  "official_assets": {
+    "block-a7.jpg": "https://hobansummit-kjcd.co.kr/images/sub/block_7bl.jpg",
+    "block-a8.jpg": "https://hobansummit-kjcd.co.kr/images/sub/block_8bl.jpg",
+    "location.jpg": "https://hobansummit-kjcd.co.kr/images/sub/location_img02_1.jpg?v=20260611",
+    "unit-84a.jpg": "https://hobansummit-kjcd.co.kr/images/sub/84a.jpg?v=20260616",
+    "unit-84b.jpg": "https://hobansummit-kjcd.co.kr/images/sub/84b.jpg?v=20260616",
+    "unit-117a.jpg": "https://hobansummit-kjcd.co.kr/images/sub/117a.jpg?v=20260616",
+    "unit-117b.jpg": "https://hobansummit-kjcd.co.kr/images/sub/117b.jpg?v=20260616",
+    "unit-135.jpg": "https://hobansummit-kjcd.co.kr/images/sub/135.jpg?v=20260616"
+  },
+  "treatment": "원본 파일 보존, object-fit:contain. 실제 도면·주석을 제거하거나 AI로 재작성하지 않음.",
+  "exterior_images": [
+    {
+      "file": "official-exterior-01.jpg",
+      "source_url": "https://hobansummit-kjcd.co.kr/images/main/main_img_01.jpg",
+      "checked_at": "2026-10-01",
+      "usage": "공식 홈페이지 단지 투시도, 실제와 다를 수 있음"
+    },
+    {
+      "file": "official-exterior-02.jpg",
+      "source_url": "https://hobansummit-kjcd.co.kr/images/main/main_img_02.jpg",
+      "checked_at": "2026-10-01",
+      "usage": "공식 홈페이지 단지 투시도, 실제와 다를 수 있음"
+    }
+  ],
+  "design_images": [
+    {
+      "file": "official-design-a7.jpg",
+      "source_url": "https://hobansummit-kjcd.co.kr/images/sub/plan_7bl.jpg",
+      "page": "https://hobansummit-kjcd.co.kr/sub/plan.php",
+      "checked_at": "2026-10-01",
+      "usage": "조감도 영역 미리보기, 원본 전체 연결"
+    },
+    {
+      "file": "official-design-a8.jpg",
+      "source_url": "https://hobansummit-kjcd.co.kr/images/sub/plan_8bl.jpg",
+      "page": "https://hobansummit-kjcd.co.kr/sub/plan.php",
+      "checked_at": "2026-10-01",
+      "usage": "조감도 영역 미리보기, 원본 전체 연결"
+    }
+  ],
+  "derived_images": [
+    {
+      "file": "rendered-exterior-01.png",
+      "reference": "official-exterior-01.jpg",
+      "source_url": "https://hobansummit-kjcd.co.kr/images/main/main_img_01.jpg",
+      "generated_at": "2026-10-01",
+      "tool": "built-in image_gen",
+      "treatment": "공식 투시도를 참고한 빛·색감·질감 재생성; 공식 원본·사진·정확한 설계도 아님",
+      "visible_caption": null
+    },
+    {
+      "file": "rendered-exterior-02.png",
+      "reference": "official-exterior-02.jpg",
+      "source_url": "https://hobansummit-kjcd.co.kr/images/main/main_img_02.jpg",
+      "generated_at": "2026-10-01",
+      "tool": "built-in image_gen",
+      "treatment": "공식 투시도를 참고한 빛·색감·질감 재생성; 공식 원본·사진·정확한 설계도 아님",
+      "visible_caption": null
+    }
+  ]
+}
