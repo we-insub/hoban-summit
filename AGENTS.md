@@ -26,3 +26,10 @@
 ## 2026-10-01 live reservation update
 
 Read LIVE_RESERVATION_GUIDE.md. All variants 01-10 now use the same live reservation endpoint. Variant-specific preview overrides were removed. This supersedes previous preview-only notes. The user authorized the GitHub update on 2026-10-01. Website deployment and domain purchases are separate tasks.
+
+2026-10-02: Cloudflare 배포 후 SEARCH_INDEXING_HANDOFF.md의 「01~10 배포 후 필수 색인 점검」을 각 실제 도메인에 실행하고 DEPLOYMENT_STATUS.md에 10행 결과·확인일·증거를 기록한다. HTTP 200·GSC 라이브 색인 가능·robots 허용·HTML/헤더 noindex 없음·선언 canonical·사이트맵 제출/처리·색인 요청 상태를 각각 확인한다. 문서에 항목이 있다는 이유로 실행 완료로 보고하지 않는다.
+
+
+## 2026-10-02 제목·파비콘 필수 작업
+
+TITLE_FAVICON_GUIDE.md를 읽고 01~10 각각의 홈페이지 title·H1·og:title을 본문에 맞게 검수한다. 사이트 아이콘(파비콘)은 번호별 실제 SVG 원본·PNG·ICO·apple-touch-icon 파일을 생성하고 빌더에서 복사 및 head 링크를 구현한다. 각 배포 폴더에 포함해 Cloudflare에 업로드하고 실제 도메인의 이미지 응답·브라우저 표시를 확인한다. 지침만 작성하거나 제목을 바꾼 것을 아이콘 생성·업로드 완료로 보고하지 않는다. DEPLOYMENT_STATUS.md에 버전별 결과를 기록한다.

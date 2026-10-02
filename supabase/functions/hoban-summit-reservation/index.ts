@@ -5,7 +5,17 @@ const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const webhook = Deno.env.get("SLACK_HOBAN_WEBHOOK_URL") || Deno.env.get("SLACK_RESERVATION_WEBHOOK_URL") || "";
 const defaultOrigins = ["null", "http://127.0.0.1:4173", "http://localhost:4173",
   "https://www.xn--9t4b2d84gm5j2ziyqd.kr", "https://xn--9t4b2d84gm5j2ziyqd.kr",
-  "https://mohamoa.com", "https://www.mohamoa.com"];
+  "https://mohamoa.com", "https://www.mohamoa.com",
+  "https://mohamoa-cheomdan.com",
+  "https://mohamoa-homeplan.com",
+  "https://mohamoa-hometour.com",
+  "https://mohamoa-blockguide.com",
+  "https://mohamoa-homebudget.com",
+  "https://mohamoa-floorplan.com",
+  "https://mohamoa-neighborhood.com",
+  "https://mohamoa-community.com",
+  "https://mohamoa-visit.com",
+  "https://mohamoa-homechoice.com"];
 const origins = new Set([...defaultOrigins, ...(Deno.env.get("RESERVATION_ALLOWED_ORIGINS") || "").split(",").map(x => x.trim()).filter(Boolean)]);
 const dbHeaders = { apikey: serviceKey, Authorization: `Bearer ${serviceKey}`, "Content-Type": "application/json" };
 

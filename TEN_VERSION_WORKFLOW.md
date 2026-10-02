@@ -54,3 +54,8 @@ Google Search Console, Bing Webmaster Tools, 네이버 서치어드바이저에�
 ## 공식 지침
 
 확인일 2026-10-01. [Google 스팸 정책](https://developers.google.com/search/docs/essentials/spam-policies), [Google 지원 메타태그](https://developers.google.com/search/docs/crawling-indexing/special-tags), [네이버 사이트 작성 기준](https://searchadvisor.naver.com/guide/seo-basic-create). 메뉴 순서 변경이나 10종 제작은 정책 적합성·색인·노출·AI 인용을 보장하지 않습니다.
+
+
+## 2026-10-02 제목·파비콘 필수 작업
+
+TITLE_FAVICON_GUIDE.md를 읽고 01~10 각각의 홈페이지 title·H1·og:title을 본문에 맞게 검수한다. 사이트 아이콘(파비콘)은 번호별 실제 SVG 원본·PNG·ICO·apple-touch-icon 파일을 생성하고 빌더에서 복사 및 head 링크를 구현한다. 각 배포 폴더에 포함해 Cloudflare에 업로드하고 실제 도메인의 이미지 응답·브라우저 표시를 확인한다. 지침만 작성하거나 제목을 바꾼 것을 아이콘 생성·업로드 완료로 보고하지 않는다. DEPLOYMENT_STATUS.md에 버전별 결과를 기록한다.

@@ -31,3 +31,29 @@
 - 실제 모하모아 RPC에서 01~10을 각각 가상 입력으로 저장하고 ctx·시안 번호·필수 동의·선택 동의·보관 만료일·동일 요청 재처리를 확인 후 전부 롤백했습니다.
 - 배포된 Edge Function에서 10번의 잘못된 문자 동의를 HTTP 400으로 거부하는 것을 확인했습니다.
 - 실제 고객 예약, Slack 알림, 문자·전화 발송은 검증 중 전송하지 않았습니다. 실제 운영 도메인에서의 접수·Slack 수신 확인은 배포 후 수행해야 합니다.
+
+
+## 2026-10-02: mohamoa-cheomdan 도메인 허용 기록
+
+- 운영 도메인: `https://mohamoa-cheomdan.com`.
+- Developer는 서버 Secrets를 수정할 수 없으므로 관리자가 호반 전용 Edge Function 기본 Origin 목록에 위 주소만 추가했습니다. `RESERVATION_ALLOWED_ORIGINS`의 기존 값과 Slack Secrets는 수정하지 않았습니다.
+- 배포 함수: `hoban-summit-reservation`, ACTIVE version 4, JWT 검증 유지. ctx·동의 정책·DB 저장·Slack 코드는 그대로입니다.
+- 검증: 새 Origin OPTIONS 204와 정확한 Access-Control-Allow-Origin, 빈 POST 입력 400(기존 403 차단 해제), 기존 모하모아 Origin 204, 미허용 Origin 403.
+- 실제 예약 저장·Slack 발송 테스트는 실행하지 않았습니다. 동업자가 실제 공개 페이지에서 동의한 테스트로 확인해야 합니다. www 또는 다른 도메인은 자동 허용하지 않습니다.
+- 공개 저장소 재배포로 설정이 되돌아가지 않도록 함수 원본에도 반영했습니다. 이번 변경은 GitHub commit/push하지 않았습니다. 재배포 전 최신 운영 함수와 로컬 원본의 허용 목록을 비교합니다.
+
+
+## 2026-10-02: 10개 공개 도메인과 동일 번호의 개별 신청
+
+사용자가 전달한 mohamoa-cheomdan/homeplan/hometour/blockguide/homebudget/floorplan/neighborhood/community/visit/homechoice.com의 HTTPS Origin 10개를 모두 허용했습니다. www 주소는 별도 확인·등록 대상입니다. 기존 Origin과 서버 Secrets·Slack Webhook은 보존했습니다. 호반 Edge Function ACTIVE version 5, verify_jwt=true입니다.
+
+- 같은 전화번호여도 01~10에서 각각 새로운 requestId로 접수하면 개별 예약으로 저장합니다. ctx는 호반써밋첨단3지구로 유지하고 상담 내용에 시안 번호를 기록합니다.
+- 같은 requestId와 같은 입력을 재전송하면 기존 id를 반환하고 새 예약·Slack 알림을 만들지 않습니다. 같은 requestId로 시안·입력값을 바꾸면 request_conflict입니다. 테스트 프로그램도 신규 신청마다 새 UUID를 만들어야 합니다.
+- 기존 전체 사이트 합산 전화번호 3건/시간 제한을 단지·전화번호·시안별 3건/시간으로 변경했습니다. 동일 IP의 전체 접수 제한은 30건/시간입니다. 제한을 해제한 것은 아닙니다.
+- 실제 RPC에서 같은 가상 전화번호로 01~10 신규 접수, ctx·필수 동의·만료일 저장, 동일 UUID 재전송, 변경된 시안 충돌, 시안별 4번째 접수 차단, IP별 31번째 접수 차단을 검증하고 롤백했습니다. 테스트 데이터와 새 Slack 메시지는 남기지 않았습니다.
+- 운영 도메인 10개 모두 OPTIONS 204 및 정확한 Allow-Origin, 빈 POST 400을 확인했습니다. 빈 POST는 필수 입력 검증 도달을 뜻하며 실제 예약 접수 성공을 뜻하지 않습니다. 미허용 Origin은 403을 유지했습니다.
+- 실제 공개 HTML 및 연결 스크립트에서 01~10 각 sourceVariant, 올바른 호반 endpoint, previewMode=false를 확인했습니다.
+- 기존 01 접수 한 건은 ctx·필수 동의·v2 문구·보관 만료일 저장 및 notification_status=sent를 확인했습니다. 선택 홍보·전화·문자 동의는 false였습니다. sent는 Slack의 성공 응답을 서버에서 기록한 상태이며 채널에서 메시지가 정확히 한 건인지 직접 확인한 것은 아닙니다.
+- DB 변경 원본: supabase/sql/hoban_cross_variant_reservations.sql. 서버 migration: hoban_cross_variant_reservation_limits. 원본과 전달 저장소에 반영하되 GitHub commit/push는 보류했습니다.
+
+2026-10-02: 사용자의 명시적 요청에 따라 위 서버 원본·SQL·운영 검증 기록과 색인·제목·파비콘 지침을 GitHub에 커밋·푸시합니다. 이 기록은 파비콘 생성·색인 등록·새 Slack 수신 검증을 추가로 완료했다는 뜻이 아닙니다.
