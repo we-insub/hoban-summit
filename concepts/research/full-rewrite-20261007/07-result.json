@@ -1,0 +1,37 @@
+{
+  "overview": {
+    "before": "5729576cb265c96566a7be8d5c99930cc47ca8ea0bf65f8e5c4ab66cbfee9955",
+    "after": "85a27f527769e9a2cc4bef2c84617697c50cdea50fd1af54ccc5be7ba8e1b7a3",
+    "title": "첨단3지구 안에서도 다른 사업지"
+  },
+  "location": {
+    "before": "531f75bb1067dd78e6a6346f45e065dc8fb481f2303f8208f39d6d7bbbb6ad9c",
+    "after": "3c5932beb90dc8af5051ecdd59c8af75f7f98043872f8361ecdc241eb293f899",
+    "title": "교육·쇼핑·의료·문화시설 지도"
+  },
+  "premium": {
+    "before": "e18143fc69b3d7f78907c642597828274711f5f4c7eb8838132cf9ac2c0d81e1",
+    "after": "aba1bb63ad27f40449de06cac65c2d35d809c12adef54265aadfd356c7c937a3",
+    "title": "집 밖의 시설과 단지 안의 공간"
+  },
+  "arrangement": {
+    "before": "a83d5a0a3f2d739e26c0d5edbe41c3f24f8e01176794ba30a1b781ac473a7ce1",
+    "after": "c0833cbce8d0d12e1f7fdbb9fc89701eb6f296a9d45762e718e75eb661d0e33a",
+    "title": "단지 출입구에서 생활 경로 이어보기"
+  },
+  "types": {
+    "before": "86b189a574110e1abb83db644e7b65a22be4c2ea82153835064fd5db31727226",
+    "after": "d30e13929f0520c4a3dbb3bbd4c2018d328ba3b6dad00115db04ae05d12cdb34",
+    "title": "생활권을 고른 뒤 평면 비교"
+  },
+  "cost": {
+    "before": "40facff74300a59d8868742011db8bb44c9f7bd300a019b9d700e02b0437400c",
+    "after": "320b84440a6949e21f971f67e5b61d3d48c9e6a93c15dd797c062769af47913a",
+    "title": "개발 계획과 공급금액은 구분"
+  },
+  "directions": {
+    "before": "76e552e140de853a45a9f34f760c260b175e3c197afff26afa113a4269dea087",
+    "after": "93167ee838ecf8610643110319efb4c0152f2bd86fb91814842c9d30a5bd3e2c",
+    "title": "입지를 살펴보고 모델하우스 방문"
+  }
+}

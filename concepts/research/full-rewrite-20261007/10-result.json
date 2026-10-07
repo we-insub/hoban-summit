@@ -1,0 +1,37 @@
+{
+  "overview": {
+    "before": "b1d1f1b5a7e6609baaded5e3b17dfe898c25ca7ce20f81ce259733878469fa08",
+    "after": "f2f6cff843851aaff49a078503543ac4cfceec1fd121239db03ecd59ad0bc2e1",
+    "title": "넓이·지역·입주 시점부터 선택"
+  },
+  "location": {
+    "before": "645e18d28de430eaf84aaa907fc45c6702f4e785dfdc959fc0bf2bc796778280",
+    "after": "4be4b4a2d8b6f30058a9c851b4cb0b178de2dcb3ba489cd73ff9f2c85a629f26",
+    "title": "지도에 가족의 목적지 대입하기"
+  },
+  "premium": {
+    "before": "9ffafb0d4e2ab23acf8937f951b4d7e0dc5649ba33471d94b97f84333b642544",
+    "after": "a188160cff129779569795ee20222e84d36f7a04b0d1325619a517688b6c1f2e",
+    "title": "실제로 쓸 커뮤니티 고르기"
+  },
+  "arrangement": {
+    "before": "787a0f5a62ada46e7e0b80bc95830327f55836676ffa1cffc1ceee6b42fa7793",
+    "after": "8254bc031d104b9a4cefb961e1d6a79f2952c196dc06aa83b38a39810794ca7c",
+    "title": "관심 동의 주변 공간 비교"
+  },
+  "types": {
+    "before": "29de975ed3e7413cf2ed63668f9a67831cc9c341f57bcc8bc1d39f24fc47075a",
+    "after": "58706ae0877d7ade159988e3b5cf11300b66206c1e463c1e65b54a6187e91ecc",
+    "title": "가족에게 필요한 평면 비교"
+  },
+  "cost": {
+    "before": "11c502d99d12a5ee653db858a02063e3273dff0cddf56d53f10d9faaeda28b6c",
+    "after": "1d94474b5be3187cbd8832f06297013cd8059d34672c747fa58a7fe9746616fe",
+    "title": "총예산과 납부 시점으로 최종 비교"
+  },
+  "directions": {
+    "before": "9e0d817b628d071195867adc7f6821450db1d9fbcc369c21a88f01e67af36eaa",
+    "after": "129023bf7f356cc1785bca8d8a4fab0ab127afc6e7ddd6d26f688eff0e2ca20b",
+    "title": "선택 기준을 정리하고 상담하기"
+  }
+}

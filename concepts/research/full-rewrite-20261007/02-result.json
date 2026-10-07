@@ -1,0 +1,37 @@
+{
+  "overview": {
+    "before": "5729576cb265c96566a7be8d5c99930cc47ca8ea0bf65f8e5c4ab66cbfee9955",
+    "after": "aa92448392f2a09817a0f339494c1ec497e90da21c1c290a4ccfa5d5928ff340",
+    "title": "자금 계획에 앞서 블록·타입 확인"
+  },
+  "location": {
+    "before": "164db7de18897d10acd7a1e93f4219b87fe0ed4e906eb073f5a528fdfe1b048d",
+    "after": "a1dd4b43cc07c7e5272794a77f9ec9f6c93404e04eb7c87720eec1bc540e709f",
+    "title": "현재 시설과 앞으로의 교통 계획"
+  },
+  "premium": {
+    "before": "37524e56e70045f8c833e8714a1110fc8a380a8c6c244bd314b0f4e865566e05",
+    "after": "c9e53575b009d1a38f758dd6bbd523d02ac04d6e5cb7f7300fb87db5a2ae6cc3",
+    "title": "공급금액에 포함된 것과 별도인 것"
+  },
+  "arrangement": {
+    "before": "c805934b38a922ac6400ed800962883aeafa2eb793e46a6e2fc4f90652d574fd",
+    "after": "401c8725fd1b25f2087ef6a11a4681419650fafeacace119d0a9f31c3e9f3ce6",
+    "title": "가격을 비교할 세대의 위치 찾기"
+  },
+  "types": {
+    "before": "865f1171649ff20a0905580ba5e8b3018e769185c60f567c25bb401f1c094b30",
+    "after": "0b8a9a78c584740c09160c1da741710350dfd72bc6579a1e4e2b302cfa1c0adc",
+    "title": "평면 선택과 옵션 예산"
+  },
+  "cost": {
+    "before": "cf0fe71d0b4ce0190f5cc6bf134c8915c1372e7f5b1594d6b4743f235fc7fc0d",
+    "after": "835c82ce8dbd726b391eab721dc72b352bc4a2b3910b76cd4fa3700a6161acec",
+    "title": "계약금 5%부터 잔금 35%까지"
+  },
+  "directions": {
+    "before": "9e0d817b628d071195867adc7f6821450db1d9fbcc369c21a88f01e67af36eaa",
+    "after": "77d660618ebe05fd43a4257c58aabf9ca63a675bb60578eddbd1c7c3294ac8bc",
+    "title": "자금 상담 전에 준비할 자료"
+  }
+}

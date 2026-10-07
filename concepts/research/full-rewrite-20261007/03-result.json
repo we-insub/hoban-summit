@@ -1,0 +1,37 @@
+{
+  "overview": {
+    "before": "b766560bf9a9e244a308efb8e29476a18d7ccecc627cadf7d946e67e80080f28",
+    "after": "01a36139b709e65b2e98cf233f0928ca4ba9f3bb7ede87abacd5a5bbb58ba09d",
+    "title": "어떤 주택형이 어느 블록에 있나요?"
+  },
+  "location": {
+    "before": "ee06a47a933a75f6fa371ccb790bac1de25150c1a9f3f3d7f9efee10934fac2d",
+    "after": "fe439df12a96d19282a5dab02b338c93ae61e3fd648f2686ee1e5f5c0b6c8ca2",
+    "title": "가족의 생활 반경도 평면과 함께"
+  },
+  "premium": {
+    "before": "37524e56e70045f8c833e8714a1110fc8a380a8c6c244bd314b0f4e865566e05",
+    "after": "ce07484e51d17f4c743a5e2586f11080d9187df22a99b1635d89a6cb79afe44b",
+    "title": "자주 쓰는 공간부터 평면 읽기"
+  },
+  "arrangement": {
+    "before": "25270067358c640b8f4d045f89df4cd5111644d94ab6320557841bbd17b79b35",
+    "after": "72e571714d9f2b9645f1378fd4458a55e67b776299bd524b87dc723ad735214c",
+    "title": "마음에 드는 평면, 어느 동에 있나요?"
+  },
+  "types": {
+    "before": "ea94a1692ba1016669bbcb21e79e59f9ee0c67a9679b75ea7f819ac5c37fb4b1",
+    "after": "465352645cc7bc89d36bc259e9e98e3f995f5255de72b9df49a80f23adb944af",
+    "title": "84A·84B·117A·117B·135 공식 평면"
+  },
+  "cost": {
+    "before": "40facff74300a59d8868742011db8bb44c9f7bd300a019b9d700e02b0437400c",
+    "after": "c552924612e5c6533bfafdea6b2d4bc33eb2d656b0068d05143644496eed2a5a",
+    "title": "평면 비교 다음은 타입별 가격"
+  },
+  "directions": {
+    "before": "76e552e140de853a45a9f34f760c260b175e3c197afff26afa113a4269dea087",
+    "after": "181eb7d2556d4c7a982a2fc739651ad0bea5c9d051fc3ae622d9db3bf98459e0",
+    "title": "모델하우스에서 평면 확인하기"
+  }
+}

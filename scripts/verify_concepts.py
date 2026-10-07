@@ -58,7 +58,7 @@ for ident in ([args.version] if args.version else list(profiles)):
   editorial_path=ROOT/'concepts/editorial'/f'{ident}.json'
   if editorial_path.exists():
    editorial=json.loads(editorial_path.read_text())
-   assert len(schema['mainEntity'])==1+len(editorial['faq_indices'])
+   assert len(schema['mainEntity'])==1+len(editorial.get('faqs',editorial['faq_indices']))
    answer_id='focus' if int(ident)>3 else 'version-answer'
    assert source.index('<section id="'+answer_id+'"') < source.index('<div class="stats-strip"')
    assert editorial['title'] in html.unescape(source)
@@ -67,6 +67,16 @@ for ident in ([args.version] if args.version else list(profiles)):
    answer_section=source.split('<section id="'+answer_id+'"',1)[1].split('</section>',1)[0]
    assert '確認' not in answer_section
    for ref in editorial['refs']: assert ref['path'] in answer_section, (ident,'direct answer source missing')
+   assert 'sections' in editorial, (ident, 'whole-page editorial model required')
+   for key in ['hero_kicker','hero_copy'] + (['story_title','story_text','living_title','living_text'] if int(ident)<4 else []):
+    assert html.escape(editorial[key],quote=True) in source, (ident,key,'missing hero/story text')
+   if 'sections' in editorial:
+    for key,m in editorial['sections'].items():
+     assert 'id="'+key+'" data-content-revision="full-20261007"' in source
+     section=source.split('id="'+key+'"',1)[1].split('</section>',1)[0]
+     for text in [m['title'],m['intro'],m['question'],m['answer']]+[c['text'] for c in m['cards']]:
+      assert html.escape(text,quote=True) in section, (ident,key,'missing authored text')
+     assert 'source-note' in section and 'hobansummit-kjcd.co.kr/' in section
    assert Image.open(bundle/'branding/favicon-96.png').size==(96,96)
    assert Image.open(bundle/'branding/apple-touch-icon.png').size==(180,180)
    assert Image.open(bundle/'branding/favicon.ico').ico.sizes()=={(16,16),(32,32),(48,48)}

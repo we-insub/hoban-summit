@@ -1,0 +1,37 @@
+{
+  "overview": {
+    "before": "b766560bf9a9e244a308efb8e29476a18d7ccecc627cadf7d946e67e80080f28",
+    "after": "0fd73dc5e9f805641074ae36c207605f9ca03d633cf9fd42ddad5ff3e2d2d9f3",
+    "title": "방문 전, 관심 블록과 타입 정리"
+  },
+  "location": {
+    "before": "164db7de18897d10acd7a1e93f4219b87fe0ed4e906eb073f5a528fdfe1b048d",
+    "after": "93d202101bd423bb6eb6a1d979c504394d7637ee3293ac56231758fdfa0f0f53",
+    "title": "사업지 답사와 모델하우스 방문 구분"
+  },
+  "premium": {
+    "before": "37524e56e70045f8c833e8714a1110fc8a380a8c6c244bd314b0f4e865566e05",
+    "after": "f2e6d19642aeaa762d69d0c5dc4d8333b2038650b82412c25cdfad928a98d72b",
+    "title": "전시 사양과 계약 사양 확인"
+  },
+  "arrangement": {
+    "before": "c805934b38a922ac6400ed800962883aeafa2eb793e46a6e2fc4f90652d574fd",
+    "after": "a40a8964829a6ee758cecd173367d66cec6758c5c27db88cba9a5cc925b60f61",
+    "title": "배치도에서 관심 동호수 찾기"
+  },
+  "types": {
+    "before": "29de975ed3e7413cf2ed63668f9a67831cc9c341f57bcc8bc1d39f24fc47075a",
+    "after": "83cd8623efb8f68d0b33d366955f8da80a91e13059727c12771b1ba7eae53205",
+    "title": "방문할 때 비교할 평면 준비"
+  },
+  "cost": {
+    "before": "40facff74300a59d8868742011db8bb44c9f7bd300a019b9d700e02b0437400c",
+    "after": "113b0df7a59aa4813beeba33bd02ab5281cd64fe20e4eba475ee76accdfdb634",
+    "title": "방문 전 예산 확인"
+  },
+  "directions": {
+    "before": "48e377e614d194a6e3a6a8d714bb7936686eb8d6834052afc92ae824079a3da2",
+    "after": "dd230798426400e0cf7d70f9e0c5efe9d3328f91ede5dc12c7f294859f0fba5c",
+    "title": "광주 마륵동 모델하우스 오시는 길"
+  }
+}

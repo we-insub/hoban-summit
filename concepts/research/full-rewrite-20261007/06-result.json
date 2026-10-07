@@ -1,0 +1,37 @@
+{
+  "overview": {
+    "before": "5729576cb265c96566a7be8d5c99930cc47ca8ea0bf65f8e5c4ab66cbfee9955",
+    "after": "c752ebbc810e642b72889a223d4fa80bcf40b81ac7065c4b69cff4ba31c2564e",
+    "title": "84·117·135, 면적대별 공급 구성"
+  },
+  "location": {
+    "before": "164db7de18897d10acd7a1e93f4219b87fe0ed4e906eb073f5a528fdfe1b048d",
+    "after": "c44da546e63acc78fdbb180305fafa621420ececdc59fb031a21064f3ced4af0",
+    "title": "집의 넓이와 생활권을 함께 비교"
+  },
+  "premium": {
+    "before": "37524e56e70045f8c833e8714a1110fc8a380a8c6c244bd314b0f4e865566e05",
+    "after": "6a38109892dcbaeb8a5125f0a375d68caef9efe71518857c14d92dbbf369cff0",
+    "title": "개인 공간과 공동 공간 구분"
+  },
+  "arrangement": {
+    "before": "618330262c3732b05a27f203b55ab6fc922e6e64d87c585b4d5f1a520fe8d6b8",
+    "after": "db22e36168f01870d9ebf3c48c5136f61ac19209f0d123fe66ad454800ae9557",
+    "title": "전용면적과 대지면적은 다릅니다"
+  },
+  "types": {
+    "before": "ea94a1692ba1016669bbcb21e79e59f9ee0c67a9679b75ea7f819ac5c37fb4b1",
+    "after": "77db4d9bb3d865e02b94c5dc68602ac500e97a9941a35785ee0249d59e1ded2a",
+    "title": "전용면적·공급면적을 나란히"
+  },
+  "cost": {
+    "before": "a37b58026fe6ecfabc2e1bd986f8d69b8c079184b4d625819ea4c391d291f85e",
+    "after": "4012d8ac6519367272e3dcddbb5482e4fd684afb4baab575de098d53731ceb1e",
+    "title": "면적별 금액을 같은 조건으로 비교"
+  },
+  "directions": {
+    "before": "9e0d817b628d071195867adc7f6821450db1d9fbcc369c21a88f01e67af36eaa",
+    "after": "184657e5d154b2d3dc67a2742bc49c2af0b4132df535d9b7a24347e447eb8d49",
+    "title": "평면 상담에 가져갈 질문"
+  }
+}

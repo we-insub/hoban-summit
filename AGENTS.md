@@ -46,3 +46,7 @@ TITLE_FAVICON_GUIDE.md를 읽고 01~10 각각의 홈페이지 title·H1·og:titl
 ## 2026-10-07 01~10 직렬 수정
 
 사용자가 01~10 직렬 작업을 지정했다. 각 버전의 editorial/NN.json과 PROJECT.md를 작성하고 `python3 scripts/build_concepts.py --version NN` → `python3 scripts/verify_concepts.py --version NN` → 해당 화면 검수 순서로 진행한 후 다음 버전을 수정한다. 동시에 여러 버전을 수정하거나 하위 에이전트로 나누지 않는다. 버전별 질문·사실·출처·검색 표현은 concepts/editorial/NN.json에 보존되며 빌더가 실제로 읽는다. 조사 원문은 concepts/SEARCH_RESEARCH_20261007.md, 이번 결과는 concepts/SALE_REVISION_REPORT_20261007.md를 참고한다.
+
+## 2026-10-07 전체 본문 수정 보완
+
+사용자가 01~10 전면 수정을 요청하면 한 번호의 실제 본문·FAQ·소개·공식 근거를 작성하고 빌드·검수한 뒤 다음 번호로 진행한다. 메타·첫 답변만 바뀐 상태를 전체 본문 수정으로 보고하지 않는다. `SALE_PAGE_PRIORITY.md` 7절과 `FULL_BODY_REVISION_20261007.md`를 참고하며 `concepts/editorial/NN.json`의 7개 `sections` 모델을 유지한다.

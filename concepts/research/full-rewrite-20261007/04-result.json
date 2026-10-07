@@ -1,0 +1,37 @@
+{
+  "overview": {
+    "before": "b1d1f1b5a7e6609baaded5e3b17dfe898c25ca7ce20f81ce259733878469fa08",
+    "after": "86a413fcf88922a80a58f245a0392e8022028c6bd1c9a9f0c04d30f8b8c37deb",
+    "title": "A7은 광주, A8은 장성"
+  },
+  "location": {
+    "before": "ee06a47a933a75f6fa371ccb790bac1de25150c1a9f3f3d7f9efee10934fac2d",
+    "after": "c26ee6e25735e94821b8fb0aa884342a7979d8680aa02514effbcf6f747298c3",
+    "title": "두 사업지의 생활 경로 비교"
+  },
+  "premium": {
+    "before": "37524e56e70045f8c833e8714a1110fc8a380a8c6c244bd314b0f4e865566e05",
+    "after": "4b77d98f703f7edd6f71cd24c82fc4124719b104dc5ea8afdf1d910aaa601d35",
+    "title": "시설 구성도 블록별로 확인"
+  },
+  "arrangement": {
+    "before": "25270067358c640b8f4d045f89df4cd5111644d94ab6320557841bbd17b79b35",
+    "after": "950e943d984c2816dd35fca4f6298fa05858dd2b4e955ce226dd98dd5946322c",
+    "title": "5개동과 6개동의 배치 비교"
+  },
+  "types": {
+    "before": "865f1171649ff20a0905580ba5e8b3018e769185c60f567c25bb401f1c094b30",
+    "after": "8db37ec7c480022c43f24a01246c71b8dfabd9d234ca2413982d4727759ab1d2",
+    "title": "84㎡대와 117·135㎡대 비교"
+  },
+  "cost": {
+    "before": "40facff74300a59d8868742011db8bb44c9f7bd300a019b9d700e02b0437400c",
+    "after": "be5f233454567b8e8946a1be9711a43909d578ad9541636b5ca82c735715b219",
+    "title": "블록별 공급금액 비교"
+  },
+  "directions": {
+    "before": "76e552e140de853a45a9f34f760c260b175e3c197afff26afa113a4269dea087",
+    "after": "6efe1c74060d8f3ed43ab81c9c39c6c9c2b7b2765feffd36656b3a85ee7e7ca5",
+    "title": "두 블록 상담, 모델하우스 주소는 별도"
+  }
+}

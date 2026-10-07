@@ -37,3 +37,9 @@ body:has(.hero-new) .site-footer{background:var(--ink)}body:has(.hero-new) .visi
 .editorial-analysis h3{font-size:clamp(22px,2vw,28px);line-height:1.5;margin:0 0 18px;font-weight:500}
 .editorial-analysis p{font-size:19px;line-height:1.9;color:var(--muted);overflow-wrap:anywhere}
 @media(max-width:600px){.editorial-analysis p{font-size:18px}.editorial-analysis{margin-top:28px;padding-top:22px}}
+
+.section-answer{max-width:960px;margin:0 0 38px;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.section-answer h3{font-size:clamp(22px,2.1vw,28px);font-weight:500;line-height:1.55;margin:0 0 15px}
+.section-answer>p:not(.source-note){font-size:19px;line-height:1.9;color:var(--muted);margin:0 0 20px}
+.section-answer .source-note{margin-bottom:0}.calc-inner>.table-scroll{margin-bottom:30px}.calc-inner>.fact-grid{margin-bottom:35px}
+@media(max-width:600px){.section-answer>p:not(.source-note){font-size:18px}.section-answer{padding:22px 0;margin-bottom:28px}}

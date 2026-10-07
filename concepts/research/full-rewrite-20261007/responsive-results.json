@@ -1,0 +1,142 @@
+[
+  {
+    "id": "02",
+    "pc": {
+      "heading": "자금 계획에 앞서 블록·타입 확인",
+      "scroll": 1440,
+      "sections": 7,
+      "width": 1440
+    },
+    "mobile": {
+      "price": true,
+      "scroll": 390,
+      "width": 390
+    }
+  },
+  {
+    "id": "03",
+    "pc": {
+      "heading": "어떤 주택형이 어느 블록에 있나요?",
+      "scroll": 1440,
+      "sections": 7,
+      "width": 1440
+    },
+    "mobile": {
+      "price": true,
+      "scroll": 390,
+      "width": 390
+    }
+  },
+  {
+    "id": "04",
+    "pc": {
+      "heading": "A7은 광주, A8은 장성",
+      "scroll": 1440,
+      "sections": 7,
+      "width": 1440
+    },
+    "mobile": {
+      "price": true,
+      "scroll": 390,
+      "width": 390
+    }
+  },
+  {
+    "id": "05",
+    "pc": {
+      "heading": "가격표를 찾기 전에 공급 구성 확인",
+      "scroll": 1440,
+      "sections": 7,
+      "width": 1440
+    },
+    "mobile": {
+      "price": true,
+      "scroll": 390,
+      "width": 390
+    }
+  },
+  {
+    "id": "06",
+    "pc": {
+      "heading": "84·117·135, 면적대별 공급 구성",
+      "scroll": 1440,
+      "sections": 7,
+      "width": 1440
+    },
+    "mobile": {
+      "price": true,
+      "scroll": 390,
+      "width": 390
+    }
+  },
+  {
+    "id": "07",
+    "pc": {
+      "heading": "첨단3지구 안에서도 다른 사업지",
+      "scroll": 1440,
+      "sections": 7,
+      "width": 1440
+    },
+    "mobile": {
+      "price": true,
+      "scroll": 390,
+      "width": 390
+    }
+  },
+  {
+    "id": "08",
+    "pc": {
+      "heading": "A8, 449세대의 단지 구성",
+      "scroll": 1440,
+      "sections": 7,
+      "width": 1440
+    },
+    "mobile": {
+      "price": true,
+      "scroll": 390,
+      "width": 390
+    }
+  },
+  {
+    "id": "09",
+    "pc": {
+      "heading": "방문 전, 관심 블록과 타입 정리",
+      "scroll": 1440,
+      "sections": 7,
+      "width": 1440
+    },
+    "mobile": {
+      "price": true,
+      "scroll": 390,
+      "width": 390
+    }
+  },
+  {
+    "id": "10",
+    "pc": {
+      "heading": "넓이·지역·입주 시점부터 선택",
+      "scroll": 1440,
+      "sections": 7,
+      "width": 1440
+    },
+    "mobile": {
+      "price": true,
+      "scroll": 390,
+      "width": 390
+    }
+  },
+  {
+    "id": "01",
+    "pc": {
+      "heading": "호반써밋 첨단3지구, A7·A8 한눈에 보기",
+      "scroll": 1440,
+      "sections": 7,
+      "width": 1440
+    },
+    "mobile": {
+      "price": true,
+      "scroll": 390,
+      "width": 390
+    }
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "overview": {
+    "before": "b766560bf9a9e244a308efb8e29476a18d7ccecc627cadf7d946e67e80080f28",
+    "after": "1eef8bed432d3827d90db71b29d4bd52f28f56d8f55862a0d40a2e4e1b81938f",
+    "title": "A8, 449세대의 단지 구성"
+  },
+  "location": {
+    "before": "ee06a47a933a75f6fa371ccb790bac1de25150c1a9f3f3d7f9efee10934fac2d",
+    "after": "f4546ba1e6b0fdbf091744e9e579d36ad59268e9b3f8e2168d6d02bad96cf88d",
+    "title": "단지 안 여가와 첨단 생활권"
+  },
+  "premium": {
+    "before": "98b44133cb8434158540dbc9a4e32be74176722c4a2759b096e18943b1bba366",
+    "after": "e5f8757675e817bfa31be9e512eb99fde1a9b17512b2bdd1927314c9ba3a190f",
+    "title": "A8의 운동·독서·모임 공간"
+  },
+  "arrangement": {
+    "before": "25270067358c640b8f4d045f89df4cd5111644d94ab6320557841bbd17b79b35",
+    "after": "5ad216a833c15dcefc2c9baa10a78c2bf70c55328d739efa4a11a64ed17906e5",
+    "title": "관심 동에서 커뮤니티까지"
+  },
+  "types": {
+    "before": "413f37c3b5f48d32208ecc2379f57fcc47d061b284fa518666d6f0b0bd4caaba",
+    "after": "d7f11f22353bc26b42e650c8103eeaa69e29cc5af567400bebf341e8f05723d0",
+    "title": "커뮤니티와 우리 집 평면 함께 보기"
+  },
+  "cost": {
+    "before": "40facff74300a59d8868742011db8bb44c9f7bd300a019b9d700e02b0437400c",
+    "after": "615cffab4b250f82d69bb7b9eba916ab16b0ae61ec45f026d0049066cb52c25e",
+    "title": "커뮤니티 계획과 구매 예산 구분"
+  },
+  "directions": {
+    "before": "76e552e140de853a45a9f34f760c260b175e3c197afff26afa113a4269dea087",
+    "after": "f749076e306a522e865dba0e8711e8afe01e0ac2f9ae4c3f4fe5fc566496cfe7",
+    "title": "시설과 평면, 함께 상담해 보세요"
+  }
+}

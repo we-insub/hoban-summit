@@ -8,6 +8,7 @@ import re
 import shutil
 from concept_variants import VARIANTS, focus_section
 from site_branding import build_branding
+from sale_content import render_sections, REFS as SECTION_REFS
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'concepts'
@@ -134,6 +135,10 @@ for ident,label,title,image,title_meta in variants:
   variant_content = variant_content.replace('2026.10.01','2026.10.07').replace('2026년 10월 1일','2026년 10월 7일')
  else:
   direct_answer = ''
+ if editorial and 'sections' in editorial:
+  rewritten,authored_faqs=render_sections(editorial,data,sections)
+  variant_content=''.join(rewritten[key] for key in profile['order'])
+  variant_faq=[(f['question'],f['answer'],f['refs'][0] if f['refs'] else None) for f in authored_faqs]
  numbers = iter(range(1,30))
  variant_content = re.sub(r'(<span class="section-number">)\d{2} /',lambda m:m.group(1)+str(next(numbers)).zfill(2)+' /',variant_content)
  schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a,_ in variant_faq]}
@@ -147,6 +152,14 @@ for ident,label,title,image,title_meta in variants:
    hero += '<figure class="hero-detail"><div class="design-preview">'+photo('official-design-a8.jpg','A8블록 공식 조감도 미리보기')+'</div></figure>'
   hero += '<div class="hero-content"><p class="eyeline">'+e(v['kicker'])+'</p><h1>'+title+'</h1><p class="hero-copy">'+v['copy'].replace('<br />','<br /> ')+'</p><div class="hero-actions"><button class="primary" data-open-booking>방문예약 ↗</button><a class="secondary" href="#'+v['link']+'">'+e(v['action'])+'</a></div></div><div class="hero-aside"><strong>'+e(v['metric'])+'</strong><span>'+e(v['detail'])+'</span></div></section>'
   page = page[:hero_start]+hero+page[story_end:]
+ if editorial and 'sections' in editorial:
+  page=re.sub(r'(<section class="hero[^>]*>.*?<div class="hero-content"><p class="eyeline">).*?(</p>)',lambda m:m[1]+e(editorial['hero_kicker'])+m[2],page,count=1,flags=re.S)
+  page=re.sub(r'(<p class="hero-copy">).*?(</p>)',lambda m:m[1]+e(editorial['hero_copy'])+m[2],page,count=1,flags=re.S)
+  if ident not in extra_variants:
+   page=re.sub(r'(<h2 id="residence-story-title">).*?(</h2>)',lambda m:m[1]+e(editorial['story_title'])+m[2],page,count=1,flags=re.S)
+   page=re.sub(r'(<h2 id="residence-story-title">.*?</h2><p>).*?(</p>)',lambda m:m[1]+e(editorial['story_text'])+m[2],page,count=1,flags=re.S)
+   page=re.sub(r'(<div class="living-copy"><p class="eyeline">.*?</p><h2>).*?(</h2>)',lambda m:m[1]+e(editorial['living_title'])+m[2],page,count=1,flags=re.S)
+   page=re.sub(r'(<div class="living-copy">.*?</h2><p>).*?(</p>)',lambda m:m[1]+e(editorial['living_text'])+m[2],page,count=1,flags=re.S)
  if editorial:
   build_branding(ident,out/'branding')
   page=page.replace('</head>','<link rel="icon" type="image/svg+xml" href="branding/favicon.svg"><link rel="icon" type="image/png" sizes="96x96" href="branding/favicon-96.png"><link rel="icon" type="image/x-icon" href="branding/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="branding/apple-touch-icon.png"></head>',1)
@@ -174,6 +187,11 @@ for ident,label,title,image,title_meta in variants:
   for q,a,path in variant_faq:
    brief += '| '+q+' | '+a+' | '+(official+path+' / 확인일 2026-10-07' if path else '기존 예약·계산 기능 / 서버 전송 범위 확인')+' | #faq |\n'
   brief += '\n## AEO·GEO 구현\n\n대표 질문과 직접 답은 첫 이미지 바로 다음 정보 영역에 있다. FAQ는 이 버전의 질문을 골라 화면·JSON-LD에 같은 답을 제공한다. 공식 자료에 근거한 사실과 자체 비교·계산을 구분한다. 검색어·FAQ 개수는 고정하지 않는다.\n\n## 공개·기능 검증\n\n로컬 HTML·독립 배포 폴더의 링크와 이미지, FAQ 일치, 가격 수정 금지, 메뉴와 ctx를 scripts/verify_concepts.py --version '+ident+'로 검증한다. PC·모바일 실행 결과는 ../SALE_REVISION_REPORT_20261007.md에 기록한다. 예약·동의 버전·보관 정책·알림 서버는 변경하지 않는다. 구현 / 수집 요청 / 색인 / 검색 노출 / AI 인용은 각각 별도 상태로 기록한다.\n'
+  if 'sections' in editorial:
+   brief+='\n## 全本文 수정 명세 — 2026-10-07 보완\n\n첫 답변뿐 아니라 일곱 정보 영역과 첫 화면·FAQ를 새로 작성했다. 공통 가격 데이터·원본 도면·예약 컨트롤은 보존한다.\n\n| 영역 | 제목 | 독자 질문 | 초기 HTML에 보이는 직접 답 | 공식 근거·확인일 |\n|---|---|---|---|---|\n'
+   for key,m in editorial['sections'].items():
+    brief+='| #'+key+' | '+m['title']+' | '+m['question']+' | '+m['answer']+' | '+ ' / '.join(official+p for p,_ in SECTION_REFS[key])+' / 2026-10-07 |\n'
+   brief=brief.replace('全本文','전체 본문')
   brief_path.write_text(brief)
 (BASE/'data.js').write_text('window.HOBAN_DATA = '+json.dumps(data,ensure_ascii=False)+';\n')
 chooser_cards = ''.join('<a href="'+ident+'/"><span>'+ident+'</span><h2>'+label+'</h2><p>'+(extra_variants[ident]['kicker'] if ident in extra_variants else {'01':'포레스트 그린 · 전체 단지 이미지','02':'네이비·샌드 · 설명과 이미지 분할','03':'아이보리·브론즈 · 밝은 갤러리'}[ident])+'</p><b>시안 보기 ↗</b></a>' for ident,label,*_ in variants)
