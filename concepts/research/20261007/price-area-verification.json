@@ -1,0 +1,37 @@
+[
+  {
+    "unit": "84A",
+    "prices_verified": 5,
+    "pdf_page": 8,
+    "sha256": "e20bbefa7533a368f857d5bb4d0ba916bbb52ab4f60735fc5f9041e146eb698d",
+    "checked_at": "2026-10-07"
+  },
+  {
+    "unit": "84B",
+    "prices_verified": 5,
+    "pdf_page": 8,
+    "sha256": "e20bbefa7533a368f857d5bb4d0ba916bbb52ab4f60735fc5f9041e146eb698d",
+    "checked_at": "2026-10-07"
+  },
+  {
+    "unit": "117A",
+    "prices_verified": 5,
+    "pdf_page": 12,
+    "sha256": "fb9d1c76d685fa0edbfc791aa303893e15c20719f4fa9fcb4ea681215f556eff",
+    "checked_at": "2026-10-07"
+  },
+  {
+    "unit": "117B",
+    "prices_verified": 5,
+    "pdf_page": 12,
+    "sha256": "fb9d1c76d685fa0edbfc791aa303893e15c20719f4fa9fcb4ea681215f556eff",
+    "checked_at": "2026-10-07"
+  },
+  {
+    "unit": "135",
+    "prices_verified": 5,
+    "pdf_page": 12,
+    "sha256": "fb9d1c76d685fa0edbfc791aa303893e15c20719f4fa9fcb4ea681215f556eff",
+    "checked_at": "2026-10-07"
+  }
+]

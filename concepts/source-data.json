@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-10-01",
+  "checked_at": "2026-10-07",
   "notice_date": "2026-06-05",
   "target_status": "confirmed",
   "project": "호반써밋 첨단3지구",
   "booking": {
-    "mode": "preview",
+    "mode": "live",
     "ctx": "호반써밋첨단3지구",
     "phone": "1600-5184",
     "phone_label": "모하모아 상담",
@@ -163,11 +163,13 @@
     }
   ],
   "official_review": {
-    "checked_at": "2026-10-01",
+    "checked_at": "2026-10-07",
     "report": "OFFICIAL_CONTENT_REVIEW.md",
     "a8_scale": "지하 1층, 지상 18~20층, 6개동, 449세대",
     "a8_move_in": "2028년 10월 예정",
     "a8_source": "https://hobansummit-kjcd.co.kr/images/gonggo8bl_01_v2.pdf",
-    "plans_status": "공홈 계획 인용, 최신 개통·개교 일정 및 배정학교 확인 필요"
-  }
+    "plans_status": "공홈 계획 인용, 최신 개통·개교 일정 및 배정학교 확인 필요",
+    "latest_report": "SEARCH_RESEARCH_20261007.md"
+  },
+  "previous_checked_at": "2026-10-01"
 }

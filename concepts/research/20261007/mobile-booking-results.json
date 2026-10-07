@@ -1,0 +1,172 @@
+[
+  {
+    "id": "01",
+    "w390": {
+      "scroll": 390,
+      "width": 390
+    },
+    "w320": {
+      "scroll": 320,
+      "width": 320
+    },
+    "form": {
+      "consent": true,
+      "name": "[가-힣]{1,6}",
+      "phone": "[0-9]{3}-[0-9]{4}-[0-9]{4}",
+      "visible": true
+    }
+  },
+  {
+    "id": "02",
+    "w390": {
+      "scroll": 390,
+      "width": 390
+    },
+    "w320": {
+      "scroll": 320,
+      "width": 320
+    },
+    "form": {
+      "consent": true,
+      "name": "[가-힣]{1,6}",
+      "phone": "[0-9]{3}-[0-9]{4}-[0-9]{4}",
+      "visible": true
+    }
+  },
+  {
+    "id": "03",
+    "w390": {
+      "scroll": 390,
+      "width": 390
+    },
+    "w320": {
+      "scroll": 320,
+      "width": 320
+    },
+    "form": {
+      "consent": true,
+      "name": "[가-힣]{1,6}",
+      "phone": "[0-9]{3}-[0-9]{4}-[0-9]{4}",
+      "visible": true
+    }
+  },
+  {
+    "id": "04",
+    "w390": {
+      "scroll": 390,
+      "width": 390
+    },
+    "w320": {
+      "scroll": 320,
+      "width": 320
+    },
+    "form": {
+      "consent": true,
+      "name": "[가-힣]{1,6}",
+      "phone": "[0-9]{3}-[0-9]{4}-[0-9]{4}",
+      "visible": true
+    }
+  },
+  {
+    "id": "05",
+    "w390": {
+      "scroll": 390,
+      "width": 390
+    },
+    "w320": {
+      "scroll": 320,
+      "width": 320
+    },
+    "form": {
+      "consent": true,
+      "name": "[가-힣]{1,6}",
+      "phone": "[0-9]{3}-[0-9]{4}-[0-9]{4}",
+      "visible": true
+    }
+  },
+  {
+    "id": "06",
+    "w390": {
+      "scroll": 390,
+      "width": 390
+    },
+    "w320": {
+      "scroll": 320,
+      "width": 320
+    },
+    "form": {
+      "consent": true,
+      "name": "[가-힣]{1,6}",
+      "phone": "[0-9]{3}-[0-9]{4}-[0-9]{4}",
+      "visible": true
+    }
+  },
+  {
+    "id": "07",
+    "w390": {
+      "scroll": 390,
+      "width": 390
+    },
+    "w320": {
+      "scroll": 320,
+      "width": 320
+    },
+    "form": {
+      "consent": true,
+      "name": "[가-힣]{1,6}",
+      "phone": "[0-9]{3}-[0-9]{4}-[0-9]{4}",
+      "visible": true
+    }
+  },
+  {
+    "id": "08",
+    "w390": {
+      "scroll": 390,
+      "width": 390
+    },
+    "w320": {
+      "scroll": 320,
+      "width": 320
+    },
+    "form": {
+      "consent": true,
+      "name": "[가-힣]{1,6}",
+      "phone": "[0-9]{3}-[0-9]{4}-[0-9]{4}",
+      "visible": true
+    }
+  },
+  {
+    "id": "09",
+    "w390": {
+      "scroll": 390,
+      "width": 390
+    },
+    "w320": {
+      "scroll": 320,
+      "width": 320
+    },
+    "form": {
+      "consent": true,
+      "name": "[가-힣]{1,6}",
+      "phone": "[0-9]{3}-[0-9]{4}-[0-9]{4}",
+      "visible": true
+    }
+  },
+  {
+    "id": "10",
+    "w390": {
+      "scroll": 390,
+      "width": 390
+    },
+    "w320": {
+      "scroll": 320,
+      "width": 320
+    },
+    "form": {
+      "consent": true,
+      "name": "[가-힣]{1,6}",
+      "phone": "[0-9]{3}-[0-9]{4}-[0-9]{4}",
+      "visible": true
+    }
+  }
+]

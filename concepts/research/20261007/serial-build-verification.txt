@@ -1,0 +1,69 @@
+Built concept 01
+Standalone draft bundle: 01
+
+Budget amount/units/negative/loan guards: passed
+01: local/standalone assets, anchors, FAQ parity, read-only price passed
+Frontend/server Hoban consent policy parity: passed. No live booking submitted.
+
+Built concept 02
+Standalone draft bundle: 02
+
+Budget amount/units/negative/loan guards: passed
+02: local/standalone assets, anchors, FAQ parity, read-only price passed
+Frontend/server Hoban consent policy parity: passed. No live booking submitted.
+
+Built concept 03
+Standalone draft bundle: 03
+
+Budget amount/units/negative/loan guards: passed
+03: local/standalone assets, anchors, FAQ parity, read-only price passed
+Frontend/server Hoban consent policy parity: passed. No live booking submitted.
+
+Built concept 04
+Standalone draft bundle: 04
+
+Budget amount/units/negative/loan guards: passed
+04: local/standalone assets, anchors, FAQ parity, read-only price passed
+Frontend/server Hoban consent policy parity: passed. No live booking submitted.
+
+Built concept 05
+Standalone draft bundle: 05
+
+Budget amount/units/negative/loan guards: passed
+05: local/standalone assets, anchors, FAQ parity, read-only price passed
+Frontend/server Hoban consent policy parity: passed. No live booking submitted.
+
+Built concept 06
+Standalone draft bundle: 06
+
+Budget amount/units/negative/loan guards: passed
+06: local/standalone assets, anchors, FAQ parity, read-only price passed
+Frontend/server Hoban consent policy parity: passed. No live booking submitted.
+
+Built concept 07
+Standalone draft bundle: 07
+
+Budget amount/units/negative/loan guards: passed
+07: local/standalone assets, anchors, FAQ parity, read-only price passed
+Frontend/server Hoban consent policy parity: passed. No live booking submitted.
+
+Built concept 08
+Standalone draft bundle: 08
+
+Budget amount/units/negative/loan guards: passed
+08: local/standalone assets, anchors, FAQ parity, read-only price passed
+Frontend/server Hoban consent policy parity: passed. No live booking submitted.
+
+Built concept 09
+Standalone draft bundle: 09
+
+Budget amount/units/negative/loan guards: passed
+09: local/standalone assets, anchors, FAQ parity, read-only price passed
+Frontend/server Hoban consent policy parity: passed. No live booking submitted.
+
+Built concept 10
+Standalone draft bundle: 10
+
+Budget amount/units/negative/loan guards: passed
+10: local/standalone assets, anchors, FAQ parity, read-only price passed
+Frontend/server Hoban consent policy parity: passed. No live booking submitted.

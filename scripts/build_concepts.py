@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """Build ten Hoban design concepts with shared, source-checked data."""
+import argparse
 import html
 import json
 import re
 import shutil
 from concept_variants import VARIANTS, focus_section
+from site_branding import build_branding
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'concepts'
+parser = argparse.ArgumentParser()
+parser.add_argument('--version', choices=[str(n).zfill(2) for n in range(1,11)])
+args = parser.parse_args()
 e = lambda x: html.escape(str(x), quote=True)
 data = json.loads((BASE / 'source-data.json').read_text())
 version_plan = json.loads((BASE / 'version-plan.json').read_text())
@@ -85,6 +90,7 @@ section_starts = [(content.index('<section id="'+key+'"'),key) for key in sectio
 section_starts.sort()
 sections = {key:content[pos:section_starts[i+1][0] if i+1<len(section_starts) else len(content)] for i,(pos,key) in enumerate(section_starts)}
 for ident,label,title,image,title_meta in variants:
+ if args.version and ident != args.version: continue
  profile = profiles[ident]
  menu_labels = dict(menu)
  nav = ''.join('<a href="https://mohamoa.com/">모하모아</a>' if key=='mohamoa' else f'<a href="#{key}">{menu_labels[key]}</a>' for key in profile['menu'])
@@ -103,6 +109,31 @@ for ident,label,title,image,title_meta in variants:
   variant_faq = [(v['question'],v['answer'],None)] + faq
   new_faq = '<details><summary>'+e(v['question'])+'</summary><p>'+e(v['answer'])+'</p><p><a href="#focus">비교표와 확인 사항 보기</a></p></details>'
   variant_content = focus_section(v,data) + ''.join(sections[key].replace(faq_html,new_faq+faq_html) if key=='faq' else sections[key] for key in v['order'])
+ editorial_path = BASE/'editorial'/f'{ident}.json'
+ editorial = json.loads(editorial_path.read_text()) if editorial_path.exists() else None
+ if editorial:
+  title_meta, description = editorial['title'], editorial['description']
+  variant_faq = [(profile['question'],profile['answer'],editorial['refs'][0]['path'])] + [faq[i] for i in editorial['faq_indices']]
+  current_faq_html = ''.join('<details><summary>'+e(q)+'</summary><p>'+e(a)+'</p>'+ ('<p class="source-note"><a href="'+official+path+'" target="_blank" rel="noopener">公式 근거 확인 ↗</a> · 확인일 2026.10.07</p>' if path else '') + '</details>' for q,a,path in variant_faq).replace('公式','공식')
+  refs_html = '<p class="source-note">확인일 2026.10.07 · '+ ' · '.join('<a href="'+official+r['path']+'" target="_blank" rel="noopener">'+e(r['label'])+' ↗</a>' for r in editorial['refs'])+'</p>'
+  first_faq_end=current_faq_html.index('</details>')
+  first_faq=current_faq_html[:first_faq_end]
+  first_faq=re.sub(r'<p class="source-note">.*?</p>',refs_html,first_faq)
+  current_faq_html=first_faq+current_faq_html[first_faq_end:]
+  if ident in extra_variants:
+   v = dict(extra_variants[ident],question=profile['question'],answer=profile['answer'])
+   direct_answer = focus_section(v,data).replace('2026.10.01','2026.10.07')
+  else:
+   direct_answer = '<section id="version-answer" class="focus-section section-wrap"><div class="focus-heading"><h2>'+e(profile['question'])+'</h2><p>'+e(profile['answer'])+'</p></div>'+'</section>'
+  heading_end=direct_answer.index('</div>')+len('</div>')
+  direct_answer=direct_answer[:heading_end]+refs_html+direct_answer[heading_end:]
+  details_html = '<div class="editorial-analysis"><h3>'+e(editorial['analysis_title'])+'</h3>'+ ''.join('<p>'+e(paragraph)+'</p>' for paragraph in editorial['analysis'])+'</div>'
+  direct_answer = direct_answer.rsplit('</section>',1)[0]+details_html+'</section>'
+  variant_content = ''.join(sections[key].replace(faq_html,current_faq_html) if key=='faq' else sections[key] for key in profile['order'])
+  # Only reviewed official facts receive the new check date; facility operators retain their older check date.
+  variant_content = variant_content.replace('2026.10.01','2026.10.07').replace('2026년 10월 1일','2026년 10월 7일')
+ else:
+  direct_answer = ''
  numbers = iter(range(1,30))
  variant_content = re.sub(r'(<span class="section-number">)\d{2} /',lambda m:m.group(1)+str(next(numbers)).zfill(2)+' /',variant_content)
  schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a,_ in variant_faq]}
@@ -116,16 +147,41 @@ for ident,label,title,image,title_meta in variants:
    hero += '<figure class="hero-detail"><div class="design-preview">'+photo('official-design-a8.jpg','A8블록 공식 조감도 미리보기')+'</div></figure>'
   hero += '<div class="hero-content"><p class="eyeline">'+e(v['kicker'])+'</p><h1>'+title+'</h1><p class="hero-copy">'+v['copy'].replace('<br />','<br /> ')+'</p><div class="hero-actions"><button class="primary" data-open-booking>방문예약 ↗</button><a class="secondary" href="#'+v['link']+'">'+e(v['action'])+'</a></div></div><div class="hero-aside"><strong>'+e(v['metric'])+'</strong><span>'+e(v['detail'])+'</span></div></section>'
   page = page[:hero_start]+hero+page[story_end:]
+ if editorial:
+  build_branding(ident,out/'branding')
+  page=page.replace('</head>','<link rel="icon" type="image/svg+xml" href="branding/favicon.svg"><link rel="icon" type="image/png" sizes="96x96" href="branding/favicon-96.png"><link rel="icon" type="image/x-icon" href="branding/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="branding/apple-touch-icon.png"></head>',1)
+  hero_end = page.index('</section>',page.index('<section class="hero')) + len('</section>')
+  page = page[:hero_end]+direct_answer+page[hero_end:]
+  page = page.replace('<meta name="robots"', '<meta property="og:title" content="'+e(title_meta)+'"><meta property="og:description" content="'+e(description)+'"><meta property="og:type" content="website"><meta property="og:locale" content="ko_KR"><meta name="robots"',1)
  (out/'index.html').write_text(page)
  keyword_rows = ''.join('| '+k['keyword']+' | #'+k['section']+' | '+k['condition']+' | '+k['status']+' |\n' for k in version_plan['keywords'])
  menu_text = ' → '.join('모하모아' if key=='mohamoa' else menu_labels[key] for key in profile['menu'])
  (out/'PROJECT.md').write_text('# '+ident+' · '+label+'\n\n상태: 실제 상담 접수 연결 / 도메인공개 전 noindex.\n\n'+'## 버전별 작성값\n\n- 대표 질문: '+profile['question']+'\n- 직접 답: '+profile['answer']+'\n- title: '+title_meta+'\n- H1: '+re.sub('<[^>]+>',' ',title).strip()+'\n- 메타 설명: '+description+'\n- 메뉴 순서: '+menu_text+'\n- 본문 순서: '+' → '.join(profile['order'])+'\n- 강조 영역: #'+profile['focus']+'\n- 직접 답변 위치: '+('#focus' if ident in extra_variants else '#version-answer')+' 및 FAQ\n- 자료 확인일: 2026-10-01\n- 공개 도메인·canonical: 확인 필요\n- 검색 수요·검색량: 후보 / 확인 필요\n- 독립 사이트의 고유 가치 검수: 미완료\n- 전화 연결: tel:16005184\n- 서버 ctx: 호반써밋첨단3지구\n- sourceVariant: '+ident+'\n\n## 검색어 후보와 실제 답변 위치\n\n후보는 공식 사실에서 추출했습니다. 실제 연관검색어·검색량·순위는 확인 필요입니다. 강조 영역에 해당하는 후보를 우선 검토하며 아래 목록을 HTML에 나열하지 않습니다.\n\n| 후보 검색어 | 본문 위치 | 답변·조건 | 확인 상태 |\n|---|---|---|---|\n'+keyword_rows+'\n## 공통 제작·공개 절차\n\n../../TEN_VERSION_WORKFLOW.md, ../../LIVE_RESERVATION_GUIDE.md, ../../SEARCH_INDEXING_HANDOFF.md를 읽습니다. SEO는 제목·본문·URL, AEO는 직접 답·FAQ, GEO는 독립적으로 이해되는 사실·비교·출처·기준일에 적용합니다. 색인·검색 노출·AI 인용은 미확인 상태입니다.\n\n같은 사실과 상담 경로를 공유하므로 디자인·문장·순서 차이만으로 독립 색인 적합성을 주장하지 않습니다. 버전별 독자 가치와 중복 처리 검토 후 도메인별 공개 설정을 진행합니다.\n')
+ if editorial:
+  brief_path = out/'PROJECT.md'
+  brief = brief_path.read_text()
+  brief = brief.replace('상태: 실제 상담 접수 연결 / 도메인공개 전 noindex.','상태: 기존 사이트 수정 초안 / 실제 상담 접수 연결 / 로컬 noindex 유지.')
+  brief = brief[:brief.index('## 검색어 후보와 실제 답변 위치')]
+  brief = brief.replace('자료 확인일: 2026-10-01','자료 확인일: 2026-10-07').replace('공개 도메인·canonical: 확인 필요','예정 공개 URL: '+editorial['url']+' / 로컬 canonical 해당 없음').replace('독립 사이트의 고유 가치 검수: 미완료','고유 비교 내용: '+editorial['analysis_title'])
+  brief += '\n## 분양 페이지별 입력 명세\n\n최우선 기준: ../../SALE_PAGE_PRIORITY.md. 한국어 / 모하모아 운영 / 기존 공개 사이트의 수정 초안. 현재 빌드의 noindex를 유지하며 배포·색인 요청은 실행하지 않는다.\n\n'
+  brief += '핵심 독자: '+editorial['reader']+'\n\n## 사실과 근거\n\n| 사실·범위 | 공식 원문 | 자료 발행일 | 확인일 | 조건 |\n|---|---|---|---|---|\n'
+  for ref in editorial['refs']:
+   brief += '| '+ref['label']+' | '+official+ref['path']+' | '+ref.get('published','확인 필요')+' | 2026-10-07 | '+ref['condition']+' |\n'
+  brief += '\n미확인: 현재 잔여 동·호수, 최신 판매 조건, 예정 시설 개통·개교, 방문 가능 시간. 공식 자료나 계약 조건이 바뀌면 다시 확인한다.\n\n## 검색어·답변 연결\n\n조사 원문과 설정은 ../SEARCH_RESEARCH_20261007.md를 따른다. 검색량·순위를 추정하지 않는다.\n\n| 검색 표현 | 조사 또는 후보 | 의도 | 실제 답변 위치 | 적용 조건 |\n|---|---|---|---|---|\n'
+  for term in editorial['terms']:
+   brief += '| '+term['text']+' | '+term['status']+' | '+editorial['intent']+' | #'+term['section']+' | '+term['condition']+' |\n'
+  brief += '\n## SEO 작성값과 링크\n\n목표: Google·네이버·Bing의 정보 검색. title·H1·메타 설명은 위 작성값과 동일하며 og:title은 title에 맞춘다. 내부 링크는 이 페이지의 평면·비용·위치·예약 영역으로 연결한다. 같은 의도는 같은 본문 영역에 묶고 중복 페이지를 추가하지 않는다. 현재 경쟁 순위·검색량은 확인 필요. 로컬 canonical은 해당 없음; 운영 URL과 기존 canonical은 배포 단계에서 확인·보존한다.\n\n## 질문별 직접 답변과 근거\n\n| 질문 | 본문에 표시한 답 | 근거 | 위치 |\n|---|---|---|---|\n'
+  for q,a,path in variant_faq:
+   brief += '| '+q+' | '+a+' | '+(official+path+' / 확인일 2026-10-07' if path else '기존 예약·계산 기능 / 서버 전송 범위 확인')+' | #faq |\n'
+  brief += '\n## AEO·GEO 구현\n\n대표 질문과 직접 답은 첫 이미지 바로 다음 정보 영역에 있다. FAQ는 이 버전의 질문을 골라 화면·JSON-LD에 같은 답을 제공한다. 공식 자료에 근거한 사실과 자체 비교·계산을 구분한다. 검색어·FAQ 개수는 고정하지 않는다.\n\n## 공개·기능 검증\n\n로컬 HTML·독립 배포 폴더의 링크와 이미지, FAQ 일치, 가격 수정 금지, 메뉴와 ctx를 scripts/verify_concepts.py --version '+ident+'로 검증한다. PC·모바일 실행 결과는 ../SALE_REVISION_REPORT_20261007.md에 기록한다. 예약·동의 버전·보관 정책·알림 서버는 변경하지 않는다. 구현 / 수집 요청 / 색인 / 검색 노출 / AI 인용은 각각 별도 상태로 기록한다.\n'
+  brief_path.write_text(brief)
 (BASE/'data.js').write_text('window.HOBAN_DATA = '+json.dumps(data,ensure_ascii=False)+';\n')
 chooser_cards = ''.join('<a href="'+ident+'/"><span>'+ident+'</span><h2>'+label+'</h2><p>'+(extra_variants[ident]['kicker'] if ident in extra_variants else {'01':'포레스트 그린 · 전체 단지 이미지','02':'네이비·샌드 · 설명과 이미지 분할','03':'아이보리·브론즈 · 밝은 갤러리'}[ident])+'</p><b>시안 보기 ↗</b></a>' for ident,label,*_ in variants)
 (BASE/'index.html').write_text('<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>호반써밋 첨단3지구 · 디자인 시안 10종</title><link rel="stylesheet" href="review.css"></head><body><header><p>MOHAMOA / DESIGN COLLECTION</p><h1>호반써밋 첨단3지구<br />디자인 시안 10종</h1><p>이미지와 정보 구성, 우리 가족의 집을 고르는 서로 다른 시작.</p></header><main class="review-grid">'+chooser_cards+'</main><footer>디자인 비교용 noindex 시안입니다. 01~10 모두 실제 상담 접수에 연결됩니다.</footer></body></html>')
 (BASE/'_headers').write_text('/*\n  X-Robots-Tag: noindex\n  X-Content-Type-Options: nosniff\n')
-print('Built concepts/01–10')
+print('Built concept '+(args.version or '01–10'))
 for ident, *_ in variants:
+ if args.version and ident != args.version: continue
  out = ROOT / 'dist' / 'hoban' / ident
  out.mkdir(parents=True, exist_ok=True)
  page = (BASE / ident / 'index.html').read_text().replace('../../styles.css','styles.css').replace('../../script.js','script.js').replace('../assets/','assets/')
@@ -136,10 +192,11 @@ for ident, *_ in variants:
  shutil.copytree(BASE/'assets',out/'assets',dirs_exist_ok=True,ignore=shutil.ignore_patterns('*concept*','GENERATED_IMAGE_PROMPTS.md'))
  for unused in list((out/'assets').glob('*concept*')) + [out/'assets'/'GENERATED_IMAGE_PROMPTS.md']:
   if unused.is_file(): unused.unlink()
+ if (BASE/ident/'branding').exists(): shutil.copytree(BASE/ident/'branding',out/'branding',dirs_exist_ok=True)
  shutil.copy2(BASE/'_headers',out/'_headers')
  (out/'index.html').write_text(page)
  (out/'robots.txt').write_text('User-agent: *\nAllow: /\n# Draft: noindex in HTML and HTTP headers.\n')
  (out/'404.html').write_text('<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="robots" content="noindex"><title>페이지 없음</title><h1>페이지를 찾을 수 없습니다.</h1><a href="/">홈으로</a></html>')
 shutil.copy2(BASE/'index.html',ROOT/'dist'/'hoban'/'index.html')
 shutil.copy2(BASE/'review.css',ROOT/'dist'/'hoban'/'review.css')
-print('Standalone draft bundles: dist/hoban/01–10')
+print('Standalone draft bundle: '+(args.version or '01–10'))

@@ -31,3 +31,9 @@ body:has(.hero-new) .site-footer{background:var(--ink)}body:has(.hero-new) .visi
  .focus-section{padding:65px 0}.focus-heading{margin-bottom:30px}.focus-heading h2{font-size:30px}.focus-heading h3{font-size:21px;line-height:1.65}.focus-heading>p:last-child{font-size:18px}.focus-table{font-size:17px}.focus-table th,.focus-table td{padding:18px 13px;min-width:170px}.focus-pair,.decision-grid,.visit-steps{grid-template-columns:1fr;gap:20px}.decision-grid{gap:1px}.decision-grid>a{padding:27px}.community-list article{gap:24px}.community-list h3{font-size:22px}.visit-address{padding:27px 22px}.visit-address>strong{font-size:23px}.visit-steps{margin-bottom:0}.visit-steps li{padding:22px 0}.variant-04 .section-heading,.variant-09 .section-heading{grid-template-columns:1fr}.hero-new~.stats-strip .stat strong{font-size:23px}
 }
 @media(max-width:360px){.hero-new h1{font-size:34px!important}.hero-new .hero-content{padding:32px 6vw!important}.hero-new .primary,.hero-new .secondary{font-size:16px;padding:13px 15px}.variant-07 .hero h1{font-size:31px!important}.hero-new~.stats-strip .stat strong{font-size:21px}.focus-heading h2{font-size:28px}}
+
+/* Source-backed comparison paragraphs: readable on PC and small screens. */
+.editorial-analysis{max-width:960px;margin-top:36px;border-top:1px solid var(--line);padding-top:28px}
+.editorial-analysis h3{font-size:clamp(22px,2vw,28px);line-height:1.5;margin:0 0 18px;font-weight:500}
+.editorial-analysis p{font-size:19px;line-height:1.9;color:var(--muted);overflow-wrap:anywhere}
+@media(max-width:600px){.editorial-analysis p{font-size:18px}.editorial-analysis{margin-top:28px;padding-top:22px}}

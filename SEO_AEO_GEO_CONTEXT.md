@@ -1,5 +1,8 @@
 # 부동산 모델하우스 페이지용 SEO·AEO·GEO 컨텍스트 템플릿
 
+> **2026-10-07 최우선 적용:** 먼저 [분양 페이지 생성 최우선 규칙](SALE_PAGE_PRIORITY.md)을 읽는다. 사용자 원문은 [PAGE_CONTEXT_SOURCE.md](PAGE_CONTEXT_SOURCE.md)에 보존했다. 기존 약 20개 검색어 후보는 검토 예시이며 검색어·FAQ 개수를 고정하지 않는다. 실제 질문·조사 근거·공식 분양 자료에 맞춰 작성한다. 분양 목록의 페이지네이션도 같은 규칙을 따른다.
+
+
 1번 원본으로 01~10을 생성할 때 TEN_VERSION_WORKFLOW.md와 concepts/version-plan.json을 입력으로 사용하고 버전별 PROJECT.md를 결과물로 작성합니다. 공통 예약 기능은 LIVE_RESERVATION_GUIDE.md를 따르고 검색 콘텐츠 판단과 구분합니다.
 
 ## 신규 페이지·색인 등록 필수 공통 지침

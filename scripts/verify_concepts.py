@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import argparse
 import html
 import json
 from html.parser import HTMLParser
 from pathlib import Path
 import re
 import subprocess
+from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 plan=json.loads((ROOT/'concepts/version-plan.json').read_text())
 profiles={v['id']:v for v in plan['versions']}
 assert set(profiles)=={str(i).zfill(2) for i in range(1,11)}
 assert len({tuple(v['menu']) for v in profiles.values()})==10
-assert len(plan['keywords'])==20
+parser=argparse.ArgumentParser()
+parser.add_argument('--version', choices=list(profiles))
+args=parser.parse_args()
 class Page(HTMLParser):
  def __init__(self):
   super().__init__(); self.ids=[]; self.refs=[]; self.h1=0; self.current_nav=None; self.menus={}
@@ -26,7 +30,7 @@ class Page(HTMLParser):
    if key in attrs:self.refs.append(attrs[key])
  def handle_endtag(self,tag):
   if tag=='nav':self.current_nav=None
-for ident in [str(n).zfill(2) for n in range(1,11)]:
+for ident in ([args.version] if args.version else list(profiles)):
  for bundle in [ROOT/'concepts'/ident,ROOT/'dist'/'hoban'/ident]:
   source=(bundle/'index.html').read_text();page=Page();page.feed(source)
   assert page.h1==1 and len(page.ids)==len(set(page.ids)),f'{bundle}: heading/IDs'
@@ -50,7 +54,22 @@ for ident in [str(n).zfill(2) for n in range(1,11)]:
   assert 'hoban-summit-reservation' in config
   assert '호반써밋 첨단3지구 상담예약' in source and '챔피언스시티' not in source
   schema=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',source).group(1))
-  assert len(schema['mainEntity'])==9
+  assert schema['mainEntity'], 'FAQ must reflect actual questions'
+  editorial_path=ROOT/'concepts/editorial'/f'{ident}.json'
+  if editorial_path.exists():
+   editorial=json.loads(editorial_path.read_text())
+   assert len(schema['mainEntity'])==1+len(editorial['faq_indices'])
+   answer_id='focus' if int(ident)>3 else 'version-answer'
+   assert source.index('<section id="'+answer_id+'"') < source.index('<div class="stats-strip"')
+   assert editorial['title'] in html.unescape(source)
+   assert 'property="og:title"' in source and '2026.10.07' in source
+   assert editorial['analysis_title'] in source
+   answer_section=source.split('<section id="'+answer_id+'"',1)[1].split('</section>',1)[0]
+   assert '確認' not in answer_section
+   for ref in editorial['refs']: assert ref['path'] in answer_section, (ident,'direct answer source missing')
+   assert Image.open(bundle/'branding/favicon-96.png').size==(96,96)
+   assert Image.open(bundle/'branding/apple-touch-icon.png').size==(180,180)
+   assert Image.open(bundle/'branding/favicon.ico').ico.sizes()=={(16,16),(32,32),(48,48)}
   assert schema['mainEntity'][0]['name']==profile['question']
   if int(ident)>3:
    assert 'id="focus"' in source

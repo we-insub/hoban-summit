@@ -59,3 +59,9 @@ Google Search Console, Bing Webmaster Tools, 네이버 서치어드바이저에�
 ## 2026-10-02 제목·파비콘 필수 작업
 
 TITLE_FAVICON_GUIDE.md를 읽고 01~10 각각의 홈페이지 title·H1·og:title을 본문에 맞게 검수한다. 사이트 아이콘(파비콘)은 번호별 실제 SVG 원본·PNG·ICO·apple-touch-icon 파일을 생성하고 빌더에서 복사 및 head 링크를 구현한다. 각 배포 폴더에 포함해 Cloudflare에 업로드하고 실제 도메인의 이미지 응답·브라우저 표시를 확인한다. 지침만 작성하거나 제목을 바꾼 것을 아이콘 생성·업로드 완료로 보고하지 않는다. DEPLOYMENT_STATUS.md에 버전별 결과를 기록한다.
+
+## 2026-10-07 분양 지침 적용 결과와 직렬 작업
+
+페이지별 문구 원본은 `concepts/editorial/01.json`~`10.json`이며 빌더가 읽어 title·메타 설명·직접 답·비교 설명·FAQ·PROJECT.md를 생성한다. 기존 version-plan.json은 질문과 메뉴·본문 순서의 공통 계획이다. 키워드와 FAQ 개수는 고정하지 않는다. 실제 조사 원문은 `concepts/SEARCH_RESEARCH_20261007.md`를 읽는다.
+
+한 버전씩 `python3 scripts/build_concepts.py --version 01`과 `python3 scripts/verify_concepts.py --version 01`을 실행하고 화면 검수 후 다음 번호로 진행한다. 전체 재빌드 명령도 제공되지만 사용자가 직렬 제작을 요청한 작업에서는 번호별 옵션을 사용한다. 빌더는 자체 SVG·PNG·ICO·apple-touch-icon을 생성하고 배포 폴더에 복사한다. 실제 공개 도메인의 변경·색인 요청·아이콘 업로드는 이번 로컬 작업에 포함되지 않았다.
