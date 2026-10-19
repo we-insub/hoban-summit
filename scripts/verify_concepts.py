@@ -7,6 +7,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 import re
 import subprocess
+from page_contract import verify_contract
 from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 plan=json.loads((ROOT/'concepts/version-plan.json').read_text())
@@ -58,6 +59,7 @@ for ident in ([args.version] if args.version else list(profiles)):
   editorial_path=ROOT/'concepts/editorial'/f'{ident}.json'
   if editorial_path.exists():
    editorial=json.loads(editorial_path.read_text())
+   verify_contract(source,editorial)
    assert len(schema['mainEntity'])==1+len(editorial.get('faqs',editorial['faq_indices']))
    answer_id='focus' if int(ident)>3 else 'version-answer'
    assert source.index('<section id="'+answer_id+'"') < source.index('<div class="stats-strip"')

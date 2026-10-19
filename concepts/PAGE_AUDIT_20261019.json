@@ -1,0 +1,1293 @@
+{
+  "source_commit": "2d7a84657f607c44358369f7666586a21154244a",
+  "date": "2026-10-19",
+  "evidence_root": "/Users/matowe/.codex/visualizations/2026/10/19/01a1541d-8c93-7281-b9e3-6658a3b1584b",
+  "pages": [
+    {
+      "id": "01",
+      "url": "https://mohamoa-cheomdan.com/",
+      "question": "호반써밋 첨단3지구는 어디에 들어서나요?",
+      "reader": "첨단3지구의 단지 위치와 주택형을 처음 살펴보는 분",
+      "intent": "단지 정보·위치 확인",
+      "meta_length": 80,
+      "h1_topic": "위치·주택형·모델하우스 안내",
+      "read_scope": "Complete editorial JSON: title, description, hero, analysis, seven sections, cards, FAQs, refs, terms",
+      "editorial_sha256": "7088979f6ba2a87afe9b536adb1d695b704a1c2b5730c5f0ca5825bff3a47e37",
+      "html_sha256": "72c3f8205d32ddccfcc61fe025bf14298471c5504a498ecbbd41537fed4c5d6e",
+      "before_after": [
+        {
+          "field": "/faqs/3/answer",
+          "before": "신청한 희망 일시는 모하모아 담당자와 연락한 뒤 확정됩니다. 출발 전에 방문 시간을 확인해 주세요.",
+          "after": "방문예약을 신청하시면 모하모아 담당자가 연락드려 방문 시간을 확인해 드립니다. 출발 전에 확정된 방문 시간을 확인해 주세요."
+        },
+        {
+          "field": "/h1_topic",
+          "before": null,
+          "after": "위치·주택형·모델하우스 안내"
+        },
+        {
+          "field": "/living_text",
+          "before": "롯데마트첨단점과 첨단종합병원, 국립광주과학관이 공식 입지 지도에 안내돼 있습니다. 학교와 교통 계획은 현재 이용할 수 있는 시설과 나눠 소개합니다.",
+          "after": "롯데마트 첨단점과 첨단종합병원, 국립광주과학관의 위치를 입지 지도에서 살펴보세요. 학교와 교통 계획은 현재 이용할 수 있는 시설과 구분해 안내합니다."
+        }
+      ],
+      "browser": [
+        {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "h1": [
+            "호반써밋첨단3지구위치·주택형·모델하우스 안내"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "h1": [
+            "호반써밋첨단3지구위치·주택형·모델하우스 안내"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 320,
+          "scrollWidth": 320,
+          "h1": [
+            "호반써밋첨단3지구위치·주택형·모델하우스 안내"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        }
+      ],
+      "release_status": "Local review passed; Git push explicitly authorized; partner owns production merge and Cloudflare deployment."
+    },
+    {
+      "id": "02",
+      "url": "https://mohamoa-homeplan.com/",
+      "question": "계약부터 입주까지 분양대금은 어떻게 나눠 내나요?",
+      "reader": "계약 시점과 입주까지 준비할 금액을 확인하려는 분",
+      "intent": "납부 시점별 자금 계획",
+      "meta_length": 86,
+      "h1_topic": "계약금·중도금·잔금 계산",
+      "read_scope": "Complete editorial JSON: title, description, hero, analysis, seven sections, cards, FAQs, refs, terms",
+      "editorial_sha256": "d1c9e2776d12e5d92e81f13a9d7860497ee2d62ca7ad8566b4036d98f8b51e0a",
+      "html_sha256": "0608091c0a231ceaaef30b457f2ac3f05b95c8eaa47a7eb2b9cd1271cca1596e",
+      "before_after": [
+        {
+          "field": "/h1_topic",
+          "before": null,
+          "after": "계약금·중도금·잔금 계산"
+        },
+        {
+          "field": "/sections/premium/cards/1/text",
+          "before": "관리비나 커뮤니티 이용료의 예상 수치를 이 페이지에서 임의로 제시하지 않습니다. 계약·입주 안내에서 확인할 항목으로 남겨두세요.",
+          "after": "관리비와 커뮤니티 이용료는 계약·입주 안내에서 확인해 주세요. 이 페이지의 자금 계산에는 포함되지 않습니다."
+        }
+      ],
+      "browser": [
+        {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "h1": [
+            "첨단3지구호반써밋계약금·중도금·잔금 계산"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "h1": [
+            "첨단3지구호반써밋계약금·중도금·잔금 계산"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 320,
+          "scrollWidth": 320,
+          "h1": [
+            "첨단3지구호반써밋계약금·중도금·잔금 계산"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        }
+      ],
+      "release_status": "Local review passed; Git push explicitly authorized; partner owns production merge and Cloudflare deployment."
+    },
+    {
+      "id": "03",
+      "url": "https://mohamoa-hometour.com/",
+      "question": "호반써밋 첨단3지구에는 어떤 주택형이 있나요?",
+      "reader": "가족의 생활에 맞는 방·거실 배치를 비교하려는 분",
+      "intent": "주택형·평면 구조 확인",
+      "meta_length": 91,
+      "h1_topic": "84·117·135형 평면도 안내",
+      "read_scope": "Complete editorial JSON: title, description, hero, analysis, seven sections, cards, FAQs, refs, terms",
+      "editorial_sha256": "03b6bd66d471b49fa9cc5467b0a5841ae890adb1cfd8f490682eca36aedd193c",
+      "html_sha256": "75a0aad2cf68eb4d74bed5f9800e9c8193545c0132932bd8d410ac7b8039d353",
+      "before_after": [
+        {
+          "field": "/h1_topic",
+          "before": null,
+          "after": "84·117·135형 평면도 안내"
+        },
+        {
+          "field": "/sections/directions/answer",
+          "before": "공식 홈페이지에 다섯 타입의 도면은 제공되지만 이 페이지에서는 현장에 전시된 타입 전부를 확인하지 못했습니다. 방문 전 모하모아 담당자에게 관심 타입의 전시 여부를 문의해 주세요. 모델하우스 주소는 광주 서구 마륵동 164-11입니다.",
+          "after": "모델하우스에서 보고 싶은 타입이 있다면 방문 전 모하모아 담당자에게 전시 여부를 문의해 주세요. 공식 홈페이지에서는 다섯 타입의 도면을 볼 수 있지만, 모든 타입이 현장에 전시된다는 뜻은 아닙니다. 모델하우스 주소는 광주 서구 마륵동 164-11입니다."
+        },
+        {
+          "field": "/sections/location/cards/0/text",
+          "before": "도면의 방 위치와 가족의 생활 시간을 함께 비교해 보세요. 방의 용도를 임의로 공식 설계 특징처럼 단정하지 않습니다.",
+          "after": "가족이 공부하고 쉬는 시간을 떠올리며 방의 위치를 살펴보세요. 도면에 표시된 공간의 용도와 가구를 놓을 자리도 함께 확인하시면 좋습니다."
+        }
+      ],
+      "browser": [
+        {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "h1": [
+            "호반써밋 첨단3지구84·117·135형 평면도 안내"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "h1": [
+            "호반써밋 첨단3지구84·117·135형 평면도 안내"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 320,
+          "scrollWidth": 320,
+          "h1": [
+            "호반써밋 첨단3지구84·117·135형 평면도 안내"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        }
+      ],
+      "release_status": "Local review passed; Git push explicitly authorized; partner owns production merge and Cloudflare deployment."
+    },
+    {
+      "id": "04",
+      "url": "https://mohamoa-blockguide.com/",
+      "question": "호반써밋 첨단3지구 A7과 A8은 무엇이 다른가요?",
+      "reader": "A7과 A8 중 관심 블록을 정하려는 분",
+      "intent": "블록별 차이 비교",
+      "meta_length": 90,
+      "h1_topic": "A7·A8 위치·규모·입주 비교",
+      "read_scope": "Complete editorial JSON: title, description, hero, analysis, seven sections, cards, FAQs, refs, terms",
+      "editorial_sha256": "86030906213d1b575c2452b7400d36517243d0534c2a82f8e81edc7a04d1c3e0",
+      "html_sha256": "33b85b8c8dd556c79c35a2d5c6edf0b17419bb31b462066e95c6a7f897020936",
+      "before_after": [
+        {
+          "field": "/extras_intro",
+          "before": "두 블록을 비교할 때는 각 타입의 확장·옵션 견적을 따로 입력하세요. 동일한 추가 비용이 적용된다고 가정하지 않습니다.",
+          "after": "두 블록을 비교할 때는 각 타입의 확장·옵션 견적을 따로 입력하세요. 타입에 따라 추가 비용이 다를 수 있습니다."
+        },
+        {
+          "field": "/h1_topic",
+          "before": null,
+          "after": "A7·A8 위치·규모·입주 비교"
+        },
+        {
+          "field": "/sections/cost/extras_intro",
+          "before": "두 블록을 비교할 때는 각 타입의 확장·옵션 견적을 따로 입력하세요. 동일한 추가 비용이 적용된다고 가정하지 않습니다.",
+          "after": "두 블록을 비교할 때는 각 타입의 확장·옵션 견적을 따로 입력하세요. 타입에 따라 추가 비용이 다를 수 있습니다."
+        }
+      ],
+      "browser": [
+        {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "h1": [
+            "호반써밋 첨단3지구A7·A8 위치·규모·입주 비교"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "h1": [
+            "호반써밋 첨단3지구A7·A8 위치·규모·입주 비교"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 320,
+          "scrollWidth": 320,
+          "h1": [
+            "호반써밋 첨단3지구A7·A8 위치·규모·입주 비교"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        }
+      ],
+      "release_status": "Local review passed; Git push explicitly authorized; partner owns production merge and Cloudflare deployment."
+    },
+    {
+      "id": "05",
+      "url": "https://mohamoa-homebudget.com/",
+      "question": "호반써밋 첨단3지구 주택형별 분양가는 얼마인가요?",
+      "reader": "예산에 맞는 주택형과 층별 분양가를 확인하려는 분",
+      "intent": "분양가 범위·총 비용 비교",
+      "meta_length": 97,
+      "h1_topic": "주택형·층별 분양가 비교",
+      "read_scope": "Complete editorial JSON: title, description, hero, analysis, seven sections, cards, FAQs, refs, terms",
+      "editorial_sha256": "01cfa5b238cfd675b5138e314691b46a7413caee3452b91183f00a4efb31aba6",
+      "html_sha256": "f42cb2fbee9d753bed300fe71da3ed87079225fcd8459026f90f3ea3534147b4",
+      "before_after": [
+        {
+          "field": "/faqs/1/answer",
+          "before": "공식 공고의 타입·층별 금액을 유지하도록 공급금액은 읽기 전용입니다. 주택형과 층 선택을 바꾸면 해당 조건의 금액으로 변경됩니다.",
+          "after": "공급금액은 직접 수정할 수 없습니다. 주택형과 층을 선택하면 공식 모집공고의 해당 금액이 표시됩니다."
+        },
+        {
+          "field": "/h1_topic",
+          "before": null,
+          "after": "주택형·층별 분양가 비교"
+        },
+        {
+          "field": "/sections/premium/cards/1/text",
+          "before": "공고의 시설 계획과 실제 운영시간·요금은 구분해야 합니다. 이 페이지는 미확인 운영 비용을 가격에 더하지 않습니다.",
+          "after": "커뮤니티 시설의 계획과 실제 운영시간·이용료는 다를 수 있습니다. 시설 이용료는 안내받은 금액을 별도로 확인해 주세요."
+        },
+        {
+          "field": "/sections/premium/intro",
+          "before": "보여지는 공간마다 비용과 적용 범위가 다를 수 있습니다.",
+          "after": "모델하우스에서 보이는 가구·마감·시설마다 비용과 제공 범위가 다를 수 있습니다."
+        }
+      ],
+      "browser": [
+        {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "h1": [
+            "호반써밋 첨단3지구주택형·층별 분양가 비교"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "h1": [
+            "호반써밋 첨단3지구주택형·층별 분양가 비교"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 320,
+          "scrollWidth": 320,
+          "h1": [
+            "호반써밋 첨단3지구주택형·층별 분양가 비교"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        }
+      ],
+      "release_status": "Local review passed; Git push explicitly authorized; partner owns production merge and Cloudflare deployment."
+    },
+    {
+      "id": "06",
+      "url": "https://mohamoa-floorplan.com/",
+      "question": "84·117·135형의 숫자는 어떤 면적을 뜻하나요?",
+      "reader": "면적 기준을 정확히 알고 주택형과 평면을 비교하려는 분",
+      "intent": "전용·공급면적 정의와 주택형 비교",
+      "meta_length": 89,
+      "h1_topic": "전용·공급면적과 평면 비교",
+      "read_scope": "Complete editorial JSON: title, description, hero, analysis, seven sections, cards, FAQs, refs, terms",
+      "editorial_sha256": "f6ecde53659ccda25fb50bd28844738a932d107265bf41e0aaea957dba4d6079",
+      "html_sha256": "abc48625d8f6ce2d79ff865272a199de7496e5c46939aafd044d3ef5cf63a28b",
+      "before_after": [
+        {
+          "field": "/h1_topic",
+          "before": null,
+          "after": "전용·공급면적과 평면 비교"
+        },
+        {
+          "field": "/sections/location/answer",
+          "before": "주택형 면적만으로 주변 시설까지의 거리가 정해지지는 않습니다. A7·A8 사업지와 관심 동의 위치를 공식 지도에서 찾고, 마트·병원·학교 등에 가는 실제 경로를 별도로 확인해야 합니다.",
+          "after": "A7·A8 사업지와 관심 동의 위치를 공식 지도에서 찾은 뒤, 마트·병원·학교 등에 가는 실제 경로를 확인해 보세요. 주택형의 면적과 주변 시설까지의 거리는 별도로 비교해야 합니다."
+        },
+        {
+          "field": "/sections/location/question",
+          "before": "넓은 타입을 고르면 주변 시설도 더 가까워지나요?",
+          "after": "평면과 함께 생활권에서 무엇을 확인하면 좋을까요?"
+        }
+      ],
+      "browser": [
+        {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "h1": [
+            "호반써밋 첨단3지구전용·공급면적과 평면 비교"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "h1": [
+            "호반써밋 첨단3지구전용·공급면적과 평면 비교"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 320,
+          "scrollWidth": 320,
+          "h1": [
+            "호반써밋 첨단3지구전용·공급면적과 평면 비교"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        }
+      ],
+      "release_status": "Local review passed; Git push explicitly authorized; partner owns production merge and Cloudflare deployment."
+    },
+    {
+      "id": "07",
+      "url": "https://mohamoa-neighborhood.com/",
+      "question": "입지 지도에 표시된 학교와 교통시설을 바로 이용할 수 있나요?",
+      "reader": "출퇴근·장보기·자녀 교육을 함께 고려하는 분",
+      "intent": "생활시설 위치와 예정 시설 구분",
+      "meta_length": 91,
+      "h1_topic": "생활시설·학교·교통 계획",
+      "read_scope": "Complete editorial JSON: title, description, hero, analysis, seven sections, cards, FAQs, refs, terms",
+      "editorial_sha256": "3976f12919809eef7777890cdf730dc11bae8a225e807374cef1745b769b517c",
+      "html_sha256": "dafd11dad9bcaba185731a47b76400fd3f6f29de9846bcf1645fc1a609f2dfcb",
+      "before_after": [
+        {
+          "field": "/analysis/1",
+          "before": "자녀의 학교가 중요하다면 예정 학교 부지와 실제 배정학교를 구분해 알아보세요. 도시철도와 연결도로도 지도에 적힌 연도를 확정 일정으로 보기보다 해당 기관의 최신 진행 상황을 확인하시는 편이 좋습니다. 이 페이지는 현재 시설의 위치와 계획을 나눠 비교할 수 있도록 정리했습니다.",
+          "after": "자녀의 학교가 중요하다면 예정 학교 부지와 실제 배정학교를 구분해 알아보세요. 도시철도와 연결도로도 지도에 적힌 연도를 확정 일정으로 보기보다 해당 기관의 최신 진행 상황을 확인하시는 편이 좋습니다. 주변 시설의 위치와 앞으로의 계획을 나눠 살펴보세요."
+        },
+        {
+          "field": "/faqs/0/answer",
+          "before": "공식 지도에 역 계획이 표시돼 있다는 이유만으로 트리플 역세권이라고 단정할 수 없습니다. 각 역의 사업 상태, 실제 거리와 보행 경로를 확인한 뒤 표현해야 합니다.",
+          "after": "공식 지도에 역 계획이 표시돼 있다는 이유만으로 트리플 역세권이라고 단정할 수 없습니다. 실제로 이용할 수 있는 역인지, 단지에서 얼마나 떨어져 있는지와 걸어가는 경로를 함께 확인해 주세요."
+        },
+        {
+          "field": "/h1_topic",
+          "before": null,
+          "after": "생활시설·학교·교통 계획"
+        },
+        {
+          "field": "/sections/overview/cards/0/text",
+          "before": "월출동은 A7 사업지를 설명하는 지역명입니다. A8까지 광주 북구에 있다고 안내하면 실제 행정구역과 다릅니다.",
+          "after": "84A·84B형이 들어서는 A7 사업지는 광주 북구 월출동입니다. 117A·117B·135형이 들어서는 A8의 행정구역은 전남 장성군 진원면입니다."
+        }
+      ],
+      "browser": [
+        {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "h1": [
+            "호반써밋 첨단3지구생활시설·학교·교통 계획"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "h1": [
+            "호반써밋 첨단3지구생활시설·학교·교통 계획"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 320,
+          "scrollWidth": 320,
+          "h1": [
+            "호반써밋 첨단3지구생활시설·학교·교통 계획"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        }
+      ],
+      "release_status": "Local review passed; Git push explicitly authorized; partner owns production merge and Cloudflare deployment."
+    },
+    {
+      "id": "08",
+      "url": "https://mohamoa-community.com/",
+      "question": "호반써밋 첨단3지구 A8에는 어떤 커뮤니티 시설이 계획돼 있나요?",
+      "reader": "단지 내 시설과 관심 동의 위치를 함께 살펴보려는 분",
+      "intent": "A8 시설 종류·배치·이용 조건 확인",
+      "meta_length": 92,
+      "h1_topic": "A8 커뮤니티 시설·배치 안내",
+      "read_scope": "Complete editorial JSON: title, description, hero, analysis, seven sections, cards, FAQs, refs, terms",
+      "editorial_sha256": "be50427e35cf0d785d2a0239896c9abf3e61a8fe419baa0ce41f13e403d1ee2e",
+      "html_sha256": "755bebd4cb6ed72f142059df5b2b7efc07d86b7b81bb20fff15e881749e066b2",
+      "before_after": [
+        {
+          "field": "/analysis/1",
+          "before": "문화센터는 802동 지상 1층, 에듀센터와 경로당은 803동 지상 1층에 계획돼 있습니다. 시설 인근 세대는 출입 동선이나 소음에 관한 공고 안내도 함께 확인해 주세요. 이 자료를 A7의 시설 안내로 적용하거나 이용료가 무료라고 해석하지 않습니다.",
+          "after": "문화센터는 802동 지상 1층, 에듀센터와 경로당은 803동 지상 1층에 계획돼 있습니다. 시설 인근 세대는 출입 동선이나 소음에 관한 공고 안내도 함께 확인해 주세요. A8의 시설 계획은 A7과 구분해서 살펴보시고, 이용료와 예약 조건도 따로 확인해 주세요."
+        },
+        {
+          "field": "/h1_topic",
+          "before": null,
+          "after": "A8 커뮤니티 시설·배치 안내"
+        },
+        {
+          "field": "/sections/cost/cards/1/text",
+          "before": "공동 시설의 이용료·예약 조건은 입주 운영 안내에서 확인할 항목입니다. 임의의 예상 요금을 제시하지 않습니다.",
+          "after": "공동 시설의 이용료와 예약 조건은 입주 후 운영 안내에서 확인해 주세요. 공고의 시설 계획만으로 예상 요금을 정할 수는 없습니다."
+        },
+        {
+          "field": "/sections/types/cards/0/text",
+          "before": "게스트하우스가 있다고 세대 안의 방을 대체할 수 있다고 단정하지 않습니다. 가족에게 필요한 방과 수납은 도면으로 비교하세요.",
+          "after": "게스트하우스의 이용 조건과 가족에게 필요한 방은 나눠 생각해 보세요. 집 안에서 쓸 방과 수납공간은 관심 주택형의 도면으로 비교하시면 좋습니다."
+        }
+      ],
+      "browser": [
+        {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "h1": [
+            "호반써밋 첨단3지구A8 커뮤니티 시설·배치 안내"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "h1": [
+            "호반써밋 첨단3지구A8 커뮤니티 시설·배치 안내"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 320,
+          "scrollWidth": 320,
+          "h1": [
+            "호반써밋 첨단3지구A8 커뮤니티 시설·배치 안내"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        }
+      ],
+      "release_status": "Local review passed; Git push explicitly authorized; partner owns production merge and Cloudflare deployment."
+    },
+    {
+      "id": "09",
+      "url": "https://mohamoa-visit.com/",
+      "question": "호반써밋 첨단3지구 모델하우스는 어디로 방문하면 되나요?",
+      "reader": "모델하우스 주소와 방문 전 준비 사항을 확인하려는 분",
+      "intent": "모델하우스 위치·방문 절차 확인",
+      "meta_length": 86,
+      "h1_topic": "모델하우스 위치·방문예약 안내",
+      "read_scope": "Complete editorial JSON: title, description, hero, analysis, seven sections, cards, FAQs, refs, terms",
+      "editorial_sha256": "303655dd9c435d73531b949b0550b40350762043aabed431fbb022b63d2656b9",
+      "html_sha256": "e641a908d5d78cc4562bb168c1cad11dae0065210975390a39517d433cf9044b",
+      "before_after": [
+        {
+          "field": "/h1_topic",
+          "before": null,
+          "after": "모델하우스 위치·방문예약 안내"
+        },
+        {
+          "field": "/sections/cost/intro",
+          "before": "공급금액과 추가 비용을 나눠보면 상담 질문이 구체적입니다.",
+          "after": "공급금액과 추가 비용을 나눠 확인하고, 상담할 때 궁금한 항목을 물어보세요."
+        }
+      ],
+      "browser": [
+        {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "h1": [
+            "호반써밋 첨단3지구모델하우스 위치·방문예약 안내"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "h1": [
+            "호반써밋 첨단3지구모델하우스 위치·방문예약 안내"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 320,
+          "scrollWidth": 320,
+          "h1": [
+            "호반써밋 첨단3지구모델하우스 위치·방문예약 안내"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        }
+      ],
+      "release_status": "Local review passed; Git push explicitly authorized; partner owns production merge and Cloudflare deployment."
+    },
+    {
+      "id": "10",
+      "url": "https://mohamoa-homechoice.com/",
+      "question": "호반써밋 첨단3지구를 비교할 때 어떤 자료부터 보면 좋을까요?",
+      "reader": "공간·예산·생활권 중 우선순위를 정해 집을 비교하려는 분",
+      "intent": "자료 비교 순서와 방문 질문 정리",
+      "meta_length": 88,
+      "h1_topic": "주택형·예산·생활권 선택 가이드",
+      "read_scope": "Complete editorial JSON: title, description, hero, analysis, seven sections, cards, FAQs, refs, terms",
+      "editorial_sha256": "752acb470e8e6d45c0dd3c958a4025937c091f7b492ad54c2fbfaa46b552714d",
+      "html_sha256": "fb864749f43b1f3e30a79a79d43c0130bdf8ba8fed1281d951d732c51cdd58dc",
+      "before_after": [
+        {
+          "field": "/h1_topic",
+          "before": null,
+          "after": "주택형·예산·생활권 선택 가이드"
+        },
+        {
+          "field": "/sections/premium/cards/1/text",
+          "before": "작은도서관과 문화센터의 위치를 살펴보세요. 시설 계획을 개인에게 보장된 이용 서비스처럼 해석하지 않습니다.",
+          "after": "작은도서관과 문화센터의 위치를 살펴보고 가족이 자주 이용할 공간인지 생각해 보세요. 이용 대상과 운영 방식은 별도 안내에서 확인하시면 됩니다."
+        },
+        {
+          "field": "/sections/types/answer",
+          "before": "전용면적이 넓어도 방·주방·수납의 배치와 예산이 가족의 필요에 맞는지는 별도입니다. A7 84A·84B와 A8 117A·117B·135의 도면에서 필요한 가구·공부 공간·생활 동선을 비교해 보세요. 이 페이지는 특정 타입을 모든 가족에게 추천하지 않습니다.",
+          "after": "전용면적이 넓어도 방·주방·수납의 배치와 예산이 가족의 필요에 맞는지는 따로 살펴봐야 합니다. A7 84A·84B와 A8 117A·117B·135의 도면에서 필요한 가구·공부 공간·생활 동선을 비교해 보세요. 가족이 집에서 어떻게 지내는지에 따라 잘 맞는 주택형도 달라집니다."
+        }
+      ],
+      "browser": [
+        {
+          "viewport": 1440,
+          "scrollWidth": 1440,
+          "h1": [
+            "호반써밋 첨단3지구주택형·예산·생활권 선택 가이드"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 390,
+          "scrollWidth": 390,
+          "h1": [
+            "호반써밋 첨단3지구주택형·예산·생활권 선택 가이드"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        },
+        {
+          "viewport": 320,
+          "scrollWidth": 320,
+          "h1": [
+            "호반써밋 첨단3지구주택형·예산·생활권 선택 가이드"
+          ],
+          "metadata": [
+            {
+              "selector": "title",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"description\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "meta[name=\"robots\"]",
+              "count": 1,
+              "total": 1
+            },
+            {
+              "selector": "link[rel=\"canonical\"]",
+              "count": 1,
+              "total": 1
+            }
+          ],
+          "brokenImages": [],
+          "updated": "2026-10-19",
+          "errors": []
+        }
+      ],
+      "release_status": "Local review passed; Git push explicitly authorized; partner owns production merge and Cloudflare deployment."
+    }
+  ],
+  "git_authorization": "User explicitly requested local review then Git push; production merge and Cloudflare deployment assigned to partner."
+}

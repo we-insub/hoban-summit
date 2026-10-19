@@ -9,6 +9,7 @@ import shutil
 from concept_variants import VARIANTS, focus_section
 from site_branding import build_branding
 from sale_content import render_sections, REFS as SECTION_REFS
+from page_contract import apply_contract, verify_contract
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'concepts'
@@ -19,6 +20,9 @@ e = lambda x: html.escape(str(x), quote=True)
 data = json.loads((BASE / 'source-data.json').read_text())
 version_plan = json.loads((BASE / 'version-plan.json').read_text())
 profiles = {v['id']: v for v in version_plan['versions']}
+editorial_records = [json.loads(p.read_text()) for p in sorted((BASE/'editorial').glob('*.json'))]
+assert len({record['title'] for record in editorial_records}) == len(editorial_records), 'Duplicate page titles'
+assert len({record['url'] for record in editorial_records}) == len(editorial_records), 'Duplicate canonical URLs'
 official = 'https://hobansummit-kjcd.co.kr/'
 menu = [('overview','사업개요'),('location','입지환경'),('premium','프리미엄'),('arrangement','단지배치'),('types','평면타입'),('directions','오시는 길')]
 nav = ''.join(f'<a href="#{key}">{name}</a>' for key,name in menu) + '<a href="https://mohamoa.com/">모하모아</a>'
@@ -161,11 +165,15 @@ for ident,label,title,image,title_meta in variants:
    page=re.sub(r'(<div class="living-copy"><p class="eyeline">.*?</p><h2>).*?(</h2>)',lambda m:m[1]+e(editorial['living_title'])+m[2],page,count=1,flags=re.S)
    page=re.sub(r'(<div class="living-copy">.*?</h2><p>).*?(</p>)',lambda m:m[1]+e(editorial['living_text'])+m[2],page,count=1,flags=re.S)
  if editorial:
-  build_branding(ident,out/'branding')
+  if not all((out/'branding'/name).exists() for name in ['favicon.svg','favicon-96.png','favicon.ico','apple-touch-icon.png']):
+   build_branding(ident,out/'branding')
   page=page.replace('</head>','<link rel="icon" type="image/svg+xml" href="branding/favicon.svg"><link rel="icon" type="image/png" sizes="96x96" href="branding/favicon-96.png"><link rel="icon" type="image/x-icon" href="branding/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="branding/apple-touch-icon.png"></head>',1)
   hero_end = page.index('</section>',page.index('<section class="hero')) + len('</section>')
   page = page[:hero_end]+direct_answer+page[hero_end:]
   page = page.replace('<meta name="robots"', '<meta property="og:title" content="'+e(title_meta)+'"><meta property="og:description" content="'+e(description)+'"><meta property="og:type" content="website"><meta property="og:locale" content="ko_KR"><meta name="robots"',1)
+ if editorial:
+  page = apply_contract(page, editorial)
+  verify_contract(page, editorial)
  (out/'index.html').write_text(page)
  keyword_rows = ''.join('| '+k['keyword']+' | #'+k['section']+' | '+k['condition']+' | '+k['status']+' |\n' for k in version_plan['keywords'])
  menu_text = ' → '.join('모하모아' if key=='mohamoa' else menu_labels[key] for key in profile['menu'])
@@ -192,6 +200,10 @@ for ident,label,title,image,title_meta in variants:
    for key,m in editorial['sections'].items():
     brief+='| #'+key+' | '+m['title']+' | '+m['question']+' | '+m['answer']+' | '+ ' / '.join(official+p for p,_ in SECTION_REFS[key])+' / 2026-10-07 |\n'
    brief=brief.replace('全本文','전체 본문')
+  if editorial.get('h1_topic'):
+   brief = re.sub(r'^- H1: (.*)$', lambda m: m[0]+' · '+editorial['h1_topic'], brief, flags=re.M)
+  brief += '\n## 2026-10-19 상세페이지 검수\n\n공통 날짜 정본: ../page-dates.json. 페이지 업데이트일과 실제 운영 배포일, 자료 확인 기록을 구분한다. 자료 발행일과 입주 예정일은 자동 치환하지 않는다. 운영 canonical: '+editorial['url']+'; 로컬 초안은 이 정본을 선언하고 noindex를 유지한다. 메타·날짜 자동 검사는 빌드에서 page_contract.py를 실행한다. 이번 페이지별 원문·화면·운영 대조 결과는 ../PAGE_AUDIT_20261019.md에 기록한다.\n'
+  brief = brief.replace(' / 로컬 canonical 해당 없음',' / 로컬에서도 운영 정본 canonical 선언').replace('로컬 canonical은 해당 없음;','로컬 canonical도 운영 정본을 선언하며;')
   brief_path.write_text(brief)
 (BASE/'data.js').write_text('window.HOBAN_DATA = '+json.dumps(data,ensure_ascii=False)+';\n')
 chooser_cards = ''.join('<a href="'+ident+'/"><span>'+ident+'</span><h2>'+label+'</h2><p>'+(extra_variants[ident]['kicker'] if ident in extra_variants else {'01':'포레스트 그린 · 전체 단지 이미지','02':'네이비·샌드 · 설명과 이미지 분할','03':'아이보리·브론즈 · 밝은 갤러리'}[ident])+'</p><b>시안 보기 ↗</b></a>' for ident,label,*_ in variants)
