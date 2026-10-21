@@ -1,0 +1,10 @@
+Built concept 05
+Standalone draft bundle: 05
+05: home + 8 static detail pages, draft sitemap and per-URL metadata built
+
+Budget amount/units/negative/loan guards: passed
+KST day boundary / expiry / corrupt preference: passed
+/Users/matowe/Desktop/챔피언스시티광주/concepts/05: 9 URLs / head metadata / canonical / H1 / menus / resources / FAQ / unchanged popup passed
+/Users/matowe/Desktop/챔피언스시티광주/dist/hoban/05: 9 URLs / head metadata / canonical / H1 / menus / resources / FAQ / unchanged popup passed
+05: booking fields and consent unchanged; local preview only, no reservation submitted.
+Frontend/server Hoban consent policy parity: passed. No live booking submitted.

@@ -1,0 +1,62 @@
+[
+  {
+    "version": "01",
+    "audio_on_calculator": true,
+    "full_cost_transcript_paragraphs": 7,
+    "static_checks": "passed"
+  },
+  {
+    "version": "02",
+    "audio_on_calculator": true,
+    "full_cost_transcript_paragraphs": 7,
+    "static_checks": "passed"
+  },
+  {
+    "version": "03",
+    "audio_on_calculator": true,
+    "full_cost_transcript_paragraphs": 7,
+    "static_checks": "passed"
+  },
+  {
+    "version": "04",
+    "audio_on_calculator": true,
+    "full_cost_transcript_paragraphs": 7,
+    "static_checks": "passed"
+  },
+  {
+    "version": "05",
+    "audio_on_calculator": true,
+    "full_cost_transcript_paragraphs": 7,
+    "static_checks": "passed"
+  },
+  {
+    "version": "06",
+    "audio_on_calculator": true,
+    "full_cost_transcript_paragraphs": 7,
+    "static_checks": "passed"
+  },
+  {
+    "version": "07",
+    "audio_on_calculator": true,
+    "full_cost_transcript_paragraphs": 7,
+    "static_checks": "passed"
+  },
+  {
+    "version": "08",
+    "audio_on_calculator": true,
+    "full_cost_transcript_paragraphs": 7,
+    "static_checks": "passed"
+  },
+  {
+    "version": "09",
+    "audio_on_calculator": true,
+    "full_cost_transcript_paragraphs": 7,
+    "static_checks": "passed"
+  },
+  {
+    "version": "10",
+    "audio_on_calculator": true,
+    "full_cost_transcript_paragraphs": 7,
+    "static_checks": "passed"
+  }
+]

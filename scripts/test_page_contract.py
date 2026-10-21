@@ -24,11 +24,12 @@ class PageContractTests(unittest.TestCase):
         template = '<html><head></head><body><h1>단지명</h1><p>확인일 2026.10.07 · 2026년 6월 5일 공고 · 2028년 9월 입주 예정 · 494,000,000원</p><footer></footer></body></html>'
         dates = load_dates()
         before = apply_contract(template, self.editorial, dates)
+        previous_date = dates['page_updated_at']
         dates = copy.deepcopy(dates); dates['page_updated_at'] = '2026-10-20'
         after = apply_contract(template, self.editorial, dates)
         self.assertIn('datetime="2026-10-20"', after)
         self.assertIn('data-date-kind="record" datetime="2026-10-07"', after)
-        self.assertEqual(before.replace('2026-10-19','2026-10-20').replace('2026.10.19','2026.10.20'), after)
+        self.assertEqual(before.replace(previous_date,'2026-10-20').replace(previous_date.replace('-','.'),'2026.10.20'), after)
         self.assertNotIn('운영 배포일', after)
 
 if __name__ == '__main__': unittest.main()

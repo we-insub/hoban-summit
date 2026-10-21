@@ -6,6 +6,7 @@ import html
 import json
 import re
 import shutil
+import hashlib
 from concept_variants import VARIANTS, focus_section
 from site_branding import build_branding
 from sale_content import render_sections, REFS as SECTION_REFS
@@ -16,6 +17,12 @@ BASE = ROOT / 'concepts'
 parser = argparse.ArgumentParser()
 parser.add_argument('--version', choices=[str(n).zfill(2) for n in range(1,11)])
 args = parser.parse_args()
+# Fail before writing pages if the checked-in calculator bundle is stale.
+vendor = BASE / 'vendor' / 'mohamoa-cost'
+manifest = json.loads((vendor / 'build-manifest.json').read_text())
+for name, digest in manifest.items():
+ if hashlib.sha256((vendor / name).read_bytes()).hexdigest() != digest:
+  raise SystemExit('Calculator source changed: run npm ci && npm run build:calculator first.')
 e = lambda x: html.escape(str(x), quote=True)
 data = json.loads((BASE / 'source-data.json').read_text())
 version_plan = json.loads((BASE / 'version-plan.json').read_text())
@@ -200,10 +207,6 @@ for ident,label,title,image,title_meta in variants:
    for key,m in editorial['sections'].items():
     brief+='| #'+key+' | '+m['title']+' | '+m['question']+' | '+m['answer']+' | '+ ' / '.join(official+p for p,_ in SECTION_REFS[key])+' / 2026-10-07 |\n'
    brief=brief.replace('全本文','전체 본문')
-  if editorial.get('h1_topic'):
-   brief = re.sub(r'^- H1: (.*)$', lambda m: m[0]+' · '+editorial['h1_topic'], brief, flags=re.M)
-  brief += '\n## 2026-10-19 상세페이지 검수\n\n공통 날짜 정본: ../page-dates.json. 페이지 업데이트일과 실제 운영 배포일, 자료 확인 기록을 구분한다. 자료 발행일과 입주 예정일은 자동 치환하지 않는다. 운영 canonical: '+editorial['url']+'; 로컬 초안은 이 정본을 선언하고 noindex를 유지한다. 메타·날짜 자동 검사는 빌드에서 page_contract.py를 실행한다. 이번 페이지별 원문·화면·운영 대조 결과는 ../PAGE_AUDIT_20261019.md에 기록한다.\n'
-  brief = brief.replace(' / 로컬 canonical 해당 없음',' / 로컬에서도 운영 정본 canonical 선언').replace('로컬 canonical은 해당 없음;','로컬 canonical도 운영 정본을 선언하며;')
   brief_path.write_text(brief)
 (BASE/'data.js').write_text('window.HOBAN_DATA = '+json.dumps(data,ensure_ascii=False)+';\n')
 chooser_cards = ''.join('<a href="'+ident+'/"><span>'+ident+'</span><h2>'+label+'</h2><p>'+(extra_variants[ident]['kicker'] if ident in extra_variants else {'01':'포레스트 그린 · 전체 단지 이미지','02':'네이비·샌드 · 설명과 이미지 분할','03':'아이보리·브론즈 · 밝은 갤러리'}[ident])+'</p><b>시안 보기 ↗</b></a>' for ident,label,*_ in variants)
@@ -230,3 +233,8 @@ for ident, *_ in variants:
 shutil.copy2(BASE/'index.html',ROOT/'dist'/'hoban'/'index.html')
 shutil.copy2(BASE/'review.css',ROOT/'dist'/'hoban'/'review.css')
 print('Standalone draft bundle: '+(args.version or '01–10'))
+# Only versions with an authored route manifest opt in to menu-page splitting.
+from menu_pages import split_version
+for ident, *_ in variants:
+ if args.version and ident != args.version: continue
+ if (BASE/'routes'/f'{ident}.json').exists(): split_version(ident)

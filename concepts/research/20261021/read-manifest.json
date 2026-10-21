@@ -1,0 +1,126 @@
+{
+  "SALE_PAGE_PRIORITY.md": {
+    "sha256": "7e818b619f910d7f756be41cbd610d2dd7226182eca046e3585ab1c442b04663",
+    "scope": "full text read"
+  },
+  "KOREAN_COPY_GUIDE.md": {
+    "sha256": "556f32d749efb5c2b17b2f969d7b78a0333160aeb3b5fbe1f0bf0a824437aced",
+    "scope": "full text read"
+  },
+  "KEYWORD_CONTENT_GUIDE.md": {
+    "sha256": "3d5ad99ba55c90022559e5863c789c621c1eaf922895ea34a224c03b5d3bea07",
+    "scope": "full text read"
+  },
+  "SEO_AEO_GEO_CONTEXT.md": {
+    "sha256": "5a04e17ad4bcac49d7662ea565a3d2ba609545c40f62a85d5d0f98f43ba90b4e",
+    "scope": "full text read"
+  },
+  "concepts/README.md": {
+    "sha256": "859b041a9aa78512ca25496047bdeae043ca2f38b45b65315bf6bf0185aa3884",
+    "scope": "full text read"
+  },
+  "concepts/WEBSITE_CONTENT_DELIVERABLE.md": {
+    "sha256": "049a4eebfbe13d0d6f8d1ad0a84a5ea29f313fb8d34fd0c39f4a66c9e278c362",
+    "scope": "full text read"
+  },
+  "concepts/DESIGN_STANDARD.md": {
+    "sha256": "d63d05c30a2aee0a5d5cd243342eb77d391bb717d3c161fc6ff40127251c5e3c",
+    "scope": "full text read"
+  },
+  "TEN_VERSION_WORKFLOW.md": {
+    "sha256": "23e334aaaf74ba5dbc6794496e08a2fcd6f2d94d4d0d441d7e9bf146366879f1",
+    "scope": "full text read"
+  },
+  "LIVE_RESERVATION_GUIDE.md": {
+    "sha256": "99b0fbcb76973453ec4087560b59099dea952b2c5a91d06bd9fe6f660e52fb89",
+    "scope": "full text read"
+  },
+  "CONSULTATION_DATA_GUIDE.md": {
+    "sha256": "64b783fc68293d50f55dcdbc0df26939b6ae274a753e901107ca4d69cc2e581d",
+    "scope": "full text read"
+  },
+  "FULL_BODY_REVISION_20261007.md": {
+    "sha256": "da10e406c3d2efcfdfea2563c2bd44aafebda6d3d34655b0e8062f7020c459f6",
+    "scope": "full text read"
+  },
+  "concepts/01/PROJECT.md": {
+    "sha256": "34712feacaa1ee862226747292d5b98e404b0228f3c2dc68fcf820a2c8a60276",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/research/20261021/editorial-before/01.json": {
+    "sha256": "00162fdb51b724019f30e09b10ee0eba08ca23b6d4f965e4a4cc601617416985",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/02/PROJECT.md": {
+    "sha256": "f503cfbe53fe018cda9d672fb7f29641be2ad89a4adc13444b647240526b8bef",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/research/20261021/editorial-before/02.json": {
+    "sha256": "57331e1d63f5e40a5e02457cb377c0861e9df51f4bc02c60794aefc13c1d88f5",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/03/PROJECT.md": {
+    "sha256": "e59c3cf2d0b645ab8743e252fa562a3ff781529b6b53100de866bcf3ff127c4e",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/research/20261021/editorial-before/03.json": {
+    "sha256": "ee05552c9dc5a371f9e32220ebcfbb50a4043f00ded777c252bc03f5643b32ed",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/04/PROJECT.md": {
+    "sha256": "ed17f66d2d2ecb26914e1f3fd1cf963ffac0fbd915f65384a44b45f9bba78ee2",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/research/20261021/editorial-before/04.json": {
+    "sha256": "0ae3274d45e9b0494adbd32e2b4f185a2402bbb71bfddda83c443e887e6bce76",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/05/PROJECT.md": {
+    "sha256": "2416882344a1540e22d090829836fe2298ca11893f07b2c01d2947ba977d8c75",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/research/20261021/editorial-before/05.json": {
+    "sha256": "da0fd0b73f1775f25d12e936e31f1f36b1cf1eabe67c88f8384cd73e855a0807",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/06/PROJECT.md": {
+    "sha256": "9a1e451ce2f7162026125bc93f2368983a6c7b9f04805d53467e21fd2368b592",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/research/20261021/editorial-before/06.json": {
+    "sha256": "2198516e2132fa0b3a55aba3d27596ebf65c059dcb7b42f01a49153653bc5490",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/07/PROJECT.md": {
+    "sha256": "22c0024164bf1570dd995871b544991afb281f04688a6d1e3ac97bd17c6a9fec",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/research/20261021/editorial-before/07.json": {
+    "sha256": "3d6ad31bd3f4bc0cac02e860fe153e952de9a64545bd17df7da3c175bd6b5af3",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/08/PROJECT.md": {
+    "sha256": "6025c6d3b3edf9b85825f281ee21e7eb2c884b8643045497e4bc2f74ec091d67",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/research/20261021/editorial-before/08.json": {
+    "sha256": "7a493f3625d5b0ead44a17bf7310d31e6072167d060eb80f425f9a344c286b91",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/09/PROJECT.md": {
+    "sha256": "f36273dcbea1acff80f824cdd53c61066cb41ee67a496fa8693eb12594e822d2",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/research/20261021/editorial-before/09.json": {
+    "sha256": "6d62f4e09f1ceb4ff7612a3586992400c648e4f6b0dcdf85b779254f564320e6",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/10/PROJECT.md": {
+    "sha256": "c559b8e8bde4cea5343037b5b8d3eb248e2b2ffb16d0cd9f30caf0e32efb31e9",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  },
+  "concepts/research/20261021/editorial-before/10.json": {
+    "sha256": "f4ecbcdf8ecffcb387450a7592ea51873304bd122de6d89ad6126c86029cea3c",
+    "scope": "full text read; PROJECT generated enrichment reviewed; editorial source preserved"
+  }
+}

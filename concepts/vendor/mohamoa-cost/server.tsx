@@ -1,0 +1,1 @@
+import React from 'react'; import {renderToString} from 'react-dom/server'; import {CostCalculator} from './CostCalculator'; export const render=()=>renderToString(<CostCalculator projectSlug='cheomdan3-a7-hoban-summit'/>);

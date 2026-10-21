@@ -1,0 +1,722 @@
+[
+  {
+    "url": "http://127.0.0.1:4173/concepts/01/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 | 위치·주택형·모델하우스 안내",
+    "canonical": "https://mohamoa-cheomdan.com/",
+    "body_sha256": "84458e54e7a7bb5a73da2ae5788866ce7048729f1c932c0fcad1d91ca0115455"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/01/overview/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 사업개요 | A7·A8 위치·세대수·주택형",
+    "canonical": "https://mohamoa-cheomdan.com/overview/",
+    "body_sha256": "36eeb8f9d19a24102386cef1daff7629cf7c67e3c1d0f4be074fd7fdda125f75"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/01/location/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 입지환경 | 교육·교통·주변 생활시설",
+    "canonical": "https://mohamoa-cheomdan.com/location/",
+    "body_sha256": "dbcbf35effb8a2de7c4d51885e2892c29a82826f78deabd9134189d9d8ef238f"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/01/premium/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 프리미엄 | 운동시설·도서관·게스트하우스 계획",
+    "canonical": "https://mohamoa-cheomdan.com/premium/",
+    "body_sha256": "bb11b5d510dfd1ab3fa888e1139949c943b511110bd35a677c42ebf72e2b311c"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/01/site-plan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 단지배치 | A7·A8 동호수 배치도",
+    "canonical": "https://mohamoa-cheomdan.com/site-plan/",
+    "body_sha256": "6d98cc20bae8e39be68da39915aea2c95468813182108cfc38ca282203d19af5"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/01/floorplan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 평면타입 | 84A·84B·117A·117B·135형 평면도",
+    "canonical": "https://mohamoa-cheomdan.com/floorplan/",
+    "body_sha256": "de5003664d44f6e37d038e676bdc231b25d71575d64e63fbccbe4bad64311bfa"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/01/price/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양가 | 주택형·층별 가격과 납부 조건",
+    "canonical": "https://mohamoa-cheomdan.com/price/",
+    "body_sha256": "938a129a706d124fdcd5f12627ac0ad58df2ae1c191796fc4f569e96271de851"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/01/calculator/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양계산기 | 납부 금액과 필요 자금 계산",
+    "canonical": "https://mohamoa-cheomdan.com/calculator/",
+    "body_sha256": "a55e9e54d9d00e4746859fc0bf0fd21c4545c49318c2555d100de8b112153398"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/01/visit/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 오시는 길 | 모델하우스 위치·방문예약",
+    "canonical": "https://mohamoa-cheomdan.com/visit/",
+    "body_sha256": "99e4a56990ca7e1188e8a01e51c00832658e2227a06e74b262a644763008c0d3"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/02/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 | 계약금·중도금·잔금 계산",
+    "canonical": "https://mohamoa-homeplan.com/",
+    "body_sha256": "de37689db993fb2ba0f178f5e4cda710721f1a89000dc847f50251da1313916a"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/02/overview/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 사업개요 | A7·A8 주택형·입주 예정월·납부 일정",
+    "canonical": "https://mohamoa-homeplan.com/overview/",
+    "body_sha256": "55e4055379b40dc7b3713f3f499c7a74292bbaf09bf5517a90014bf9d7a0c555"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/02/floorplan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 평면타입 | 평면 비교와 확장·옵션 예산",
+    "canonical": "https://mohamoa-homeplan.com/floorplan/",
+    "body_sha256": "561d85d19f19d7b72a9cd34fa88d91e7c66b467c86709085a6b0027ee4ad913e"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/02/site-plan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 단지배치 | 관심 세대 위치와 공급금액 비교",
+    "canonical": "https://mohamoa-homeplan.com/site-plan/",
+    "body_sha256": "7207f58a2bafb18706211d70927de01fb9ccfd03cddcaf75eee7b1acf9feb2c9"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/02/location/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 입지환경 | 현재 생활 경로와 학교·교통 계획",
+    "canonical": "https://mohamoa-homeplan.com/location/",
+    "body_sha256": "29de26d1d04d986db3692944a4a0f2c5d159df5e093793b8ec085fb5b03af738"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/02/premium/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 프리미엄 | 커뮤니티 설치 계획과 별도 이용 비용",
+    "canonical": "https://mohamoa-homeplan.com/premium/",
+    "body_sha256": "8ffba6f47feb879d61ea665e0bcf13e59372f93156717446891c4aa2af003544"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/02/price/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양가 | 주택형·층별 가격과 납부 조건",
+    "canonical": "https://mohamoa-homeplan.com/price/",
+    "body_sha256": "eda26f6d41d5e9253ff12c5181671992fd59ee532e1a4b4e5b50ae206bc6dd56"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/02/calculator/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양계산기 | 납부 금액과 필요 자금 계산",
+    "canonical": "https://mohamoa-homeplan.com/calculator/",
+    "body_sha256": "10079d11f96eea6bce49a55573c0af3b55409f489c5b15e61966d098f4f93ee1"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/02/visit/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 오시는 길 | 모델하우스 위치·자금 상담 준비",
+    "canonical": "https://mohamoa-homeplan.com/visit/",
+    "body_sha256": "bb16021d0c0e83bbbe998a2f6ebb7c02c7724c17976eed10c9ee381ba2c62aa2"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/03/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 | 84·117·135형 평면도 안내",
+    "canonical": "https://mohamoa-hometour.com/",
+    "body_sha256": "14c4bbe3e627fcc264e1e84c62e6f4e98faeed70d9ed8014549e5d5ebd91abb5"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/03/overview/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 사업개요 | A7·A8 주택형과 전체 공급 구성",
+    "canonical": "https://mohamoa-hometour.com/overview/",
+    "body_sha256": "751dee9f47ab65d4284054ec79169715e6181c2f26bf3c33bfc1bc908bb6dc3c"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/03/site-plan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 단지배치 | 84B형 라인과 A7·A8 동호수 배치",
+    "canonical": "https://mohamoa-hometour.com/site-plan/",
+    "body_sha256": "2d45063821d28196fec39ca2d7e0b8ee1b26f6aa6e89e9c0c47af8e93dd3a01f"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/03/floorplan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 평면타입 | 84·117·135형 평면도·면적 비교",
+    "canonical": "https://mohamoa-hometour.com/floorplan/",
+    "body_sha256": "2bbe3ffc453b9b707f86fba6dde20412c15f4c05bea1817e3b6d2742b6803213"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/03/premium/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 프리미엄 | 84A형 생활 공간·수납·커뮤니티 계획",
+    "canonical": "https://mohamoa-hometour.com/premium/",
+    "body_sha256": "6114d33ebd708954f279ac3504181f9cbf53d564ef1433181b0ecdef617b9e33"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/03/location/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 입지환경 | 가족의 생활 경로와 학교·문화시설",
+    "canonical": "https://mohamoa-hometour.com/location/",
+    "body_sha256": "7f0517f71913b50bc5c42e700d6db76303650ffcecea62d5b92e20f6a6825cc3"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/03/price/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양가 | 주택형·층별 가격과 납부 조건",
+    "canonical": "https://mohamoa-hometour.com/price/",
+    "body_sha256": "65e2149a01e5145a14cb01bf79a32c7682862cc5575b4d85cd26d3ed289585be"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/03/calculator/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양계산기 | 납부 금액과 필요 자금 계산",
+    "canonical": "https://mohamoa-hometour.com/calculator/",
+    "body_sha256": "4625fcc0aabe28b5a2ea42553688256e482f0f9fe00b23d596842c754fc8023f"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/03/visit/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 오시는 길 | 모델하우스 위치·평면 상담 준비",
+    "canonical": "https://mohamoa-hometour.com/visit/",
+    "body_sha256": "2559eb4abdcb3c795785b920c99dc8a5b7c1229f0b1f152d457aa74279d1d615"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/04/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 | A7·A8 사업지·주택형·입주 예정",
+    "canonical": "https://mohamoa-blockguide.com/",
+    "body_sha256": "d5d33edc4600c6e7a0e1919b432ebeafe1d4ac901b01c263b16547deede162f6"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/04/overview/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 사업개요 | A7·A8 사업지·주택형·입주 예정",
+    "canonical": "https://mohamoa-blockguide.com/overview/",
+    "body_sha256": "6a73c5ff059a1c7ce956f0d16902c78e04e3011b507eee77a19fe1ef1920d948"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/04/site-plan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 단지배치 | A7 5개동·A8 6개동의 배치",
+    "canonical": "https://mohamoa-blockguide.com/site-plan/",
+    "body_sha256": "0011cf9fd0b6472d9fb5a03b151c00af7d8ac767c7897cac8799f67a3a1f0af5"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/04/location/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 입지환경 | 블록별 통학·출퇴근·장보기 경로",
+    "canonical": "https://mohamoa-blockguide.com/location/",
+    "body_sha256": "dfb318a03aa69aa4c4e28f9907c65648016d6e2b03cd1c41f8465954ccefed10"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/04/floorplan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 평면타입 | A7 84형·A8 117·135형 평면 비교",
+    "canonical": "https://mohamoa-blockguide.com/floorplan/",
+    "body_sha256": "e59e2dc7b524e45b457d10a4fdc3ce3db5472f34fcf599017e23d0775d90841b"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/04/price/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양가 | 타입·층별 가격과 납부 조건",
+    "canonical": "https://mohamoa-blockguide.com/price/",
+    "body_sha256": "2ea26d7805db45a922016fe4d3a93b537aab47c113810ae3be0ff3de0c88c70a"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/04/calculator/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양계산기 | 납부 단계별 금액과 필요 자금",
+    "canonical": "https://mohamoa-blockguide.com/calculator/",
+    "body_sha256": "0d72d15df5e96b960580c649b705bf3fb90719dada7032a36450a1982f7af056"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/04/visit/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 오시는 길 | 모델하우스 위치와 블록별 상담 준비",
+    "canonical": "https://mohamoa-blockguide.com/visit/",
+    "body_sha256": "41c2de7ffe7dc978062f07ff9f3e1c579df591f6c95c1af329da328d54bc63e7"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/04/premium/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 프리미엄 | A7·A8 커뮤니티 시설 계획",
+    "canonical": "https://mohamoa-blockguide.com/premium/",
+    "body_sha256": "574d0d88f22f42fcb31a9daaf47a6d415c3f1bf1684b40c46f885bf86d8a6cfc"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/05/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양가 | 주택형·층별 가격 비교",
+    "canonical": "https://mohamoa-homebudget.com/",
+    "body_sha256": "69fd749583032bb297c8af90eed06c76c39a75283b37427e69bfdecaa4fd882c"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/05/overview/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 사업개요 | A7·A8 주택형과 모집공고",
+    "canonical": "https://mohamoa-homebudget.com/overview/",
+    "body_sha256": "87525aaf2aa1658759d281fcdf06704652f0be1b358442c34e19930e58863742"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/05/floorplan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 평면타입 | 주택형별 면적·구조·가격 비교",
+    "canonical": "https://mohamoa-homebudget.com/floorplan/",
+    "body_sha256": "32c1ff98f4a4e01da350ca61e4ff73f695dbe15602754d2fabd625f0c79c1071"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/05/visit/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 오시는 길 | 모델하우스 위치와 분양가 상담 준비",
+    "canonical": "https://mohamoa-homebudget.com/visit/",
+    "body_sha256": "f618e04758d9d1bbdf8c4d7412897964ddd9430cdab2c79d311bcaf383c68bc2"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/05/location/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 입지환경 | 생활시설과 예정 개발사업",
+    "canonical": "https://mohamoa-homebudget.com/location/",
+    "body_sha256": "2e88a54583aed66716653be6db6214098026d79455eb141030d396cd0650a706"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/05/site-plan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 단지배치 | 동·호수와 층별 가격 확인",
+    "canonical": "https://mohamoa-homebudget.com/site-plan/",
+    "body_sha256": "7c95b37b38428caeb784be9f76ab0f2345d6bdd53f38f8b13b91794bbd07fca9"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/05/premium/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 프리미엄 | 기본 제공·옵션과 공동시설 계획",
+    "canonical": "https://mohamoa-homebudget.com/premium/",
+    "body_sha256": "01566d6712ba0e59597b8071726f2b0af5de4ab016058e4f327dc1fe54129ae0"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/05/price/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양가 | 타입·층별 가격과 납부 조건",
+    "canonical": "https://mohamoa-homebudget.com/price/",
+    "body_sha256": "3469afa9be1ce8715a659543382a172b4ab69ef44731ba52b3cdb1f7268f9464"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/05/calculator/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양계산기 | 납부 단계별 금액과 필요 자금",
+    "canonical": "https://mohamoa-homebudget.com/calculator/",
+    "body_sha256": "0f1654606117448c23b6c4a481a6c37039be1b581d3dc3bdd9089b5042bba97c"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/06/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 | 전용·공급면적과 평면 비교",
+    "canonical": "https://mohamoa-floorplan.com/",
+    "body_sha256": "161a24d85b47e8196a9763a5c8bb20066f1fe9b6131e7b90e9d06f41bb3e6581"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/06/overview/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 사업개요 | 주택형 이름과 정확한 면적",
+    "canonical": "https://mohamoa-floorplan.com/overview/",
+    "body_sha256": "f0f250687b36c572744dd7a06fe2a044cf29c59ddadf082c88d17e0dd9a782d9"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/06/floorplan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 평면타입 | 전용·공급면적과 다섯 평면 비교",
+    "canonical": "https://mohamoa-floorplan.com/floorplan/",
+    "body_sha256": "550bf2c9ff45f0a3ea8a33051d21c2747228388103bb70ae38c6a700fa7be2a7"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/06/site-plan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 단지배치 | 단지 대지면적과 세대별 위치",
+    "canonical": "https://mohamoa-floorplan.com/site-plan/",
+    "body_sha256": "4b0d6c2ec0d7966a55c2b5f8ccaf9dfa181d5b0353a74b4fffcc59ebc588d123"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/06/premium/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 프리미엄 | 집 안 공간과 커뮤니티 계획",
+    "canonical": "https://mohamoa-floorplan.com/premium/",
+    "body_sha256": "1f8924ceb4aeb09df9640786ec999870c476200b73d92d68cf53940763c7975b"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/06/visit/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 오시는 길 | 모델하우스 위치와 평면 상담 준비",
+    "canonical": "https://mohamoa-floorplan.com/visit/",
+    "body_sha256": "37e3cd0e570d089ca765a2af288ff603cf0b8f91fbadc084f348c635b40109f4"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/06/location/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 입지환경 | 집 안 면적과 집 밖 생활 경로",
+    "canonical": "https://mohamoa-floorplan.com/location/",
+    "body_sha256": "9cbf2e066c0a51c6f201609f9e7c5954e2ce129358a77e35ed3c5ea1a06dd77d"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/06/price/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양가 | 타입·층별 가격과 납부 조건",
+    "canonical": "https://mohamoa-floorplan.com/price/",
+    "body_sha256": "aa1515c0aad1572c3bcec008babff5a2e8285d0319a6e4d85b50134330c054da"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/06/calculator/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양계산기 | 납부 단계별 금액과 필요 자금",
+    "canonical": "https://mohamoa-floorplan.com/calculator/",
+    "body_sha256": "479eb602809c48e068b995547a4760eb37baa4573e4d6e371caa432facbff909"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/07/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 입지 | 생활시설·학교·교통 계획",
+    "canonical": "https://mohamoa-neighborhood.com/",
+    "body_sha256": "b0def295e2b15f4f820696e15d02736b6140ac951b56fae21361f4f57ba08abb"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/07/overview/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 사업개요 | 월출동 A7·진원면 A8",
+    "canonical": "https://mohamoa-neighborhood.com/overview/",
+    "body_sha256": "a7ac9f3b0af4b089fee818a03d62f882fe0e8f1ec6cb8f02d6a5fe04eb8fb815"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/07/location/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 입지환경 | 생활시설과 학교·교통 계획",
+    "canonical": "https://mohamoa-neighborhood.com/location/",
+    "body_sha256": "5b8c81b1839c5995c96a408067eef88e9b510c7f9de9f4ebb1f34dcb1293ce2d"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/07/visit/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 오시는 길 | 마륵동 모델하우스 방문",
+    "canonical": "https://mohamoa-neighborhood.com/visit/",
+    "body_sha256": "4750d3824f37b833739a4b949a1a7e616d9226104b6dc12c93373c5d24135a58"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/07/premium/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 프리미엄 | 단지 커뮤니티와 문화시설",
+    "canonical": "https://mohamoa-neighborhood.com/premium/",
+    "body_sha256": "35b8f57eb6843a2b8522a1a9f4e26c70283ca8e7c4edbf058217e51642e4414e"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/07/floorplan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 평면타입 | 다섯 주택형과 생활 공간",
+    "canonical": "https://mohamoa-neighborhood.com/floorplan/",
+    "body_sha256": "4a3079a552a09d83404f96155e6f57844aaaa4aa25473e0dc8189824638829d6"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/07/site-plan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 단지배치 | 출입구와 매일 오갈 길",
+    "canonical": "https://mohamoa-neighborhood.com/site-plan/",
+    "body_sha256": "8f65be358d72718f75e7303ab5609ad7a555351e2d1c8330d21e549ac38dfb6f"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/07/price/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양가 | 주택형·층별 공급금액과 납부 조건",
+    "canonical": "https://mohamoa-neighborhood.com/price/",
+    "body_sha256": "5e6e46269086f542240f4e8dde97dd1e55d7bd100a32ce4734c2fbd0ed6f2e1c"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/07/calculator/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양계산기 | 계약금·중도금·잔금·필요 자금",
+    "canonical": "https://mohamoa-neighborhood.com/calculator/",
+    "body_sha256": "8f8357e28f7b8dee1309f2eda9b4a200566720aee77e9b74770ce3aaad99b3ef"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/08/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 A8 | 커뮤니티 시설·배치 안내",
+    "canonical": "https://mohamoa-community.com/",
+    "body_sha256": "e9788186ae032ddcc6704b0270ba086a3470eb6f322c8f232b41b3eac6db110d"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/08/overview/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 A8 사업개요 | 449세대와 주택형",
+    "canonical": "https://mohamoa-community.com/overview/",
+    "body_sha256": "a67ff5e976800d7c50959080cc0f2dd031af954a829feb7347b667c63e7649c5"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/08/premium/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 A8 커뮤니티 | 시설 종류와 설치 위치",
+    "canonical": "https://mohamoa-community.com/premium/",
+    "body_sha256": "2997819dae8cec90b93e3a476c1aea4ad0efe26d87e9464c5af14b7e31037a2c"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/08/site-plan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 A8 단지배치 | 집에서 커뮤니티까지",
+    "canonical": "https://mohamoa-community.com/site-plan/",
+    "body_sha256": "223b0ce0acbe1695e3d0262fdcf9b907afc564002789dd2e02d169037eb490c4"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/08/floorplan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 A8 평면타입 | 117A·117B·135 비교",
+    "canonical": "https://mohamoa-community.com/floorplan/",
+    "body_sha256": "4fe4e10e30b45e780542ad36ceeba9a502cc25fd32ef79fbbdf1f83ba2b57e6d"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/08/location/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 입지환경 | 단지 밖 생활시설",
+    "canonical": "https://mohamoa-community.com/location/",
+    "body_sha256": "f9ac7be55adb517107a78df1b54f3a5bfcaea0636de62933a1efb47a5cbb678f"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/08/visit/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 오시는 길 | 커뮤니티 상담 준비",
+    "canonical": "https://mohamoa-community.com/visit/",
+    "body_sha256": "1c0c4113a285ddebd06d5da8be5e6cdc61cbdae7e41a73d64a23b0bdf1c54c59"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/08/price/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양가 | 주택형·층별 공급금액과 납부 조건",
+    "canonical": "https://mohamoa-community.com/price/",
+    "body_sha256": "4a6c97308f38ead3d4a78886525f0cca7a937354ed1ca9bbdd93f211aacd031e"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/08/calculator/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양계산기 | 계약금·중도금·잔금·필요 자금",
+    "canonical": "https://mohamoa-community.com/calculator/",
+    "body_sha256": "2f58b8a2f6b2dfbee037c45d6c7012ad27fe8312a2e3ac3a91bba7709e613de0"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/09/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 모델하우스 | 위치·방문예약 안내",
+    "canonical": "https://mohamoa-visit.com/",
+    "body_sha256": "fb93dc3c123b3596ee9fbd4ca72206402a360d38c3744abc5702cf9c11f9a34c"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/09/overview/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 사업개요 | 방문 전 블록·주택형 선택",
+    "canonical": "https://mohamoa-visit.com/overview/",
+    "body_sha256": "4394707a0e5e14a7d08af1e557525bce7804c3d0bce7c62bad18bcca39fe8624"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/09/visit/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 오시는 길 | 주소·운영시간·방문예약",
+    "canonical": "https://mohamoa-visit.com/visit/",
+    "body_sha256": "cd829a21903b927017bcc3a3b17301ca8c148de09c22ffb3b79d2e6282fc1de1"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/09/floorplan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 평면타입 | 방문 상담 전 도면 비교",
+    "canonical": "https://mohamoa-visit.com/floorplan/",
+    "body_sha256": "7d3bf2af045a47a638baf46a2c08e73ea0fa23585b7ad244222594776bec6cb3"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/09/location/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 입지환경 | 사업지와 견본주택 위치",
+    "canonical": "https://mohamoa-visit.com/location/",
+    "body_sha256": "a684ebf9d55dd3e7bb0d134d6b1360b279bbe607e357aea596ba7f3721227925"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/09/premium/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 프리미엄 | 전시 품목과 계약 사양",
+    "canonical": "https://mohamoa-visit.com/premium/",
+    "body_sha256": "4ad22581bf35260d4fa6416615e107b84eba830eb63520a5be22f796361e4a86"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/09/site-plan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 단지배치 | 관심 동·호수와 주변 시설",
+    "canonical": "https://mohamoa-visit.com/site-plan/",
+    "body_sha256": "210cefeb47adac16f50a12331d96921f710bda89800aaff96e3a6110cdd91efb"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/09/price/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양가 | 주택형·층별 공급금액과 납부 조건",
+    "canonical": "https://mohamoa-visit.com/price/",
+    "body_sha256": "74e149500c5376385c218b41d9d439a54f5bfd08198991e14f3316aec9198a6b"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/09/calculator/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양계산기 | 계약금·중도금·잔금·필요 자금",
+    "canonical": "https://mohamoa-visit.com/calculator/",
+    "body_sha256": "31fc48ef7091ea15d1e32134dc6fb61bee82645f690628329061b491fb48f1c3"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/10/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 | 주택형·예산·생활권 선택 가이드",
+    "canonical": "https://mohamoa-homechoice.com/",
+    "body_sha256": "b5d4bb42f360adf2cb896df55d64da87d97db1569b98006c1e8ada894c820461"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/10/overview/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 사업개요 | A7·A8 선택 기준",
+    "canonical": "https://mohamoa-homechoice.com/overview/",
+    "body_sha256": "98bea5834358b4a2bcd83077d3639dacb4b6403b7308f7375985ee4cde90f179"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/10/floorplan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 평면타입 | 필요한 방과 수납 비교",
+    "canonical": "https://mohamoa-homechoice.com/floorplan/",
+    "body_sha256": "3ab77ca7bb888f5a74d91aa26697d01de03cc3111a02452124b7e864f4c060d3"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/10/location/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 입지환경 | 가족이 자주 다닐 길",
+    "canonical": "https://mohamoa-homechoice.com/location/",
+    "body_sha256": "b25b5bf84d765fa9d58d0bc21d9dcb044b204c64b03465f0387cf0cdc2ee20b1"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/10/visit/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 오시는 길 | 비교 후보와 상담 준비",
+    "canonical": "https://mohamoa-homechoice.com/visit/",
+    "body_sha256": "c32d2bf99979a0faa90227d23a0cab2a096bda47cd1383bcb2a963e9940fc548"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/10/site-plan/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 단지배치 | 동·호수와 주변 공간 비교",
+    "canonical": "https://mohamoa-homechoice.com/site-plan/",
+    "body_sha256": "6ba3d36f16dd767febdad756b28383372ae02a2afd2f1bc02d9a7089345e528b"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/10/premium/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 프리미엄 | 가족에게 필요한 커뮤니티",
+    "canonical": "https://mohamoa-homechoice.com/premium/",
+    "body_sha256": "f77511dded8462f114f8da22e6f701280018e2c32374d6266cc1585d1b09d836"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/10/price/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양가 | 주택형·층별 공급금액과 납부 조건",
+    "canonical": "https://mohamoa-homechoice.com/price/",
+    "body_sha256": "ba8d3f5c70a1e40b2888c346b17e7dd74caf2b95874474df91ead490ef609571"
+  },
+  {
+    "url": "http://127.0.0.1:4173/concepts/10/calculator/",
+    "http_status": 200,
+    "ordinary_and_googlebot_identical": true,
+    "initial_html_title": "호반써밋 첨단3지구 분양계산기 | 계약금·중도금·잔금·필요 자금",
+    "canonical": "https://mohamoa-homechoice.com/calculator/",
+    "body_sha256": "1d30c94903b49e53502c9c744dafdf1a7ae739e7c7cee39f8aad4bf8d31111b0"
+  }
+]

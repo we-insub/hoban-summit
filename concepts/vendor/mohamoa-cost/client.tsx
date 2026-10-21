@@ -1,0 +1,1 @@
+import React from 'react'; import {hydrateRoot} from 'react-dom/client'; import {CostCalculator} from './CostCalculator'; const el=document.getElementById('mohamoa-calculator');if(el)hydrateRoot(el,<CostCalculator projectSlug='cheomdan3-a7-hoban-summit'/>);

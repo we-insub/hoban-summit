@@ -1,0 +1,58 @@
+[
+  {
+    "file": "cheomdan-hoban-cost-guide-analysis-v3-1bd8620afb.mp3",
+    "sha256": "1bd8620afb1d0076f48ac86e4a77b9462725b4e58ab8a9970b7043e4882a746a",
+    "bytes": 1535484,
+    "source": "/Users/matowe/Desktop/모하모아/public/reports/audio/cheomdan-hoban-cost-guide-analysis-v3-1bd8620afb.mp3",
+    "all_ten_bundles_identical": true
+  },
+  {
+    "file": "cheomdan-hoban-cost-guide-analysis-v3-fd07c41e2c.m4a",
+    "sha256": "fd07c41e2ccf68fc2c0a714d52c0234dfcec3d3222aecbdcb95e539efdfebe4e",
+    "bytes": 1431308,
+    "source": "/Users/matowe/Desktop/모하모아/public/reports/audio/cheomdan-hoban-cost-guide-analysis-v3-fd07c41e2c.m4a",
+    "all_ten_bundles_identical": true
+  },
+  {
+    "file": "cheomdan-hoban-floor-plan-analysis-v3-26352bf9aa.m4a",
+    "sha256": "26352bf9aaec8e08571f650d7dd1a82d18e62d985488f10826d9b10985332723",
+    "bytes": 1130716,
+    "source": "/Users/matowe/Desktop/모하모아/public/reports/audio/cheomdan-hoban-floor-plan-analysis-v3-26352bf9aa.m4a",
+    "all_ten_bundles_identical": true
+  },
+  {
+    "file": "cheomdan-hoban-floor-plan-analysis-v3-bb9bb60e91.mp3",
+    "sha256": "bb9bb60e9142b3923c7545f67557328d3179b2e022ac61e86b5461478f52c9aa",
+    "bytes": 1199390,
+    "source": "/Users/matowe/Desktop/모하모아/public/reports/audio/cheomdan-hoban-floor-plan-analysis-v3-bb9bb60e91.mp3",
+    "all_ten_bundles_identical": true
+  },
+  {
+    "file": "cheomdan-hoban-living-guide-analysis-v3-7ef7372a29.mp3",
+    "sha256": "7ef7372a2981c10d731b60dcdd92afa805ffc6088f9140b82c2382fadac6c525",
+    "bytes": 2670772,
+    "source": "/Users/matowe/Desktop/모하모아/public/reports/audio/cheomdan-hoban-living-guide-analysis-v3-7ef7372a29.mp3",
+    "all_ten_bundles_identical": true
+  },
+  {
+    "file": "cheomdan-hoban-living-guide-analysis-v3-9330e4ee8b.m4a",
+    "sha256": "9330e4ee8bae2cef9fa83d767abbbc86bf770f07ba05b3f3714f486dd1f71a3f",
+    "bytes": 2520146,
+    "source": "/Users/matowe/Desktop/모하모아/public/reports/audio/cheomdan-hoban-living-guide-analysis-v3-9330e4ee8b.m4a",
+    "all_ten_bundles_identical": true
+  },
+  {
+    "file": "cheomdan-hoban-visit-guide-analysis-v3-36df2d7aba.mp3",
+    "sha256": "36df2d7aba5ff6a4fe895f320cc01e8b7b9f4a08c6339e5683d9bd780e2e9b70",
+    "bytes": 1314602,
+    "source": "/Users/matowe/Desktop/모하모아/public/reports/audio/cheomdan-hoban-visit-guide-analysis-v3-36df2d7aba.mp3",
+    "all_ten_bundles_identical": true
+  },
+  {
+    "file": "cheomdan-hoban-visit-guide-analysis-v3-b42fa86343.m4a",
+    "sha256": "b42fa86343d74f789744857579806f86f92892eca2015226efedc75d3feb6248",
+    "bytes": 1240876,
+    "source": "/Users/matowe/Desktop/모하모아/public/reports/audio/cheomdan-hoban-visit-guide-analysis-v3-b42fa86343.m4a",
+    "all_ten_bundles_identical": true
+  }
+]

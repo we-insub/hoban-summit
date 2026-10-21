@@ -1,0 +1,50 @@
+[
+  {
+    "source": "/Users/matowe/Desktop/한국라이브나우/시로코.md",
+    "copy": "sirocco-owner-full.md",
+    "sha256": "2a2e2bfdd35ce68cd2ebb1406bf14f883acb5450f21ce1633add832a0cca3e4f",
+    "verbatim": true
+  },
+  {
+    "source": "/Users/matowe/Desktop/한국라이브나우/docs/tourism/KOREAN-ATTRACTION-ENRICHMENT-QA.md",
+    "copy": "gyeongbokgung-quality-full.md",
+    "sha256": "133d5931051d25bfc11db9f578814ab1109d4b77a096c382baaae1f0f3799e10",
+    "verbatim": true
+  },
+  {
+    "source": "/Users/matowe/Desktop/한국라이브나우/docs/tourism/KOREAN-ATTRACTION-DETAIL-STANDARD.md",
+    "copy": "attraction-detail-standard-full.md",
+    "sha256": "21e5dea7a98e1680c1ccdad43ffa10aa4f1e4448d519bde9869f38a48efa6ac7",
+    "verbatim": true
+  },
+  {
+    "source": "/Users/matowe/Desktop/한국라이브나우/docs/writing/VISITOR-EXPERIENCE-WRITING-STANDARD.md",
+    "copy": "visitor-writing-full.md",
+    "sha256": "5c962d085d68cdc25df3ca57a2c321b09d0c97f3a601fb211963e08b29604f13",
+    "verbatim": true
+  },
+  {
+    "source": "/Users/matowe/Desktop/모하모아/AGENTS.md",
+    "copy": "mohamoa-agents-full.md",
+    "sha256": "e61b4ab5cce67553ff09d6734dc4361d3fe112ed1196e50e2b7466b1f93c35db",
+    "verbatim": true
+  },
+  {
+    "source": "/Users/matowe/Desktop/모하모아/docs/SEO_PAGE_CONTEXT_TEMPLATE.md",
+    "copy": "mohamoa-context-template-full.md",
+    "sha256": "c5164b9030b76540cadce018743f8cbb3a53322c325b16e4704522e66fc2d480",
+    "verbatim": true
+  },
+  {
+    "source": "/Users/matowe/Desktop/모하모아/docs/SEO_PAGE_CONTEXT_INDEXABLE_SECTIONS_2026-10-07.md",
+    "copy": "mohamoa-indexable-sections-full.md",
+    "sha256": "5d3cb0f7e271a9a0f74af92bfcc0bd707809855f0d711d994bbe97f1278e50f3",
+    "verbatim": true
+  },
+  {
+    "source": "/Users/matowe/Desktop/모하모아/docs/SEO_PAGE_CONTEXT_HOBAN_A7_A8_2026-10-07.md",
+    "copy": "mohamoa-hoban-context-full.md",
+    "sha256": "7b2aacaffd239714346e5c33abfc9f6955b4024d309acd317ce9e2a562b9ef4d",
+    "verbatim": true
+  }
+]

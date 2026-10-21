@@ -1,0 +1,487 @@
+[
+  {
+    "url": "https://mohamoa.com/reports/cheomdan-hoban-living-guide",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://mohamoa.com/reports/cheomdan-hoban-floor-plan",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://mohamoa.com/reports/cheomdan-hoban-cost-guide",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://mohamoa.com/reports/cheomdan-hoban-visit-guide",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "name": "planning",
+    "url": "https://hobansummit-kjcd.co.kr/sub/planning.php",
+    "sha256": "7959ce1b6e4e9f9c2c4a87ca6b00451db3a17715751e6344bb50979ac0d675a9",
+    "checked_at": "2026-10-21",
+    "audio": [],
+    "images": [
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/sub/planning_img01_1.jpg",
+        ""
+      ],
+      [
+        "/images/sub/planning_img02_1.jpg",
+        ""
+      ],
+      [
+        "/images/common/top_btn.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo2.png",
+        "호반건설"
+      ]
+    ],
+    "links": []
+  },
+  {
+    "name": "location",
+    "url": "https://hobansummit-kjcd.co.kr/sub/location.php",
+    "sha256": "b20b589f061c0c99465f1afb51bc58937de123ec85f2c69e1a1eb3a1c9dd8abc",
+    "checked_at": "2026-10-21",
+    "audio": [],
+    "images": [
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/sub/location_img01.jpg",
+        ""
+      ],
+      [
+        "/images/sub/m_location_img01.jpg",
+        ""
+      ],
+      [
+        "/images/sub/location_img02_1.jpg?v=20260615",
+        null
+      ],
+      [
+        "/images/sub/location_img02_1.jpg?v=20260615",
+        null
+      ],
+      [
+        "/images/sub/location_img03.jpg",
+        ""
+      ],
+      [
+        "/images/sub/m_location_img03.jpg",
+        ""
+      ],
+      [
+        "/images/common/top_btn.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo2.png",
+        "호반건설"
+      ]
+    ],
+    "links": []
+  },
+  {
+    "name": "premium",
+    "url": "https://hobansummit-kjcd.co.kr/sub/premium.php",
+    "sha256": "dcdec1feccb17782dea434bb25b4d19939fa1224e5a279af5207e7192a551722",
+    "checked_at": "2026-10-21",
+    "audio": [],
+    "images": [
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/sub/premium_img01.jpg",
+        ""
+      ],
+      [
+        "/images/sub/m_premium_img01.jpg",
+        ""
+      ],
+      [
+        "/images/common/top_btn.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo2.png",
+        "호반건설"
+      ]
+    ],
+    "links": []
+  },
+  {
+    "name": "block",
+    "url": "https://hobansummit-kjcd.co.kr/sub/block.php",
+    "sha256": "7b9a5a3fedb411e9906bdbd731bda499268a0d2a26203b2d6c669e8db6b00c2c",
+    "checked_at": "2026-10-21",
+    "audio": [],
+    "images": [
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/sub/block_7bl.jpg",
+        ""
+      ],
+      [
+        "/images/sub/block_8bl.jpg",
+        ""
+      ],
+      [
+        "/images/common/top_btn.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo2.png",
+        "호반건설"
+      ]
+    ],
+    "links": []
+  },
+  {
+    "name": "unit_7bl",
+    "url": "https://hobansummit-kjcd.co.kr/sub/unit_7bl.php",
+    "sha256": "4037cc4b824341d1b862222a09e47e22699ee90fc5b036fc3da3210d410bd5d9",
+    "checked_at": "2026-10-21",
+    "audio": [],
+    "images": [
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/sub/84a.jpg?v=20260616",
+        ""
+      ],
+      [
+        "/images/sub/m_84a.jpg?v=20260616",
+        ""
+      ],
+      [
+        "/images/sub/84b.jpg?v=20260616",
+        ""
+      ],
+      [
+        "/images/sub/m_84b.jpg?v=20260616",
+        ""
+      ],
+      [
+        "/images/common/top_btn.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo2.png",
+        "호반건설"
+      ]
+    ],
+    "links": []
+  },
+  {
+    "name": "unit_8bl",
+    "url": "https://hobansummit-kjcd.co.kr/sub/unit_8bl.php",
+    "sha256": "c4a99da0b9383133e88223cb296c4744134dbf238108ccc0e92d8e9611a3369e",
+    "checked_at": "2026-10-21",
+    "audio": [],
+    "images": [
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/sub/117a.jpg?v=20260616",
+        ""
+      ],
+      [
+        "/images/sub/m_117a.jpg?v=20260616",
+        ""
+      ],
+      [
+        "/images/sub/117b.jpg?v=20260616",
+        ""
+      ],
+      [
+        "/images/sub/m_117b.jpg?v=20260616",
+        ""
+      ],
+      [
+        "/images/sub/135.jpg?v=20260616",
+        ""
+      ],
+      [
+        "/images/sub/m_135.jpg?v=20260616",
+        ""
+      ],
+      [
+        "/images/common/top_btn.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo2.png",
+        "호반건설"
+      ]
+    ],
+    "links": []
+  },
+  {
+    "name": "contact",
+    "url": "https://hobansummit-kjcd.co.kr/sub/contact.php",
+    "sha256": "1920ae7daefa45b27e42a7197f3a2735249649921c8e303dc64a801e576cbb2c",
+    "checked_at": "2026-10-21",
+    "audio": [],
+    "images": [
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/sub/contact01.png",
+        ""
+      ],
+      [
+        "/images/sub/naver.png",
+        ""
+      ],
+      [
+        "/images/sub/kakao.png",
+        ""
+      ],
+      [
+        "/images/sub/naver.png",
+        ""
+      ],
+      [
+        "/images/sub/kakao.png",
+        ""
+      ],
+      [
+        "/images/sub/contact02.png",
+        ""
+      ],
+      [
+        "/images/sub/naver.png",
+        ""
+      ],
+      [
+        "/images/sub/kakao.png",
+        ""
+      ],
+      [
+        "/images/common/top_btn.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo2.png",
+        "호반건설"
+      ]
+    ],
+    "links": []
+  },
+  {
+    "name": "plan",
+    "url": "https://hobansummit-kjcd.co.kr/sub/plan.php",
+    "sha256": "ef9c8889e59578543b4b1b96a01b61ea2006cb97f66ee56604680348e816efdb",
+    "checked_at": "2026-10-21",
+    "audio": [],
+    "images": [
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/sub/plan_7bl.jpg",
+        ""
+      ],
+      [
+        "/images/sub/m_plan_7bl.jpg",
+        ""
+      ],
+      [
+        "/images/sub/plan_8bl.jpg",
+        ""
+      ],
+      [
+        "/images/sub/m_plan_8bl.jpg",
+        ""
+      ],
+      [
+        "/images/common/top_btn.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo2.png",
+        "호반건설"
+      ]
+    ],
+    "links": []
+  },
+  {
+    "name": "community",
+    "url": "https://hobansummit-kjcd.co.kr/sub/community.php",
+    "sha256": "2205a1c0f416fe3943119a3d951a29a7e557542ddcb8465f3bbf5897e885731a",
+    "checked_at": "2026-10-21",
+    "audio": [],
+    "images": [
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/sub/community_7bl.jpg?v=20260615",
+        ""
+      ],
+      [
+        "/images/sub/m_community_7bl.jpg?v=20260615",
+        ""
+      ],
+      [
+        "/images/sub/community_8bl.jpg?v=20260615",
+        ""
+      ],
+      [
+        "/images/sub/m_community_8bl.jpg?v=20260615",
+        ""
+      ],
+      [
+        "/images/common/top_btn.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo2.png",
+        "호반건설"
+      ]
+    ],
+    "links": []
+  },
+  {
+    "name": "gonggo",
+    "url": "https://hobansummit-kjcd.co.kr/sub/gonggo.php",
+    "sha256": "15c4d43b5dffde836086fb2eed110e8548e42006a7c40fb4c53d21f5fb4ac7f4",
+    "checked_at": "2026-10-21",
+    "audio": [],
+    "images": [
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/sub/gongo_01.jpg",
+        ""
+      ],
+      [
+        "/images/sub/gongo_02.jpg",
+        ""
+      ],
+      [
+        "/images/sub/gongo_03.jpg",
+        ""
+      ],
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/common/logo.png",
+        ""
+      ],
+      [
+        "/images/sub/gongo_01.jpg",
+        ""
+      ],
+      [
+        "/images/sub/gongo_02.jpg",
+        ""
+      ],
+      [
+        "/images/sub/gongo_03.jpg",
+        ""
+      ],
+      [
+        "/images/common/top_btn.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo.png",
+        "호반"
+      ],
+      [
+        "/images/common/hoban_logo2.png",
+        "호반건설"
+      ]
+    ],
+    "links": [
+      [
+        "/images/gonggo7bl_01_v2.pdf",
+        "\n입주자 모집공고 전문\n호반써밋 첨단3지구 A7BL의 입주자 모집공고전문 PDF 파일을 확인하실 수 있습니다.\n\n"
+      ],
+      [
+        "/images/gonggo7bl_02.pdf",
+        "\n입주자 모집공고 축약\n호반써밋 첨단3지구 A7BL의 입주자 모집공고축약 PDF 파일을 확인하실 수 있습니다.\n\n"
+      ],
+      [
+        "/images/gonggo8bl_01_v2.pdf",
+        "\n입주자 모집공고 전문\n호반써밋 첨단3지구 A8BL의 입주자 모집공고전문 PDF 파일을 확인하실 수 있습니다.\n\n"
+      ],
+      [
+        "/images/gonggo8bl_02.pdf",
+        "\n입주자 모집공고 축약\n호반써밋 첨단3지구 A8BL의 입주자 모집공고축약 PDF 파일을 확인하실 수 있습니다.\n\n"
+      ]
+    ]
+  }
+]

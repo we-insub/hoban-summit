@@ -6,11 +6,14 @@
 
 ## 실행
 
-Python 3와 Node.js가 필요합니다. 외부 패키지 설치는 필요하지 않습니다.
+Python 3와 Node.js가 필요합니다. Python 의존성과 계산기 빌드 패키지를 설치합니다.
 
 ```sh
 git clone https://github.com/we-insub/hoban-summit.git
 cd hoban-summit
+python3 -m pip install -r requirements.txt
+npm ci
+npm run build:calculator
 python3 scripts/build_concepts.py
 python3 scripts/verify_concepts.py
 python3 -m http.server 4173
@@ -50,3 +53,9 @@ See CONSULTATION_DATA_GUIDE.md for the deployed consent v2 schema, RPC and Edge 
 ## 2026-10-01 live reservation update
 
 Read LIVE_RESERVATION_GUIDE.md. All variants 01-10 now use the same live reservation endpoint. Variant-specific preview overrides were removed. This supersedes previous preview-only notes. The user authorized the GitHub update on 2026-10-01. Website deployment and domain purchases are separate tasks.
+
+## 2026-10-22 01~10 메뉴별 상세·본문·메인 제목 전달
+
+오늘 사용자 요청으로 이번 수정본의 Git push 보류를 해제했다. 서버 Secrets·Edge Functions·동의 정책·예약 설정은 변경하지 않는다. 기존 날짜·메타 검증(page_contract.py)을 유지하고 새 메뉴별 출력도 검증한다. 페이지 수정일은 2026-10-22이며 자료 발행일·확인일과 실제 배포일은 별도다.
+
+우선 [2026-10-22 업데이트 적용 안내](PARTNER_UPDATE_20261022.md)를 읽는다. Python 의존성은 requirements.txt, 계산기 의존성은 package-lock.json으로 설치한다. 각 버전은 메인과 8개 상세 URL을 생성한다. 이번 빌드는 로컬 검토용 noindex를 유지하므로, 운영 공개 설정과 실제 도메인 응답 검증 없이 덮어 배포하지 않는다. Git push 자체는 Cloudflare 배포·색인 완료가 아니다.

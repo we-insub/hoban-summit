@@ -7,8 +7,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 import re
 import subprocess
-from page_contract import verify_contract
 from PIL import Image
+from page_contract import verify_contract
 ROOT = Path(__file__).resolve().parents[1]
 plan=json.loads((ROOT/'concepts/version-plan.json').read_text())
 profiles={v['id']:v for v in plan['versions']}
@@ -32,6 +32,10 @@ class Page(HTMLParser):
  def handle_endtag(self,tag):
   if tag=='nav':self.current_nav=None
 for ident in ([args.version] if args.version else list(profiles)):
+ if (ROOT/f'concepts/routes/{ident}.json').exists():
+  from verify_menu_pages import verify
+  verify(ident)
+  continue
  for bundle in [ROOT/'concepts'/ident,ROOT/'dist'/'hoban'/ident]:
   source=(bundle/'index.html').read_text();page=Page();page.feed(source)
   assert page.h1==1 and len(page.ids)==len(set(page.ids)),f'{bundle}: heading/IDs'
@@ -104,4 +108,5 @@ assert.equal(calculate(494000000,999000000,0,0).gap,0);
 for(const unit of require('./concepts/source-data.json').units)for(const row of unit.prices){const r=calculate(row.won,0,0,0);assert.equal(r.deposit+r.interim+r.balance,row.won);assert.equal(r.first+r.second,r.deposit);}
 console.log('Budget amount/units/negative/loan guards: passed');
 '''],cwd=str(ROOT),check=True)
+subprocess.run(['node','scripts/verify_popup_preference.cjs'],cwd=str(ROOT),check=True)
 print('Frontend/server Hoban consent policy parity: passed. No live booking submitted.')

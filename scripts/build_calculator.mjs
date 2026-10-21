@@ -1,0 +1,15 @@
+import {build} from 'esbuild';
+import fs from 'node:fs';
+import path from 'node:path';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
+const root=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+const folder=path.join(root,'concepts/vendor/mohamoa-cost');
+const common={bundle:true,jsx:'automatic',define:{'process.env.NODE_ENV':'"production"'}};
+await build({...common,entryPoints:[path.join(folder,'client.tsx')],minify:true,outfile:path.join(root,'concepts/mohamoa-calculator.js')});
+await build({...common,entryPoints:[path.join(folder,'server.tsx')],platform:'node',outfile:path.join(folder,'server.cjs')});
+const require=createRequire(import.meta.url);fs.writeFileSync(path.join(folder,'initial.html'),require(path.join(folder,'server.cjs')).render());
+const files=['CostCalculator.tsx','cost-math.ts','cost-presets.ts','client.tsx','server.tsx'];
+fs.writeFileSync(path.join(folder,'build-manifest.json'),JSON.stringify(Object.fromEntries(files.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(folder,f))).digest('hex')])),null,2));
+console.log('Mohamoa calculator browser bundle and initial HTML generated.');
