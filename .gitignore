@@ -12,3 +12,4 @@ supabase/.temp/
 captures/
 
 .venv/
+concepts/indexnow-log.jsonl

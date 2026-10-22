@@ -229,6 +229,9 @@ for ident, *_ in variants:
  shutil.copy2(BASE/'_headers',out/'_headers')
  (out/'index.html').write_text(page)
  (out/'robots.txt').write_text('User-agent: *\nAllow: /\n# Draft: noindex in HTML and HTTP headers.\n')
+ # IndexNow (Bing·Naver) ownership key; submission is gated by scripts/indexnow_submit.py.
+ indexnow_key = json.loads((BASE/'indexnow.json').read_text())['key']
+ (out/(indexnow_key+'.txt')).write_text(indexnow_key)
  (out/'404.html').write_text('<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="robots" content="noindex"><title>페이지 없음</title><h1>페이지를 찾을 수 없습니다.</h1><a href="/">홈으로</a></html>')
 shutil.copy2(BASE/'index.html',ROOT/'dist'/'hoban'/'index.html')
 shutil.copy2(BASE/'review.css',ROOT/'dist'/'hoban'/'review.css')

@@ -130,3 +130,7 @@ TEN_VERSION_WORKFLOW.md, LIVE_RESERVATION_GUIDE.md, concepts/version-plan.json �
 ## 2026-10-02 제목·파비콘 필수 작업
 
 TITLE_FAVICON_GUIDE.md를 읽고 01~10 각각의 홈페이지 title·H1·og:title을 본문에 맞게 검수한다. 사이트 아이콘(파비콘)은 번호별 실제 SVG 원본·PNG·ICO·apple-touch-icon 파일을 생성하고 빌더에서 복사 및 head 링크를 구현한다. 각 배포 폴더에 포함해 Cloudflare에 업로드하고 실제 도메인의 이미지 응답·브라우저 표시를 확인한다. 지침만 작성하거나 제목을 바꾼 것을 아이콘 생성·업로드 완료로 보고하지 않는다. DEPLOYMENT_STATUS.md에 버전별 결과를 기록한다.
+
+## IndexNow (Bing·네이버) — 2026-10-23
+
+키는 `concepts/indexnow.json`에 있고 빌더가 각 `dist/hoban/NN/<키>.txt`로 복사한다. 배포 후 `python3 scripts/indexnow_submit.py`로 실제 도메인이 최신 빌드와 같은지(HTTP 200, title·H1·canonical·robots 일치, noindex 없음, 키 파일 응답) 확인하고, 모두 통과한 번호만 `--submit`으로 Bing·네이버에 보낸다. 결과는 `concepts/indexnow-log.jsonl`에 남는다. Google은 IndexNow를 지원하지 않으므로 Search Console에서 사이트맵을 다시 제출한다. 2026-10-23 점검 결과 01~10 실제 도메인은 이전 단일 페이지 버전이고 최신 빌드는 로컬 noindex 상태라 전송하지 않았다.
