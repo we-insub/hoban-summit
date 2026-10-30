@@ -2,7 +2,7 @@
 
 전달 커밋: `fdd9d78` (저장소 https://github.com/we-insub/hoban-summit, 브랜치 main)
 
-이번 전달본: 하단 방문상담 배너(누르면 모하모아식 예약 팝업, 로드 시 자동 팝업 없음), 계산기 메뉴(비용·평수·청약 가점·대출)와 실거래가 메뉴, 계산 결과 이미지·PDF 저장, 번호별 본문·제목·메타 정리. 각 번호는 메인+12개 상세(overview/location/premium/site-plan/floorplan/price/calculator/visit + pyeong-converter/subscription-score/loan-calculator).
+이번 전달본: 하단 방문상담 배너(누르면 모하모아식 예약 팝업, 로드 시 자동 팝업 없음), 계산기 메뉴(비용·평수·청약 가점·대출)와 실거래가 메뉴, 계산 결과 이미지·PDF 저장, 번호별 본문·제목·메타 정리. 분양계산기 페이지 앞부분에는 공고 분양가 기준 주택형별 가격 요약 표(분양가·계약금·중도금·잔금·발코니 확장비, 자료 확인일·공고 출처 표시)가 번호별 제목·설명과 함께 들어갑니다. 표 숫자는 source-data.json과 cost-presets.ts의 공고 데이터에서만 만들며 임의로 바꾸지 마세요. 각 번호는 메인+12개 상세(overview/location/premium/site-plan/floorplan/price/calculator/visit + pyeong-converter/subscription-score/loan-calculator).
 
 | 번호 | 도메인 | 번호 | 도메인 |
 |---|---|---|---|
