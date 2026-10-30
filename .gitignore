@@ -13,3 +13,5 @@ captures/
 
 .venv/
 concepts/indexnow-log.jsonl
+
+deploy-projects.local
