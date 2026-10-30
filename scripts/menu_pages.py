@@ -11,7 +11,11 @@ def split_version(ident):
  conf=json.loads((ROOT/f'concepts/routes/{ident}.json').read_text())
  assert conf['mode']=='local-preview','Publishing requires a separate reviewed release'
  editorial=json.loads((ROOT/f'concepts/editorial/{ident}.json').read_text())
+ tools=json.loads((ROOT/'concepts/tools-pages.json').read_text())
+ tool_copy=json.loads((ROOT/'concepts/tools-copy.json').read_text())[ident]
+ for t in tools['pages']:t.update(tool_copy[t['tool']])
  editorial['sections']['calculator']=json.loads((ROOT/'concepts/calculator-page.json').read_text())
+ editorial['sections']['calculator'].update({k:v for k,v in json.loads((ROOT/'concepts/calculator-copy.json').read_text())[ident].items() if k in ('intro','question','answer')})
  from sale_content import REFS
  REFS['calculator']=REFS['cost']
  pages=conf['pages'];origin=conf['public_origin'];routes={p['section']:p for p in pages}
@@ -34,6 +38,8 @@ def split_version(ident):
   model=editorial['sections']['calculator']
   calc.select_one('.section-answer h3').string=model['question']
   calc.select_one('.section-answer > p').string=model['answer']
+  from calc_summary import summary_html
+  calc.select_one('.section-answer').insert_after(fragment(summary_html(ident,json.loads((ROOT/'concepts/calculator-summary-copy.json').read_text())[ident])))
   for el in sections['cost'].select('.calc-tabs, .calc-panel'):el.decompose()
   action=fragment('<p><a class="editorial-link" href="'+base+'calculator/">분양계산기로 필요 자금 계산하기 ↗</a></p>')
   sections['cost'].select_one('.calc-inner').append(action)
@@ -56,16 +62,50 @@ def split_version(ident):
    modal.select_one('.reservation-dialog').append(footer)
    preference=doc.new_tag('script',src=('/concepts/popup-preference.js' if base!='/' else '/popup-preference.js'))
    doc.select_one('script[src$="concepts.js"]').insert_before(preference)
+   def nav_link(href,text,active=False):
+    a=doc.new_tag('a',href=href);a.string=text
+    if active:a['aria-current']='page'
+    return a
    for nav in doc.select('.desktop-nav, #mobile-menu'):
-    nav.clear()
+    nav.clear();mobile=nav.get('id')=='mobile-menu'
     for p in pages:
-     a=doc.new_tag('a',href=base+p['slug']+'/');a.string=p['label']
-     if p['section']==current:a['aria-current']='page'
-     nav.append(a)
-    a=doc.new_tag('a',href='https://mohamoa.com/');a.string='모하모아';nav.append(a)
+     if p['section']=='calculator':
+      items=[(base+'calculator/',tools['cost_label'],current=='calculator')]+[(base+t['slug']+'/',t['label'],current==t['tool']) for t in tools['pages']]
+      open_group=any(active for _,_,active in items)
+      if mobile:
+       group=doc.new_tag('div');group['class']=['mobile-nav-group'];span=doc.new_tag('span');span.string=tools['label'];group.append(span)
+       for item in items:group.append(nav_link(*item))
+      else:
+       group=doc.new_tag('div');group['class']=['nav-dropdown']
+       trigger=doc.new_tag('button',type='button');trigger['class']=['nav-dropdown-trigger']+(['active'] if open_group else []);trigger['aria-haspopup']='true';trigger['aria-expanded']='false';trigger.string=tools['label']+' ▾'
+       menu=doc.new_tag('div');menu['class']=['nav-dropdown-menu']
+       for item in items:menu.append(nav_link(*item))
+       group.append(trigger);group.append(menu)
+      nav.append(group)
+      nav.append(nav_link(tools['real_transactions']['href'],tools['real_transactions']['label']))
+      continue
+     nav.append(nav_link(base+p['slug']+'/',p['label'],p['section']==current))
+    nav.append(nav_link('https://mohamoa.com/','모하모아'))
+   assets=('/concepts/assets/' if base!='/' else '/assets/')
+   dialog=modal.select_one('.reservation-dialog');dialog['class']=dialog.get('class',[])+['visit-popup']
+   old_title=dialog.select_one('#reservation-title');dialog.select_one('.modal-kicker').decompose();old_title.decompose()
+   close_button=dialog.select_one('.modal-close').extract()
+   parts=[dialog.select_one(sel).extract() for sel in ['.modal-summary','.modal-switch','.modal-phone-only','.reservation-form','.popup-dismiss']]
+   dialog.clear();dialog.append(close_button)
+   dialog.append(fragment('<aside class="vp-visual"><span class="vp-kicker">이달의 핫 현장</span><div class="vp-logo">HOBAN <strong>SUMMIT</strong></div><p class="vp-place">첨단3지구 A7BL · 광주</p><h2 id="reservation-title">호반써밋 첨단3지구<br/>방문 상담 신청</h2><p class="vp-desc">모하모아 파트너 현장 상담을 지원합니다.<br/>신청해 주시면 담당자가 전화로 방문 일정을 조율합니다.</p><div class="vp-gift"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg><span><b>메가커피 아이스 아메리카노 1잔</b><small>호반써밋 현장 방문 상담 완료 시 · 1인 1회</small></span></div></aside>'))
+   content=fragment('<div class="vp-content"><p class="vp-step">방문 상담 신청</p><h3>상담받을 단지를 선택해 주세요.</h3><label class="vp-select"><span>모델하우스 <b>필수</b></span><select aria-label="모델하우스"><option>첨단3지구 A7BL 호반써밋</option></select></label><p class="vp-benefit">호반써밋 현장에서 방문 상담을 마치면 음료 혜택을 받을 수 있습니다.</p></div>')
+   box=content.select_one('.vp-content')
+   for part in parts:box.append(part)
+   dialog.append(content)
+   bar=fragment('<div class="visit-bottom-bar" role="region" aria-label="방문 상담과 방문예약"><button class="visit-bottom-close" type="button" aria-label="하단 안내 닫기">×</button><img class="visit-bottom-logo" src="'+assets+'mohamoa-mark.png" alt="" width="38" height="38"><p class="visit-bottom-text"><b data-visit-date>호반써밋 첨단3지구</b><span>모델하우스 방문 상담·예약</span></p><button class="visit-bottom-consult" type="button" data-open-booking>상담하기</button><button class="visit-bottom-reserve" type="button" data-open-booking>방문예약하기</button></div>')
+   modal.insert_after(bar)
    doc.select_one('.brand')['href']=base
    doc.select_one('script[src$="concepts.js"]')['src']=('/concepts/multipage.js' if base!='/' else '/multipage.js')
    link=doc.new_tag('link',rel='stylesheet',href=('/concepts/multipage.css' if base!='/' else '/multipage.css'));doc.head.append(link)
+   if current=='calculator' or current in [t['tool'] for t in tools['pages']]:
+    doc.head.append(doc.new_tag('link',rel='stylesheet',href=('/concepts/tools.css' if base!='/' else '/tools.css')))
+    if current!='calculator':
+     js=doc.new_tag('script',src=('/concepts/mohamoa-tools.js' if base!='/' else '/mohamoa-tools.js'));js['defer']='';doc.body.append(js)
    if enriched:
     css=doc.new_tag('link',rel='stylesheet',href=('/concepts/enriched.css' if base!='/' else '/enriched.css'));doc.head.append(css)
     if current=='calculator':
@@ -128,13 +168,28 @@ def split_version(ident):
    main.append(related)
    shared(doc,key);metadata(doc,p['title'],p['description'],origin+'/'+p['slug']+'/',p['h1'],faqs)
    dest=folder/p['slug'];dest.mkdir(exist_ok=True);(dest/'index.html').write_text(str(doc))
-  urls=[origin+'/']+[origin+'/'+p['slug']+'/' for p in pages]
+  for t in tools['pages']:
+   doc=copy.deepcopy(original);main=doc.select_one('main#content');main.clear()
+   header=doc.new_tag('header');header['class']=['detail-header','section-wrap']
+   bc=doc.new_tag('nav',attrs={'aria-label':'현재 위치'});a=doc.new_tag('a',href=base);a.string='홈';bc.append(a);bc.append(' / '+tools['label']+' / '+t['label']);header.append(bc)
+   h=doc.new_tag('h1');h.string=t['h1'];header.append(h)
+   lead=doc.new_tag('p');lead.string=t['intro'];header.append(lead);main.append(header)
+   tool_section=fragment('<section class="section-wrap tool-section" id="'+t['tool']+'-tool"><h2 class="sr-only">'+t['label']+'</h2><div data-tool="'+t['tool']+'"'+(' data-areas="'+t['areas']+'"' if t.get('areas') else '')+'></div><noscript><p>계산기를 쓰려면 자바스크립트를 켜 주세요.</p></noscript></section>')
+   main.append(tool_section)
+   main.append(faq(doc,t['faqs']))
+   related=doc.new_tag('section');related['class']=['section-wrap','related-pages'];h=doc.new_tag('h2');h.string='함께 살펴보세요';related.append(h)
+   for href,text in [(base+'calculator/',tools['cost_label'])]+[(base+o['slug']+'/',o['label']) for o in tools['pages'] if o is not t]+[(base+'price/','분양가'),(base+'visit/','오시는 길')]:
+    a=doc.new_tag('a',href=href);a.string=text+' ↗';related.append(a)
+   main.append(related)
+   shared(doc,t['tool']);metadata(doc,t['title'],t['description'],origin+'/'+t['slug']+'/',t['h1'],t['faqs'])
+   dest=folder/t['slug'];dest.mkdir(exist_ok=True);(dest/'index.html').write_text(str(doc))
+  urls=[origin+'/']+[origin+'/'+p['slug']+'/' for p in pages]+[origin+'/'+t['slug']+'/' for t in tools['pages']]
   xml='<?xml version="1.0" encoding="UTF-8"?>\n<!-- Local release candidate; do not submit before production noindex and live URL checks. -->\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+escape(u)+'</loc></url>' for u in urls)+'</urlset>\n'
   (folder/'sitemap.xml').write_text(xml)
   if base=='/':
-   for name in ['multipage.js','multipage.css','popup-preference.js']+(['enriched.css','mohamoa-calculator.js'] if enriched else []):shutil.copy2(ROOT/'concepts'/name,folder/name)
+   for name in ['multipage.js','multipage.css','popup-preference.js','tools.css','mohamoa-tools.js']+(['enriched.css','mohamoa-calculator.js'] if enriched else []):shutil.copy2(ROOT/'concepts'/name,folder/name)
    (folder/'robots.txt').write_text('User-agent: *\nAllow: /\n# Local draft: noindex in HTML and headers; sitemap is a release candidate, not submitted.\n')
- print(ident+': home + 8 static detail pages, draft sitemap and per-URL metadata built')
+ print(ident+': home + 8 static detail pages + 3 calculator tool pages, draft sitemap and per-URL metadata built')
  # Keep the brief generated from the same route/editorial source as the pages.
  from sale_content import REFS
  brief=ROOT/f'concepts/{ident}/PROJECT.md'

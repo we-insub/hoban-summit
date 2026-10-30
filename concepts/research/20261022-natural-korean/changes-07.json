@@ -1,14 +1,19 @@
 {
   "version": "07",
-  "editorial_sha256": "759c4086c2d3f0bc6adaa9f9c06fbe1f8292292ab62721bd1e7d0a6cb7ac2339",
-  "routes_sha256": "3ec04b81e63fe9728941d8404feb15347b103f944ea459b52e41c3d8eca2fdc8",
+  "editorial_sha256": "b2871e006bcfd1830c85d8174c17cc49fe749741ead9adfa9250c7ec0a3ceecb",
+  "routes_sha256": "b9aeb62ae1ca90916d4a9f736cbd05e56cb7d85bdb1c2e4009e0026772437f79",
   "protected_facts_sources_audio": "preserved",
-  "changed_text_fields": 134,
+  "changed_text_fields": 135,
   "before_after": [
+    {
+      "field": "/title",
+      "before": "호반써밋 첨단3지구 입지 | 생활시설·학교·교통 계획",
+      "after": "호반써밋 첨단3지구 분양정보 | 입지·교통·학교 계획"
+    },
     {
       "field": "/description",
       "before": "호반써밋 첨단3지구 입지 지도에서 롯데마트 첨단점, 첨단종합병원, 국립광주과학관을 살펴보세요. 학교 부지와 도시철도·연결도로 계획은 기존 시설과 구분해 안내합니다.",
-      "after": "호반써밋 첨단3지구 주변의 롯데마트 첨단점·첨단종합병원·국립광주과학관 위치를 살펴보세요. 학교 부지와 도시철도·연결도로 계획은 기존 시설과 나눠 보고 가족의 생활 경로를 비교할 수 있습니다."
+      "after": "호반써밋 첨단3지구 주변 생활시설과 학교·교통 계획을 살펴보세요. A7·A8의 위치와 주택형, 공고 분양가를 함께 비교하고 모델하우스 방문 방법을 확인할 수 있습니다."
     },
     {
       "field": "/answer",
@@ -33,7 +38,7 @@
     {
       "field": "/hero_copy",
       "before": "마트와 병원, 교육·문화시설부터 교통 계획까지. 우리 가족의 생활 경로로 입지를 살펴보세요.",
-      "after": "장을 보고, 진료를 받고, 아이와 과학관을 찾는 길. 주변 생활시설과 학교·교통 계획을 함께 살펴보세요."
+      "after": "집 안의 평면과 집 밖에서 매일 오갈 길을 함께 살펴보세요. 주변 생활시설과 학교·교통 계획을 나눠 보고 주택형과 분양가도 비교할 수 있습니다."
     },
     {
       "field": "/faq_intro",

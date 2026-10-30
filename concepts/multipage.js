@@ -9,7 +9,7 @@
   try { hiddenToday = window.PopupPreference.isSuppressed(localStorage.getItem(preferenceKey), Date.now()); }
   catch (_) { /* Storage can be unavailable; booking must continue to work. */ }
   hideToday.checked = hiddenToday;
-  if (!hiddenToday) modal.classList.add('is-open');
+  // 팝업은 처음 열 때 자동으로 띄우지 않고 하단 바·방문예약 버튼을 눌렀을 때만 연다.
   function saveDisplayPreference() {
     try {
       if (hideToday.checked) localStorage.setItem(preferenceKey, String(window.PopupPreference.nextKstMidnight(Date.now())));
@@ -104,4 +104,32 @@
   byId('budget-floor')?.addEventListener('change', updateBudget);
   ['budget-cash','budget-loan','budget-options','budget-fees'].forEach(id => byId(id)?.addEventListener('input', updateBudget));
   updateBudget();
+
+  // 하단 방문 상담 바: 날짜는 한국 시간 기준 월·일만 표시하고, 닫으면 이 탭에서 다시 띄우지 않는다.
+  const bar = document.querySelector('.visit-bottom-bar');
+  if (bar) {
+    const dismissedKey = 'hoban:visit-bar-dismissed';
+    let dismissed = false;
+    try { dismissed = sessionStorage.getItem(dismissedKey) === '1'; } catch (_) { /* 저장소를 못 쓰면 매번 보여 준다 */ }
+    if (dismissed) bar.hidden = true; else document.body.classList.add('has-visit-bar');
+    const parts = new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', month: 'numeric', day: 'numeric' }).formatToParts(new Date());
+    const get = type => parts.find(part => part.type === type)?.value;
+    const label = bar.querySelector('[data-visit-date]');
+    if (get('month') && get('day')) label.textContent = `호반써밋 첨단3지구 ${get('month')}월 ${get('day')}일`;
+    bar.querySelector('.visit-bottom-close').addEventListener('click', () => {
+      bar.hidden = true; document.body.classList.remove('has-visit-bar');
+      try { sessionStorage.setItem(dismissedKey, '1'); } catch (_) { /* 이 페이지에서만 닫힌다 */ }
+    });
+  }
+
+  // 계산기 드롭다운
+  document.querySelectorAll('.nav-dropdown').forEach(group => {
+    const trigger = group.querySelector('.nav-dropdown-trigger');
+    const setOpen = open => { group.classList.toggle('open', open); trigger.setAttribute('aria-expanded', String(open)); };
+    trigger.addEventListener('click', () => setOpen(!group.classList.contains('open')));
+    group.addEventListener('mouseenter', () => setOpen(true));
+    group.addEventListener('mouseleave', () => setOpen(false));
+    document.addEventListener('mousedown', event => { if (!group.contains(event.target)) setOpen(false); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') setOpen(false); });
+  });
 })();

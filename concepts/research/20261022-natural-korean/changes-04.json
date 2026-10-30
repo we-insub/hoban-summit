@@ -1,19 +1,19 @@
 {
   "version": "04",
-  "editorial_sha256": "768e51fc0a8af5362cae62d955d384d30bcb0b39e1886a10a1c2ab96b5ceea72",
-  "routes_sha256": "237e112c8ed58ecf7e0cdb3b56812fdf43955f1c5d031962d182c7b44aacaf08",
+  "editorial_sha256": "9bd20d0af2c8f9588333548bf0791d6c9dcbaef0c1be2a8ceaabcc2f606c742a",
+  "routes_sha256": "54d8c49d69b54a6fcf66f445c21ea34a71f4a7de676680766dc39150670bb46b",
   "protected_facts_sources_audio": "preserved",
   "changed_text_fields": 164,
   "before_after": [
     {
       "field": "/title",
       "before": "호반써밋 첨단3지구 | A7·A8 위치·규모·입주 비교",
-      "after": "호반써밋 첨단3지구 | A7·A8 사업지·주택형·입주 예정"
+      "after": "호반써밋 첨단3지구 분양정보 | A7·A8 단지 안내"
     },
     {
       "field": "/description",
       "before": "호반써밋 첨단3지구 A7·A8의 사업지, 세대수, 주택형과 입주 예정 시기를 비교하세요. 모집공고와 단지배치도를 바탕으로 블록 선택에 필요한 차이를 정리했습니다.",
-      "after": "호반써밋 첨단3지구 A7·A8의 사업지와 세대수, 주택형, 입주 예정월을 비교해 보세요. 관심 블록의 모집공고와 단지배치도를 보며 집의 위치와 필요한 공간을 함께 살펴볼 수 있습니다."
+      "after": "호반써밋 첨단3지구 A7·A8의 사업지와 세대수, 주택형과 공고상 입주 예정월을 비교해 보세요. 평면도·분양가·단지배치와 모델하우스 방문 안내를 함께 확인할 수 있습니다."
     },
     {
       "field": "/analysis_title",
@@ -38,7 +38,7 @@
     {
       "field": "/hero_copy",
       "before": "행정구역부터 주택형과 입주 예정월까지. 두 블록의 차이를 한눈에 살펴보세요.",
-      "after": "84㎡대 A7과 117·135㎡대 A8. 사업지와 주택형, 입주 예정월을 함께 비교해 보세요."
+      "after": "84㎡대 A7과 117·135㎡대 A8, 우리 가족에게 맞는 집을 살펴보세요. 블록별 위치와 평면, 분양가부터 모델하우스 방문까지 안내합니다."
     },
     {
       "field": "/faq_title",

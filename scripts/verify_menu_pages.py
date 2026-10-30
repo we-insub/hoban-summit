@@ -7,9 +7,12 @@ from xml.etree import ElementTree as ET
 from bs4 import BeautifulSoup
 ROOT=Path(__file__).resolve().parents[1]
 def verify(ident):
- conf=json.loads((ROOT/f'concepts/routes/{ident}.json').read_text());origin=conf['public_origin'];pages=conf['pages']
+ conf=json.loads((ROOT/f'concepts/routes/{ident}.json').read_text());origin=conf['public_origin'];pages=conf['pages'];tools=json.loads((ROOT/'concepts/tools-pages.json').read_text());tool_copy=json.loads((ROOT/'concepts/tools-copy.json').read_text())[ident]
+ for t in tools['pages']:
+  t.update(tool_copy[t['tool']]);assert 0<len(t['description'])<=150 and len(t['faqs'])>=3,(ident,t['tool'])
+ tool_slugs={t['slug']+'/':t for t in tools['pages']}
  for folder,base in [(ROOT/f'concepts/{ident}',f'/concepts/{ident}/'),(ROOT/f'dist/hoban/{ident}','/')]:
-  all_routes=['']+[p['slug']+'/' for p in pages];titles=set();descriptions=set();popup_hashes=set()
+  all_routes=['']+[p['slug']+'/' for p in pages]+list(tool_slugs);titles=set();descriptions=set();popup_hashes=set()
   for route in all_routes:
    doc=BeautifulSoup((folder/route/'index.html').read_text(),'html.parser');head=doc.head;url=origin+'/'+route
    for query in ['title','meta[name="description"]','meta[name="robots"]','link[rel="canonical"]','meta[property="og:title"]','meta[property="og:url"]']:
@@ -20,13 +23,26 @@ def verify(ident):
    assert head.select_one('meta[property="og:url"]')['content']==url
    assert 'noindex' in head.select_one('meta[name="robots"]')['content']
    titles.add(doc.title.text);descriptions.add(head.select_one('meta[name="description"]')['content'])
-   expected=[base+p['slug']+'/' for p in pages]+['https://mohamoa.com/']
+   expected=[]
+   for p in pages:
+    if p['section']=='calculator':expected+=[base+'calculator/']+[base+t['slug']+'/' for t in tools['pages']]+[tools['real_transactions']['href']]
+    else:expected.append(base+p['slug']+'/')
+   expected.append('https://mohamoa.com/')
    profile=next(v for v in json.loads((ROOT/'concepts/version-plan.json').read_text())['versions'] if v['id']==ident)
    assert [p['section'] for p in pages if p['section'] not in ['cost','calculator']]==[k for k in profile['menu'] if k!='mohamoa'], 'existing menu order changed'
    assert [e['href'] for e in doc.select('.desktop-nav a')]==[e['href'] for e in doc.select('#mobile-menu a')]==expected
-   if route:
+   is_tool=route in tool_slugs
+   if is_tool:
+    t=tool_slugs[route];assert doc.h1.text==t['h1'] and doc.title.text==t['title'] and doc.select_one('[data-tool="'+t['tool']+'"]') and doc.select_one('script[src$="mohamoa-tools.js"]')
+   elif route:
     p=next(p for p in pages if p['slug']+'/'==route);assert doc.h1.text==p['h1'];assert doc.select_one('#'+p['section'])
-   if route=='calculator/':
+   if not is_tool and route=='calculator/':
+    summary=doc.select_one('.calc-summary');assert summary,(route,'static price summary missing')
+    text=summary.get_text(' ')
+    for needle in ['2026.06.05','공식 분양처','발코니 확장','세금']:assert needle in text,(route,'summary notice missing',needle)
+    assert len(summary.select('a[href*="gonggo"]'))>=2,(route,'summary source links')
+    assert summary.select('table,.calc-summary-cards'),(route,'summary has no data')
+   if not is_tool and route=='calculator/':
     if doc.select_one('#mohamoa-calculator'):
      assert len(doc.select('#mohamoa-calculator .cost-tabs button'))==4
      assert len(doc.select('#mohamoa-calculator input[readonly]'))>=3
@@ -34,10 +50,11 @@ def verify(ident):
    if route=='price/':assert not doc.select_one('#budget-unit') and doc.select_one('a[href="'+base+'calculator/"]')
    editorial=json.loads((ROOT/f'concepts/editorial/{ident}.json').read_text())
    from page_contract import verify_contract
-   contract=dict(editorial, title=doc.title.text, description=head.select_one('meta[name="description"]')['content'], url=url)
-   contract.pop('h1_topic',None)
-   verify_contract(str(doc),contract)
-   if route and editorial.get('enrichment_revision') and p['section']!='calculator':
+   if is_tool:contract=None
+   if not is_tool:contract=dict(editorial, title=doc.title.text, description=head.select_one('meta[name="description"]')['content'], url=url)
+   if not is_tool:
+    contract.pop('h1_topic',None);verify_contract(str(doc),contract)
+   if route and not is_tool and editorial.get('enrichment_revision') and p['section']!='calculator':
     m=editorial['sections'][p['section']]
     for block in m['details']:
      for paragraph in block['paragraphs']:assert paragraph in doc.get_text(), (route,'missing full paragraph')
@@ -65,11 +82,11 @@ def verify(ident):
     if node['@type']=='FAQPage':
      text=doc.select_one('#faq').get_text()
      for f in node['mainEntity']:assert f['name'] in text and f['acceptedAnswer']['text'] in text,(route,'FAQ mismatch')
-  assert len(titles)==len(descriptions)==len(pages)+1
+  assert len(titles)==len(descriptions)==len(all_routes)
   assert len(popup_hashes)==1,'booking form must remain identical on all routes'
   locs=[e.text for e in ET.parse(folder/'sitemap.xml').findall('.//{*}loc')]
-  assert set(locs)=={origin+'/'+route for route in all_routes} and len(locs)==len(pages)+1
-  print(f'{folder}: 9 URLs / head metadata / canonical / H1 / menus / resources / FAQ / unchanged popup passed')
+  assert set(locs)=={origin+'/'+route for route in all_routes} and len(locs)==len(all_routes)
+  print(f'{folder}: 12 URLs / head metadata / canonical / H1 / menus / resources / FAQ / unchanged popup passed')
  baseline=json.loads((ROOT/'references/menu-pages-20261021/booking-form-before-all.json').read_text())
  form=BeautifulSoup((ROOT/f'concepts/{ident}/index.html').read_text(),'html.parser').select_one('.reservation-form')
  assert hashlib.sha256(str(form).encode()).hexdigest()==baseline[ident], 'booking form changed'

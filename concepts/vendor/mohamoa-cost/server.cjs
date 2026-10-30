@@ -31148,8 +31148,176 @@ function calculateDsr(income, annualPayments) {
 // concepts/vendor/mohamoa-cost/cost-presets.ts
 var costPresets = { "cheomdan3-a7-hoban-summit": { "reviewedAt": "2026-10-21", "contractPercent": 5, "interimPercent": 60, "defaultSelection": { "block": 0, "type": 0, "floor": 4 }, "blocks": [{ "label": "A7BL", "source": "https://hobansummit-kjcd.co.kr/images/gonggo7bl_01_v2.pdf", "types": [{ "label": "84A", "over85": false, "balconyAmount": 919, "rows": [{ "floor": "1\uCE35", "price": 49400 }, { "floor": "2\uCE35", "price": 51e3 }, { "floor": "3\uCE35", "price": 52100 }, { "floor": "4\uCE35", "price": 53200 }, { "floor": "\uAE30\uC900\uCE35", "price": 54300 }] }, { "label": "84B", "over85": false, "balconyAmount": 1204, "rows": [{ "floor": "1\uCE35", "price": 48900 }, { "floor": "2\uCE35", "price": 50500 }, { "floor": "3\uCE35", "price": 51600 }, { "floor": "4\uCE35", "price": 52700 }, { "floor": "\uAE30\uC900\uCE35", "price": 53700 }] }] }, { "label": "A8BL", "source": "https://hobansummit-kjcd.co.kr/images/gonggo8bl_01_v2.pdf", "types": [{ "label": "117A", "over85": true, "balconyAmount": 1286, "rows": [{ "floor": "1\uCE35", "price": 62700 }, { "floor": "2\uCE35", "price": 64800 }, { "floor": "3\uCE35", "price": 66100 }, { "floor": "4\uCE35", "price": 67500 }, { "floor": "\uAE30\uC900\uCE35", "price": 68900 }] }, { "label": "117B", "over85": true, "balconyAmount": 1286, "rows": [{ "floor": "1\uCE35", "price": 62500 }, { "floor": "2\uCE35", "price": 64500 }, { "floor": "3\uCE35", "price": 65900 }, { "floor": "4\uCE35", "price": 67300 }, { "floor": "\uAE30\uC900\uCE35", "price": 68700 }] }, { "label": "135", "over85": true, "balconyAmount": 1415, "rows": [{ "floor": "1\uCE35", "price": 71600 }, { "floor": "2\uCE35", "price": 74e3 }, { "floor": "3\uCE35", "price": 75500 }, { "floor": "4\uCE35", "price": 77100 }, { "floor": "\uAE30\uC900\uCE35", "price": 78700 }] }] }] } };
 
-// concepts/vendor/mohamoa-cost/CostCalculator.tsx
+// concepts/vendor/mohamoa-cost/export-result.ts
+var WIDTH = 900;
+var PAD = 48;
+var FONT = '"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif';
+function wrap(ctx, text, maxWidth) {
+  const lines = [];
+  let line = "";
+  for (const char of text) {
+    if (ctx.measureText(line + char).width > maxWidth && line) {
+      lines.push(line);
+      line = char === " " ? "" : char;
+    } else line += char;
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+function renderResultCanvas(spec) {
+  const canvas = document.createElement("canvas");
+  const measure = canvas.getContext("2d");
+  if (!measure) throw new Error("canvas unavailable");
+  const rows = spec.rows ?? [];
+  const notes = spec.notes ?? [];
+  measure.font = `400 22px ${FONT}`;
+  const noteLines = notes.flatMap((note) => wrap(measure, note, WIDTH - PAD * 2));
+  const height = 190 + (spec.headline ? 150 : 0) + rows.length * 56 + (rows.length ? 24 : 0) + noteLines.length * 34 + 120;
+  canvas.width = WIDTH;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#fffaf1";
+  ctx.fillRect(0, 0, WIDTH, height);
+  ctx.fillStyle = "#071a32";
+  ctx.fillRect(0, 0, WIDTH, 14);
+  ctx.fillStyle = "#80591f";
+  ctx.font = `700 24px ${FONT}`;
+  ctx.fillText("\uD638\uBC18\uC368\uBC0B \uCCA8\uB2E83\uC9C0\uAD6C \uACC4\uC0B0 \uACB0\uACFC", PAD, 74);
+  ctx.fillStyle = "#071a32";
+  ctx.font = `800 36px ${FONT}`;
+  let y = 130;
+  for (const line of wrap(ctx, spec.title, WIDTH - PAD * 2)) {
+    ctx.fillText(line, PAD, y);
+    y += 46;
+  }
+  y += 8;
+  if (spec.headline) {
+    ctx.fillStyle = "#10243b";
+    ctx.fillRect(PAD, y, WIDTH - PAD * 2, 124);
+    ctx.fillStyle = "#c9a15f";
+    ctx.font = `700 22px ${FONT}`;
+    ctx.fillText(spec.headline.label, PAD + 28, y + 42);
+    ctx.fillStyle = "#f8fafc";
+    ctx.font = `800 52px ${FONT}`;
+    ctx.fillText(spec.headline.value, PAD + 28, y + 100);
+    y += 150;
+  }
+  ctx.font = `500 26px ${FONT}`;
+  for (const row of rows) {
+    ctx.fillStyle = "#334155";
+    ctx.textAlign = "left";
+    ctx.fillText(row.label, PAD, y + 34);
+    ctx.fillStyle = "#071a32";
+    ctx.font = `700 26px ${FONT}`;
+    ctx.textAlign = "right";
+    ctx.fillText(row.value, WIDTH - PAD, y + 34);
+    ctx.font = `500 26px ${FONT}`;
+    ctx.textAlign = "left";
+    ctx.strokeStyle = "#e2d6bf";
+    ctx.beginPath();
+    ctx.moveTo(PAD, y + 50);
+    ctx.lineTo(WIDTH - PAD, y + 50);
+    ctx.stroke();
+    y += 56;
+  }
+  y += rows.length ? 24 : 0;
+  ctx.fillStyle = "#64748b";
+  ctx.font = `400 22px ${FONT}`;
+  for (const line of noteLines) {
+    ctx.fillText(line, PAD, y + 24);
+    y += 34;
+  }
+  ctx.fillStyle = "#80591f";
+  ctx.font = `600 22px ${FONT}`;
+  ctx.fillText("\uCC38\uACE0\uC6A9 \uBAA8\uC758 \uACC4\uC0B0\uC785\uB2C8\uB2E4 \xB7 \uD638\uBC18\uC368\uBC0B \uCCA8\uB2E83\uC9C0\uAD6C \uBAA8\uB378\uD558\uC6B0\uC2A4 \uC548\uB0B4", PAD, height - 48);
+  return canvas;
+}
+function save(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1e3);
+}
+function downloadImage(spec) {
+  renderResultCanvas(spec).toBlob((blob) => {
+    if (blob) save(blob, `${spec.filename}.png`);
+  }, "image/png");
+}
+function buildSinglePagePdf(jpeg, imageWidth, imageHeight) {
+  const pageWidth = 595, pageHeight = 842, margin = 40;
+  const drawWidth = pageWidth - margin * 2;
+  const drawHeight = Math.min(pageHeight - margin * 2, drawWidth * imageHeight / imageWidth);
+  const drawY = pageHeight - margin - drawHeight;
+  const encoder = new TextEncoder();
+  const chunks = [];
+  const offsets = [];
+  let length = 0;
+  const push = (data) => {
+    const bytes = typeof data === "string" ? encoder.encode(data) : data;
+    chunks.push(bytes);
+    length += bytes.length;
+  };
+  const object = (id, body, stream) => {
+    offsets[id] = length;
+    push(`${id} 0 obj
+${body}`);
+    if (stream) {
+      push("\nstream\n");
+      push(stream);
+      push("\nendstream");
+    }
+    push("\nendobj\n");
+  };
+  push("%PDF-1.4\n");
+  object(1, "<< /Type /Catalog /Pages 2 0 R >>");
+  object(2, "<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
+  object(3, `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageWidth} ${pageHeight}] /Resources << /XObject << /Im0 5 0 R >> >> /Contents 4 0 R >>`);
+  const content = encoder.encode(`q ${drawWidth.toFixed(2)} 0 0 ${drawHeight.toFixed(2)} ${margin} ${drawY.toFixed(2)} cm /Im0 Do Q`);
+  object(4, `<< /Length ${content.length} >>`, content);
+  object(5, `<< /Type /XObject /Subtype /Image /Width ${imageWidth} /Height ${imageHeight} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${jpeg.length} >>`, jpeg);
+  const xrefAt = length;
+  push(`xref
+0 6
+0000000000 65535 f 
+${[1, 2, 3, 4, 5].map((id) => `${String(offsets[id]).padStart(10, "0")} 00000 n 
+`).join("")}`);
+  push(`trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+${xrefAt}
+%%EOF
+`);
+  const out = new Uint8Array(length);
+  let position = 0;
+  for (const chunk of chunks) {
+    out.set(chunk, position);
+    position += chunk.length;
+  }
+  return out;
+}
+function downloadPdf(spec) {
+  const canvas = renderResultCanvas(spec);
+  canvas.toBlob(async (blob) => {
+    if (!blob) return;
+    const buffer = new Uint8Array(await blob.arrayBuffer());
+    const pdf = buildSinglePagePdf(buffer, canvas.width, canvas.height);
+    save(new Blob([pdf.buffer], { type: "application/pdf" }), `${spec.filename}.pdf`);
+  }, "image/jpeg", 0.92);
+}
+
+// concepts/vendor/mohamoa-cost/result-export.tsx
 var import_jsx_runtime = __toESM(require_jsx_runtime());
+function ResultExport({ spec, disabled = false }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "result-export", role: "group", "aria-label": "\uACC4\uC0B0 \uACB0\uACFC \uC800\uC7A5", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => downloadImage(spec), disabled, children: "\uC774\uBBF8\uC9C0 \uC800\uC7A5" }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => downloadPdf(spec), disabled, children: "PDF \uC800\uC7A5" })
+  ] });
+}
+
+// concepts/vendor/mohamoa-cost/CostCalculator.tsx
+var import_jsx_runtime2 = __toESM(require_jsx_runtime());
 var tabs = ["\uBAA8\uC758\uACC4\uC0B0", "\uC635\uC158\uACC4\uC0B0", "\uCDE8\uB4F1\uB85D\uC138", "DSR\uACC4\uC0B0\uAE30"];
 var tabLabels = { \uBAA8\uC758\uACC4\uC0B0: "\uBAA8\uC758 \uACC4\uC0B0", \uC635\uC158\uACC4\uC0B0: "\uC635\uC158 \uACC4\uC0B0", \uCDE8\uB4F1\uB85D\uC138: "\uCDE8\uB4DD\uC138 \uACC4\uC0B0", DSR\uACC4\uC0B0\uAE30: "DSR \uACC4\uC0B0" };
 var number = (value) => value.trim() === "" ? 0 : Number(value);
@@ -31158,14 +31326,14 @@ var money = (value) => won(value * 1e4);
 var blankDebt = (id) => ({ id, name: id === 1 ? "\uC774\uBC88 \uC544\uD30C\uD2B8 \uC8FC\uD0DD\uB2F4\uBCF4\uB300\uCD9C" : "\uAE30\uC874 \uB300\uCD9C", principal: "", rate: "", months: "360", method: "annuity", manual: false, annual: "", stress: "0" });
 var blankOptions = () => [{ id: 1, name: "\uBC1C\uCF54\uB2C8 \uD655\uC7A5", amount: "", selected: false, taxable: true }, { id: 2, name: "\uC2DC\uC2A4\uD15C \uC5D0\uC5B4\uCEE8", amount: "", selected: false, taxable: true }];
 function Amount({ label, value, onChange, unit = "\uB9CC\uC6D0", required = false, max = 1e8, min = 0, step = "any", readOnly = false }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-field", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: label }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { readOnly, type: "number", inputMode: "decimal", min, max, step, required, value, onChange: (e) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-field", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: label }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("input", { readOnly, type: "number", inputMode: "decimal", min, max, step, required, value, onChange: (e) => {
         const next = e.target.value;
         if (next === "" || Number.isFinite(Number(next)) && Number(next) >= 0 && Number(next) <= max) onChange(next);
       }, placeholder: "\uC9C1\uC811 \uC785\uB825" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: unit })
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: unit })
     ] })
   ] });
 }
@@ -31297,40 +31465,40 @@ function CostCalculator({ initialTab = "\uBAA8\uC758\uACC4\uC0B0", standalone = 
       setError(e instanceof Error ? e.message : "\uC785\uB825\uAC12\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     }
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-workspace", children: [
-    projectSlug && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "cost-project-selection", "aria-label": "\uB2E8\uC9C0\uBCC4 \uACC4\uC0B0 \uAE30\uC900 \uC120\uD0DD", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "\uAD00\uC2EC \uC788\uB294 \uC8FC\uD0DD\uD615\uACFC \uCE35\uC744 \uACE8\uB77C\uBCF4\uC138\uC694" }),
-      preset ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\uBE14\uB85D\uACFC \uC8FC\uD0DD\uD615, \uCE35\uC744 \uACE0\uB974\uBA74 \uD574\uB2F9 \uACF5\uACE0\uC758 \uBD84\uC591\uAC00\uAC00 \uB098\uC635\uB2C8\uB2E4. \uBD84\uC591\uAC00\uC640 \uACC4\uC57D\uAE08\xB7\uC911\uB3C4\uAE08 \uBE44\uC728\uC740 \uACF5\uACE0 \uAE08\uC561\uC73C\uB85C \uACC4\uC0B0\uD558\uBBC0\uB85C \uC9C1\uC811 \uBC14\uAFC0 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4. \uD604\uC7AC \uACC4\uC57D\uD560 \uC138\uB300\uC758 \uAE08\uC561\uACFC \uB0A9\uBD80 \uC870\uAC74\uC740 \uACF5\uC2DD \uBD84\uC591\uCC98\uC5D0 \uB530\uB85C \uD655\uC778\uD574 \uC8FC\uC138\uC694." }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-fields", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-field", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\uBE14\uB85D" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", { value: blockIndex, onChange: (e) => chooseBlock(e.target.value), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "", children: "\uBE14\uB85D \uC120\uD0DD" }),
-              preset.blocks.map((block, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: i, children: block.label }, block.label))
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-workspace", children: [
+    projectSlug && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "cost-project-selection", "aria-label": "\uB2E8\uC9C0\uBCC4 \uACC4\uC0B0 \uAE30\uC900 \uC120\uD0DD", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: "\uAD00\uC2EC \uC788\uB294 \uC8FC\uD0DD\uD615\uACFC \uCE35\uC744 \uACE8\uB77C\uBCF4\uC138\uC694" }),
+      preset ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\uBE14\uB85D\uACFC \uC8FC\uD0DD\uD615, \uCE35\uC744 \uACE0\uB974\uBA74 \uD574\uB2F9 \uACF5\uACE0\uC758 \uBD84\uC591\uAC00\uAC00 \uB098\uC635\uB2C8\uB2E4. \uBD84\uC591\uAC00\uC640 \uACC4\uC57D\uAE08\xB7\uC911\uB3C4\uAE08 \uBE44\uC728\uC740 \uACF5\uACE0 \uAE08\uC561\uC73C\uB85C \uACC4\uC0B0\uD558\uBBC0\uB85C \uC9C1\uC811 \uBC14\uAFC0 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4. \uD604\uC7AC \uACC4\uC57D\uD560 \uC138\uB300\uC758 \uAE08\uC561\uACFC \uB0A9\uBD80 \uC870\uAC74\uC740 \uACF5\uC2DD \uBD84\uC591\uCC98\uC5D0 \uB530\uB85C \uD655\uC778\uD574 \uC8FC\uC138\uC694." }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-fields", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-field", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "\uBE14\uB85D" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("select", { value: blockIndex, onChange: (e) => chooseBlock(e.target.value), children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "", children: "\uBE14\uB85D \uC120\uD0DD" }),
+              preset.blocks.map((block, i) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: i, children: block.label }, block.label))
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-field", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\uC8FC\uD0DD\uD615" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", { value: typeIndex, disabled: !selectedBlock, onChange: (e) => chooseType(e.target.value), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "", children: "\uC8FC\uD0DD\uD615 \uC120\uD0DD" }),
-              selectedBlock?.types.map((type, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: i, children: type.label }, type.label))
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-field", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "\uC8FC\uD0DD\uD615" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("select", { value: typeIndex, disabled: !selectedBlock, onChange: (e) => chooseType(e.target.value), children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "", children: "\uC8FC\uD0DD\uD615 \uC120\uD0DD" }),
+              selectedBlock?.types.map((type, i) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: i, children: type.label }, type.label))
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-field", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\uCE35 \uAD6C\uBD84" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", { value: floorIndex, disabled: !selectedType, onChange: (e) => chooseFloor(e.target.value), children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "", children: "\uCE35 \uC120\uD0DD" }),
-              selectedType?.rows.map((row, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: i, children: row.floor }, row.floor))
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-field", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "\uCE35 \uAD6C\uBD84" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("select", { value: floorIndex, disabled: !selectedType, onChange: (e) => chooseFloor(e.target.value), children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "", children: "\uCE35 \uC120\uD0DD" }),
+              selectedType?.rows.map((row, i) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: i, children: row.floor }, row.floor))
             ] })
           ] })
         ] }),
-        selectedRow && selectedBlock && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "cost-preset-source", children: [
+        selectedRow && selectedBlock && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { className: "cost-preset-source", children: [
           selectedType?.label,
           " \xB7 ",
           selectedRow.floor,
           " \uBAA8\uC9D1\uACF5\uACE0 \uBD84\uC591\uAC00 ",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("strong", { children: [
             selectedRow.price.toLocaleString("ko-KR"),
             "\uB9CC\uC6D0"
           ] }),
@@ -31342,41 +31510,41 @@ function CostCalculator({ initialTab = "\uBAA8\uC758\uACC4\uC0B0", standalone = 
           selectedType?.over85 ? "\uCD08\uACFC" : "\uC774\uD558",
           " \xB7 ",
           selectedType?.balconyIncluded ? "\uBC1C\uCF54\uB2C8 \uD655\uC7A5\uBE44 \uACF5\uAE09\uAE08\uC561\uC5D0 \uD3EC\uD568" : `\uBC1C\uCF54\uB2C8 \uD655\uC7A5\uBE44 ${selectedType?.balconyAmount.toLocaleString("ko-KR")}\uB9CC\uC6D0(\uC120\uD0DD \uC2DC \uD569\uC0B0)`,
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("br", {}),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("br", {}),
           "\uCD9C\uCC98: ",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", { href: selectedBlock.source, target: "_blank", rel: "noopener noreferrer", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("a", { href: selectedBlock.source, target: "_blank", rel: "noopener noreferrer", children: [
             selectedBlock.label,
             " \uACF5\uC2DD \uBAA8\uC9D1\uACF5\uACE0 \uACF5\uAE09\uAE08\uC561\xB7\uBC1C\uCF54\uB2C8 \uD655\uC7A5\uBE44 \uD45C"
           ] }),
-          selectedBlock.supplementalSource && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+          selectedBlock.supplementalSource && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
             " \xB7 ",
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: selectedBlock.supplementalSource, target: "_blank", rel: "noopener noreferrer", children: "\uC815\uC815 \uBAA8\uC9D1\uACF5\uACE0" })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("a", { href: selectedBlock.supplementalSource, target: "_blank", rel: "noopener noreferrer", children: "\uC815\uC815 \uBAA8\uC9D1\uACF5\uACE0" })
           ] }),
           " \xB7 \uC790\uB8CC \uD655\uC778\uC77C ",
           preset.reviewedAt,
           ". \uACF5\uACE0 \uAE30\uC900 2026.06.05. \uACC4\uC57D\uD560 \uB3D9\xB7\uD638\uC218\uC758 \uC2E4\uC81C \uAE08\uC561\uACFC \uB0A9\uBD80 \uC870\uAC74\uC740 \uACC4\uC57D \uC804\uC5D0 \uD655\uC778\uD574 \uC8FC\uC138\uC694.",
-          price !== String(selectedRow.price) && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: " \uD604\uC7AC \uC9C1\uC811 \uC218\uC815\uD55C \uBD84\uC591\uAC00 \uC785\uB825\uAC12\uC740 \uACF5\uACE0 \uAE08\uC561\uACFC \uB2E4\uB985\uB2C8\uB2E4." })
+          price !== String(selectedRow.price) && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_jsx_runtime2.Fragment, { children: " \uD604\uC7AC \uC9C1\uC811 \uC218\uC815\uD55C \uBD84\uC591\uAC00 \uC785\uB825\uAC12\uC740 \uACF5\uACE0 \uAE08\uC561\uACFC \uB2E4\uB985\uB2C8\uB2E4." })
         ] }),
-        selectedRow && number(price) > 0 && number(contract) + number(interim) <= 100 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-quick-breakdown", "aria-label": "\uC120\uD0DD\uD55C \uC8FC\uD0DD\uD615\uC758 \uB0A9\uBD80 \uAE08\uC561", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\uC120\uD0DD\uD55C \uC8FC\uD0DD\uD615\uC758 \uB0A9\uBD80 \uAE08\uC561" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+        selectedRow && number(price) > 0 && number(contract) + number(interim) <= 100 && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-quick-breakdown", "aria-label": "\uC120\uD0DD\uD55C \uC8FC\uD0DD\uD615\uC758 \uB0A9\uBD80 \uAE08\uC561", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "\uC120\uD0DD\uD55C \uC8FC\uD0DD\uD615\uC758 \uB0A9\uBD80 \uAE08\uC561" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
             "\uACC4\uC57D\uAE08 ",
             money(number(price) * number(contract) / 100)
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
             "\uC911\uB3C4\uAE08 ",
             money(number(price) * number(interim) / 100)
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
             "\uC794\uAE08 ",
             money(number(price) * (100 - number(contract) - number(interim)) / 100)
           ] })
         ] })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\uC774 \uB2E8\uC9C0\uB294 \uBE14\uB85D\xB7\uC8FC\uD0DD\uD615\xB7\uCE35\uBCC4 \uACF5\uC2DD \uAC00\uACA9\uD45C\uAC00 \uC544\uC9C1 \uACC4\uC0B0\uAE30\uC5D0 \uB4F1\uB85D\uB418\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4. \uACF5\uC2DD \uBAA8\uC9D1\uACF5\uACE0\uC5D0\uC11C \uC6D0\uD558\uB294 \uB3D9\xB7\uD638\uC218\uC758 \uACF5\uAE09\uAE08\uC561\uC744 \uD655\uC778\uD574 \uC544\uB798\uC5D0 \uC785\uB825\uD574 \uC8FC\uC138\uC694." })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\uC774 \uB2E8\uC9C0\uB294 \uBE14\uB85D\xB7\uC8FC\uD0DD\uD615\xB7\uCE35\uBCC4 \uACF5\uC2DD \uAC00\uACA9\uD45C\uAC00 \uC544\uC9C1 \uACC4\uC0B0\uAE30\uC5D0 \uB4F1\uB85D\uB418\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4. \uACF5\uC2DD \uBAA8\uC9D1\uACF5\uACE0\uC5D0\uC11C \uC6D0\uD558\uB294 \uB3D9\xB7\uD638\uC218\uC758 \uACF5\uAE09\uAE08\uC561\uC744 \uD655\uC778\uD574 \uC544\uB798\uC5D0 \uC785\uB825\uD574 \uC8FC\uC138\uC694." })
     ] }),
-    !standalone && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", { className: "cost-tabs", "aria-label": "\uACC4\uC0B0\uAE30 \uC120\uD0DD", children: tabs.map((t) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", "aria-pressed": tab === t, onClick: () => switchTab(t), children: tabLabels[t] }, t)) }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "cost-panel", "aria-label": tab, children: [
-      tab === "\uBAA8\uC758\uACC4\uC0B0" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", { onSubmit: (e) => {
+    !standalone && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("nav", { className: "cost-tabs", "aria-label": "\uACC4\uC0B0\uAE30 \uC120\uD0DD", children: tabs.map((t) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", "aria-pressed": tab === t, onClick: () => switchTab(t), children: tabLabels[t] }, t)) }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "cost-panel", "aria-label": tab, children: [
+      tab === "\uBAA8\uC758\uACC4\uC0B0" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("form", { onSubmit: (e) => {
         e.preventDefault();
         if (number(contract) + number(interim) > 100) {
           setError("\uACC4\uC57D\uAE08\uACFC \uC911\uB3C4\uAE08 \uBE44\uC728\uC758 \uD569\uC740 100% \uC774\uD558\uC5EC\uC57C \uD569\uB2C8\uB2E4.");
@@ -31389,139 +31557,141 @@ function CostCalculator({ initialTab = "\uBAA8\uC758\uACC4\uC0B0", standalone = 
         setError("");
         setBudgetReady(true);
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "\uB0B4 \uC9D1 \uB9C8\uB828 \uC790\uAE08 \uBAA8\uC758\uACC4\uC0B0" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "cost-description", children: selectedRow ? "\uC120\uD0DD\uD558\uC2E0 \uC8FC\uD0DD\uD615\uACFC \uCE35\uC758 \uACF5\uACE0 \uBD84\uC591\uAC00\uC785\uB2C8\uB2E4. \uC900\uBE44\uD55C \uD604\uAE08\uACFC \uC608\uC0C1 \uB300\uCD9C\uAE08\uC744 \uB123\uC5B4\uBCF4\uC138\uC694. \uC2E4\uC81C \uACC4\uC57D\uD560 \uC138\uB300\uC758 \uAE08\uC561\uACFC \uB0A9\uBD80 \uC870\uAC74\uB3C4 \uD568\uAED8 \uD655\uC778\uD574 \uC8FC\uC138\uC694." : "\uACF5\uC2DD \uACF5\uAE09\uAE08\uC561\uC744 \uC785\uB825\uD558\uBA74 \uB0A9\uBD80 \uB2E8\uACC4\uBCC4 \uAE08\uC561\uACFC \uD544\uC694\uD55C \uC790\uAE30\uC790\uAE08\uC744 \uACC4\uC0B0\uD569\uB2C8\uB2E4." }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-fields", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { readOnly: Boolean(preset), label: "\uBD84\uC591\uAC00", value: price, onChange: (v) => {
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: "\uB0B4 \uC9D1 \uB9C8\uB828 \uC790\uAE08 \uBAA8\uC758\uACC4\uC0B0" }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "cost-description", children: selectedRow ? "\uC120\uD0DD\uD558\uC2E0 \uC8FC\uD0DD\uD615\uACFC \uCE35\uC758 \uACF5\uACE0 \uBD84\uC591\uAC00\uC785\uB2C8\uB2E4. \uC900\uBE44\uD55C \uD604\uAE08\uACFC \uC608\uC0C1 \uB300\uCD9C\uAE08\uC744 \uB123\uC5B4\uBCF4\uC138\uC694. \uC2E4\uC81C \uACC4\uC57D\uD560 \uC138\uB300\uC758 \uAE08\uC561\uACFC \uB0A9\uBD80 \uC870\uAC74\uB3C4 \uD568\uAED8 \uD655\uC778\uD574 \uC8FC\uC138\uC694." : "\uACF5\uC2DD \uACF5\uAE09\uAE08\uC561\uC744 \uC785\uB825\uD558\uBA74 \uB0A9\uBD80 \uB2E8\uACC4\uBCC4 \uAE08\uC561\uACFC \uD544\uC694\uD55C \uC790\uAE30\uC790\uAE08\uC744 \uACC4\uC0B0\uD569\uB2C8\uB2E4." }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-fields", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { readOnly: Boolean(preset), label: "\uBD84\uC591\uAC00", value: price, onChange: (v) => {
             setPrice(v);
             changed();
           }, required: true, min: 1e-4 }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { label: "\uBCF4\uC720 \uD604\uAE08", value: cash, onChange: (v) => {
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { label: "\uBCF4\uC720 \uD604\uAE08", value: cash, onChange: (v) => {
             setCash(v);
             changed();
           } }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { label: "\uC608\uC0C1 \uB300\uCD9C\uAE08", value: loan, onChange: (v) => {
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { label: "\uC608\uC0C1 \uB300\uCD9C\uAE08", value: loan, onChange: (v) => {
             setLoan(v);
             changed();
           } }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { readOnly: Boolean(preset), label: "\uACC4\uC57D\uAE08 \uBE44\uC728", unit: "%", value: contract, onChange: (v) => {
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { readOnly: Boolean(preset), label: "\uACC4\uC57D\uAE08 \uBE44\uC728", unit: "%", value: contract, onChange: (v) => {
             setContract(v);
             changed();
           }, required: true, max: 100 }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { readOnly: Boolean(preset), label: "\uC911\uB3C4\uAE08 \uBE44\uC728", unit: "%", value: interim, onChange: (v) => {
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { readOnly: Boolean(preset), label: "\uC911\uB3C4\uAE08 \uBE44\uC728", unit: "%", value: interim, onChange: (v) => {
             setInterim(v);
             changed();
           }, required: true, max: 100 })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "cost-hint", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { className: "cost-hint", children: [
           selectedRow ? "\uACC4\uC57D\uAE08\uACFC \uC911\uB3C4\uAE08\uC740 \uC120\uD0DD\uD558\uC2E0 \uBE14\uB85D\uC758 \uBAA8\uC9D1\uACF5\uACE0 \uBE44\uC728\uB85C \uACC4\uC0B0\uD569\uB2C8\uB2E4. \uC2E4\uC81C \uB0A9\uBD80 \uC870\uAC74\uC740 \uACC4\uC57D \uC804\uC5D0 \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694." : "\uACC4\uC57D\uAE08 10%\xB7\uC911\uB3C4\uAE08 60%\uB294 \uACC4\uC0B0 \uC608\uC2DC\uC785\uB2C8\uB2E4. \uD574\uB2F9 \uB2E8\uC9C0\uC758 \uACC4\uC57D \uC870\uAC74\uC73C\uB85C \uC218\uC815\uD558\uC138\uC694.",
           " \uC608\uC0C1 \uB300\uCD9C\uAE08\uC740 \uC790\uAE08 \uACC4\uD68D\uC744 \uC704\uD574 \uC785\uB825\uD558\uB294 \uAE08\uC561\uC785\uB2C8\uB2E4. \uC911\uB3C4\uAE08 \uB0A9\uBD80\uC77C\uC5D0 \uB9DE\uCD98 \uB300\uCD9C \uC2E4\uD589 \uC5EC\uBD80\uAE4C\uC9C0 \uACC4\uC0B0\uD558\uB294 \uAC83\uC740 \uC544\uB2D9\uB2C8\uB2E4."
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-inline-summary", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-inline-summary", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
             "\uC120\uD0DD \uC635\uC158 ",
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: money(optionTotal) })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: money(optionTotal) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => switchTab("\uC635\uC158\uACC4\uC0B0"), children: "\uC635\uC158 \uC120\uD0DD\uD558\uAE30 \u2192" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", onClick: () => switchTab("\uC635\uC158\uACC4\uC0B0"), children: "\uC635\uC158 \uC120\uD0DD\uD558\uAE30 \u2192" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
             "\uCDE8\uB4DD \uAD00\uB828 \uC138\uAE08 ",
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: taxKnown ? money(taxTotal) : "\uBBF8\uC124\uC815" })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: taxKnown ? money(taxTotal) : "\uBBF8\uC124\uC815" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => switchTab("\uCDE8\uB4F1\uB85D\uC138"), children: "\uC138\uAE08 \uC124\uC815\uD558\uAE30 \u2192" })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", onClick: () => switchTab("\uCDE8\uB4F1\uB85D\uC138"), children: "\uC138\uAE08 \uC124\uC815\uD558\uAE30 \u2192" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { className: "cost-primary", type: "submit", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_lucide_react.Calculator, { size: 18 }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("button", { className: "cost-primary", type: "submit", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_lucide_react.Calculator, { size: 18 }),
           "\uBAA8\uC758\uACC4\uC0B0"
         ] }),
-        budgetReady && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-result", "aria-live": "polite", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+        budgetReady && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-result", "aria-live": "polite", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
             "\uCD1D \uC608\uC0C1 \uC9C0\uCD9C ",
             taxKnown ? "(\uC138\uAE08 \uD3EC\uD568)" : "(\uC138\uAE08 \uC81C\uC678)"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { className: "cost-result-number", children: money(total) }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dl", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "\uBD84\uC591\uB300\uAE08 \uACC4\uC57D\uAE08" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: money(number(price) * number(contract) / 100) })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { className: "cost-result-number", children: money(total) }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("dl", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dt", { children: "\uBD84\uC591\uB300\uAE08 \uACC4\uC57D\uAE08" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dd", { children: money(number(price) * number(contract) / 100) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "\uBD84\uC591\uB300\uAE08 \uC911\uB3C4\uAE08" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: money(number(price) * number(interim) / 100) })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dt", { children: "\uBD84\uC591\uB300\uAE08 \uC911\uB3C4\uAE08" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dd", { children: money(number(price) * number(interim) / 100) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "\uBD84\uC591\uB300\uAE08 \uC794\uAE08" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: money(number(price) * (100 - number(contract) - number(interim)) / 100) })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dt", { children: "\uBD84\uC591\uB300\uAE08 \uC794\uAE08" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dd", { children: money(number(price) * (100 - number(contract) - number(interim)) / 100) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "\uBCC4\uB3C4\uB85C \uC120\uD0DD\uD55C \uC635\uC158" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: money(optionTotal) })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dt", { children: "\uBCC4\uB3C4\uB85C \uC120\uD0DD\uD55C \uC635\uC158" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dd", { children: money(optionTotal) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "\uB300\uCD9C \uC678\uC5D0 \uC900\uBE44\uD560 \uAE08\uC561" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: money(Math.max(0, total - number(loan))) })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dt", { children: "\uB300\uCD9C \uC678\uC5D0 \uC900\uBE44\uD560 \uAE08\uC561" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dd", { children: money(Math.max(0, total - number(loan))) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "\uCD94\uAC00\uB85C \uD544\uC694\uD55C \uAE08\uC561" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: money(Math.max(0, total - number(loan) - number(cash))) })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dt", { children: "\uCD94\uAC00\uB85C \uD544\uC694\uD55C \uAE08\uC561" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dd", { children: money(Math.max(0, total - number(loan) - number(cash))) })
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
             "\uC635\uC158 \uB0A9\uBD80 \uC2DC\uC810\xB7\uB300\uCD9C\uC774\uC790\xB7\uB4F1\uAE30 \uC218\uC218\uB8CC\xB7\uCC44\uAD8C \uD560\uC778\xB7\uC911\uAC1C\uBCF4\uC218\xB7\uC774\uC0AC\uBE44\uB294 \uD3EC\uD568\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.",
             number(loan) > total && " \uC608\uC0C1 \uB300\uCD9C\uAE08\uC774 \uCD1D \uC9C0\uCD9C\uBCF4\uB2E4 \uD07D\uB2C8\uB2E4. \uC785\uB825\uAC12\uC744 \uD655\uC778\uD558\uC138\uC694."
-          ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ResultExport, { spec: { title: "\uB0B4 \uC9D1 \uB9C8\uB828 \uC790\uAE08 \uBAA8\uC758\uACC4\uC0B0", headline: { label: `\uCD1D \uC608\uC0C1 \uC9C0\uCD9C ${taxKnown ? "(\uC138\uAE08 \uD3EC\uD568)" : "(\uC138\uAE08 \uC81C\uC678)"}`, value: money(total) }, rows: [{ label: "\uBD84\uC591\uAC00", value: money(number(price)) }, { label: "\uBD84\uC591\uB300\uAE08 \uACC4\uC57D\uAE08", value: money(number(price) * number(contract) / 100) }, { label: "\uBD84\uC591\uB300\uAE08 \uC911\uB3C4\uAE08", value: money(number(price) * number(interim) / 100) }, { label: "\uBD84\uC591\uB300\uAE08 \uC794\uAE08", value: money(number(price) * (100 - number(contract) - number(interim)) / 100) }, { label: "\uC120\uD0DD \uC635\uC158 \uBCC4\uB3C4", value: money(optionTotal) }, { label: "\uB300\uCD9C \uC81C\uC678 \uD544\uC694 \uC790\uAE30\uC790\uAE08", value: money(Math.max(0, total - number(loan))) }, { label: "\uBCF4\uC720 \uD604\uAE08 \uB300\uBE44 \uBD80\uC871 \uC790\uAE08", value: money(Math.max(0, total - number(loan) - number(cash))) }], notes: ["\uC635\uC158 \uB0A9\uBD80 \uC2DC\uC810\xB7\uB300\uCD9C\uC774\uC790\xB7\uB4F1\uAE30 \uC218\uC218\uB8CC\xB7\uCC44\uAD8C \uD560\uC778\xB7\uC911\uAC1C\uBCF4\uC218\xB7\uC774\uC0AC\uBE44\uB294 \uD3EC\uD568\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4."], filename: "hoban-cost-estimate" } })
         ] })
       ] }),
-      tab === "\uC635\uC158\uACC4\uC0B0" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "\uD544\uC694\uD55C \uC635\uC158\uC758 \uBE44\uC6A9\uC744 \uACC4\uC0B0\uD574 \uBCF4\uC138\uC694" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "cost-description", children: [
+      tab === "\uC635\uC158\uACC4\uC0B0" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: "\uD544\uC694\uD55C \uC635\uC158\uC758 \uBE44\uC6A9\uC744 \uACC4\uC0B0\uD574 \uBCF4\uC138\uC694" }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { className: "cost-description", children: [
           selectedType ? selectedType.balconyIncluded ? "\uC120\uD0DD\uD55C \uD39C\uD2B8\uD558\uC6B0\uC2A4\uB294 \uBC1C\uCF54\uB2C8 \uD655\uC7A5\uBE44\uAC00 \uACF5\uAE09\uAE08\uC561\uC5D0 \uD3EC\uD568\uB3FC \uC788\uC2B5\uB2C8\uB2E4. \uB2E4\uB978 \uC635\uC158\uC740 \uACF5\uC2DD \uACC4\uC57D \uAE08\uC561\uC744 \uD655\uC778\uD574 \uC785\uB825\uD558\uC138\uC694." : "\uBC1C\uCF54\uB2C8 \uD655\uC7A5\uBE44\uB294 \uACF5\uACE0\uC5D0 \uB098\uC628 \uAE08\uC561\uC785\uB2C8\uB2E4. \uD655\uC7A5\uC744 \uC120\uD0DD\uD558\uC2E4 \uB54C \uCCB4\uD06C\uD574 \uC8FC\uC138\uC694. \uC2DC\uC2A4\uD15C \uC5D0\uC5B4\uCEE8 \uB4F1 \uB2E4\uB978 \uC635\uC158\uC740 \uACC4\uC57D \uC790\uB8CC\uC5D0\uC11C \uAE08\uC561\uC744 \uD655\uC778\uD55C \uB4A4 \uB123\uC73C\uBA74 \uB429\uB2C8\uB2E4." : "\uACF5\uC2DD \uC635\uC158\uD45C\uC758 \uAE08\uC561\uC744 \uC785\uB825\uD558\uACE0 \uC120\uD0DD\uD558\uC138\uC694.",
           " \uC635\uC158 \uC774\uB984\uC740 \uC6D0\uD558\uB294 \uD56D\uBAA9\uC73C\uB85C \uBC14\uAFC0 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "cost-option-list", children: options.filter((o) => !selectedType?.balconyIncluded || o.id !== 1).map((o, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-option", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-check", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { type: "checkbox", checked: o.selected, onChange: (e) => updateOption(o.id, { selected: e.target.checked }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "cost-option-list", children: options.filter((o) => !selectedType?.balconyIncluded || o.id !== 1).map((o, i) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-option", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-check", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("input", { type: "checkbox", checked: o.selected, onChange: (e) => updateOption(o.id, { selected: e.target.checked }) }),
             "\uC120\uD0DD"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-field", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-field", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
               "\uC635\uC158 ",
               i + 1,
               " \uC774\uB984"
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { value: o.name, maxLength: 60, onChange: (e) => updateOption(o.id, { name: e.target.value }) })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("input", { value: o.name, maxLength: 60, onChange: (e) => updateOption(o.id, { name: e.target.value }) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { label: "\uC635\uC158 \uAE08\uC561", value: o.amount, onChange: (v) => {
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { label: "\uC635\uC158 \uAE08\uC561", value: o.amount, onChange: (v) => {
             if (v === "" || Number.isFinite(Number(v)) && Number(v) >= 0 && Number(v) <= 1e8) updateOption(o.id, { amount: v });
           } }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-check", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { type: "checkbox", checked: o.taxable, onChange: (e) => updateOption(o.id, { taxable: e.target.checked }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-check", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("input", { type: "checkbox", checked: o.taxable, onChange: (e) => updateOption(o.id, { taxable: e.target.checked }) }),
             "\uCDE8\uB4DD\uC138 \uACC4\uC0B0\uC5D0 \uD3EC\uD568"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "cost-remove", type: "button", "aria-label": `\uC635\uC158 ${i + 1} \uC0AD\uC81C`, onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { className: "cost-remove", type: "button", "aria-label": `\uC635\uC158 ${i + 1} \uC0AD\uC81C`, onClick: () => {
             setOptions(options.filter((entry) => entry.id !== o.id));
             changed();
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_lucide_react.Trash2, { size: 18 }) })
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_lucide_react.Trash2, { size: 18 }) })
         ] }, o.id)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { type: "button", className: "cost-secondary", disabled: options.length >= 20, onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("button", { type: "button", className: "cost-secondary", disabled: options.length >= 20, onClick: () => {
           setOptions([...options, { id: Math.max(0, ...options.map((o) => o.id)) + 1, name: "\uCD94\uAC00 \uC635\uC158", amount: "", selected: false, taxable: true }]);
           changed();
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_lucide_react.Plus, { size: 17 }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_lucide_react.Plus, { size: 17 }),
           "\uC635\uC158 \uCD94\uAC00"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "cost-hint", children: "\uC635\uC158 \uBE44\uC6A9\uC744 \uCDE8\uB4DD\uC138 \uACC4\uC0B0\uC5D0 \uB354\uD574\uC57C \uD558\uB294\uC9C0\uB294 \uACF5\uAE09 \uD615\uD0DC\uC640 \uACC4\uC57D\uC5D0 \uB530\uB77C \uB2E4\uB985\uB2C8\uB2E4. \uACF5\uAE09\uACC4\uC57D\uC11C\uC640 \uAD00\uD560 \uC9C0\uC790\uCCB4\uC5D0\uC11C \uD655\uC778\uD55C \uB0B4\uC6A9\uC5D0 \uB9DE\uCDB0 \uCCB4\uD06C\uD574 \uC8FC\uC138\uC694." }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-result", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\uC120\uD0DD \uC635\uC158 \uD569\uACC4" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { className: "cost-result-number", children: money(optionTotal) }),
-          standalone && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "cost-hint", children: "\uC635\uC158 \uBE44\uC6A9\uC744 \uCDE8\uB4DD\uC138 \uACC4\uC0B0\uC5D0 \uB354\uD574\uC57C \uD558\uB294\uC9C0\uB294 \uACF5\uAE09 \uD615\uD0DC\uC640 \uACC4\uC57D\uC5D0 \uB530\uB77C \uB2E4\uB985\uB2C8\uB2E4. \uACF5\uAE09\uACC4\uC57D\uC11C\uC640 \uAD00\uD560 \uC9C0\uC790\uCCB4\uC5D0\uC11C \uD655\uC778\uD55C \uB0B4\uC6A9\uC5D0 \uB9DE\uCDB0 \uCCB4\uD06C\uD574 \uC8FC\uC138\uC694." }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-result", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\uC120\uD0DD \uC635\uC158 \uD569\uACC4" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { className: "cost-result-number", children: money(optionTotal) }),
+          standalone && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
             "\uCDE8\uB4DD\uC138 \uACC4\uC0B0\uC5D0 \uD3EC\uD568\uD55C \uC635\uC158 \uAE08\uC561: ",
             money(taxableOptions),
             ". \uC2E4\uC81C \uACFC\uC138 \uC5EC\uBD80\uB97C \uD655\uC778\uD55C \uB4A4 \uCDE8\uB4DD\uC138 \uACC4\uC0B0\uAE30\uC758 \uCD94\uAC00 \uAE08\uC561\uC5D0 \uC785\uB825\uD558\uC138\uC694."
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: validOptions ? standalone ? "\uC120\uD0DD\uD55C \uC635\uC158\uB9CC \uD569\uC0B0\uD55C \uAE08\uC561\uC785\uB2C8\uB2E4. \uB2E4\uB978 \uACC4\uC0B0\uAE30\uB85C \uC774\uB3D9\uD558\uBA74 \uC785\uB825\uAC12\uC774 \uCD08\uAE30\uD654\uB429\uB2C8\uB2E4." : "\uC120\uD0DD\uD55C \uC635\uC158\uC740 \uC790\uAE08 \uBAA8\uC758\uACC4\uC0B0\uC5D0 \uB354\uD574\uC9D1\uB2C8\uB2E4. \uCDE8\uB4DD\uC138\uB294 \u2018\uCDE8\uB4DD\uC138 \uACC4\uC0B0\uC5D0 \uD3EC\uD568\u2019\uC73C\uB85C \uCCB4\uD06C\uD55C \uAE08\uC561\uB9CC \uD568\uAED8 \uACC4\uC0B0\uD569\uB2C8\uB2E4." : "\uC120\uD0DD\uD55C \uC635\uC158 \uC911 \uAE08\uC561\uC774 \uBE44\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uAE08\uC561\uC744 \uC785\uB825\uD574 \uC8FC\uC138\uC694." })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: validOptions ? standalone ? "\uC120\uD0DD\uD55C \uC635\uC158\uB9CC \uD569\uC0B0\uD55C \uAE08\uC561\uC785\uB2C8\uB2E4. \uB2E4\uB978 \uACC4\uC0B0\uAE30\uB85C \uC774\uB3D9\uD558\uBA74 \uC785\uB825\uAC12\uC774 \uCD08\uAE30\uD654\uB429\uB2C8\uB2E4." : "\uC120\uD0DD\uD55C \uC635\uC158\uC740 \uC790\uAE08 \uBAA8\uC758\uACC4\uC0B0\uC5D0 \uB354\uD574\uC9D1\uB2C8\uB2E4. \uCDE8\uB4DD\uC138\uB294 \u2018\uCDE8\uB4DD\uC138 \uACC4\uC0B0\uC5D0 \uD3EC\uD568\u2019\uC73C\uB85C \uCCB4\uD06C\uD55C \uAE08\uC561\uB9CC \uD568\uAED8 \uACC4\uC0B0\uD569\uB2C8\uB2E4." : "\uC120\uD0DD\uD55C \uC635\uC158 \uC911 \uAE08\uC561\uC774 \uBE44\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uAE08\uC561\uC744 \uC785\uB825\uD574 \uC8FC\uC138\uC694." }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ResultExport, { spec: { title: "\uC544\uD30C\uD2B8 \uC635\uC158 \uBE44\uC6A9 \uACC4\uC0B0", headline: { label: "\uC120\uD0DD \uC635\uC158 \uD569\uACC4", value: money(optionTotal) }, rows: options.filter((o) => o.selected).map((o) => ({ label: o.name, value: money(number(o.amount)) })), notes: ["\uC635\uC158\uBCC4 \uAE08\uC561\uC740 \uACF5\uC2DD \uC635\uC158\uD45C \uAE30\uC900\uC73C\uB85C \uC9C1\uC811 \uC785\uB825\uD55C \uAC12\uC785\uB2C8\uB2E4. \uCDE8\uB4DD\uC138 \uACFC\uC138 \uC5EC\uBD80\uB294 \uD310\uC815\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4."], filename: "hoban-option-cost" } })
         ] })
       ] }),
-      tab === "\uCDE8\uB4F1\uB85D\uC138" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", { onSubmit: (e) => {
+      tab === "\uCDE8\uB4F1\uB85D\uC138" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("form", { onSubmit: (e) => {
         e.preventDefault();
         if (!validOptions) {
           setError("\uC120\uD0DD\uD55C \uC635\uC158 \uAE08\uC561\uC744 \uBA3C\uC800 \uC785\uB825\uD574 \uC8FC\uC138\uC694.");
@@ -31530,43 +31700,43 @@ function CostCalculator({ initialTab = "\uBAA8\uC758\uACC4\uC0B0", standalone = 
         setError("");
         setTaxReady(true);
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "\uCDE8\uB4DD\uC138\uC640 \uD568\uAED8 \uB0B4\uB294 \uC138\uAE08" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "cost-description", children: "\uC8FC\uD0DD\uC744 \uAD6C\uC785\uD560 \uB54C \uB0B4\uB294 \uCDE8\uB4DD\uC138\uC640 \uC9C0\uBC29\uAD50\uC721\uC138, \uB18D\uC5B4\uCD0C\uD2B9\uBCC4\uC138\uC758 \uC608\uC0C1 \uAE08\uC561\uC744 \uACC4\uC0B0\uD569\uB2C8\uB2E4. \uC77C\uBC18\uC138\uC728\uC744 \uC801\uC6A9\uD55C \uACB0\uACFC\uC774\uBA70, \uC608\uC804\uC758 \uB4F1\uB85D\uC138\uB294 \uCDE8\uB4DD\uC138\uC5D0 \uD1B5\uD569\uB3FC \uBCC4\uB3C4\uB85C \uB354\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4." }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-field", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\uACC4\uC0B0 \uB300\uC0C1 \uD655\uC778" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", { required: true, value: taxMode, onChange: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: "\uCDE8\uB4DD\uC138\uC640 \uD568\uAED8 \uB0B4\uB294 \uC138\uAE08" }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "cost-description", children: "\uC8FC\uD0DD\uC744 \uAD6C\uC785\uD560 \uB54C \uB0B4\uB294 \uCDE8\uB4DD\uC138\uC640 \uC9C0\uBC29\uAD50\uC721\uC138, \uB18D\uC5B4\uCD0C\uD2B9\uBCC4\uC138\uC758 \uC608\uC0C1 \uAE08\uC561\uC744 \uACC4\uC0B0\uD569\uB2C8\uB2E4. \uC77C\uBC18\uC138\uC728\uC744 \uC801\uC6A9\uD55C \uACB0\uACFC\uC774\uBA70, \uC608\uC804\uC758 \uB4F1\uB85D\uC138\uB294 \uCDE8\uB4DD\uC138\uC5D0 \uD1B5\uD569\uB3FC \uBCC4\uB3C4\uB85C \uB354\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4." }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "\uACC4\uC0B0 \uB300\uC0C1 \uD655\uC778" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("select", { required: true, value: taxMode, onChange: (e) => {
             setTaxMode(e.target.value);
             changed();
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "", children: "\uD574\uB2F9\uD558\uB294 \uBC29\uC2DD\uC744 \uC120\uD0DD\uD558\uC138\uC694" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "normal", children: "\uAC1C\uC778 \uC8FC\uD0DD \uC720\uC0C1\uCDE8\uB4DD \xB7 \uC77C\uBC18\uC138\uC728 (\uC911\uACFC\xB7\uAC10\uBA74 \uC5C6\uC74C)" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "confirmed", children: "\uB2E4\uC8FC\uD0DD\xB7\uBC95\uC778\xB7\uAC10\uBA74 \uD574\uB2F9 \xB7 \uAD00\uD560 \uC9C0\uC790\uCCB4\uC5D0\uC11C \uD655\uC778\uD55C \uC138\uC561 \uC785\uB825" })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "", children: "\uD574\uB2F9\uD558\uB294 \uBC29\uC2DD\uC744 \uC120\uD0DD\uD558\uC138\uC694" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "normal", children: "\uAC1C\uC778 \uC8FC\uD0DD \uC720\uC0C1\uCDE8\uB4DD \xB7 \uC77C\uBC18\uC138\uC728 (\uC911\uACFC\xB7\uAC10\uBA74 \uC5C6\uC74C)" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "confirmed", children: "\uB2E4\uC8FC\uD0DD\xB7\uBC95\uC778\xB7\uAC10\uBA74 \uD574\uB2F9 \xB7 \uAD00\uD560 \uC9C0\uC790\uCCB4\uC5D0\uC11C \uD655\uC778\uD55C \uC138\uC561 \uC785\uB825" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-fields", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { readOnly: Boolean(preset), label: standalone ? "\uB9E4\uB9E4\uAC00 \uB610\uB294 \uBD84\uC591\uAC00" : "\uBD84\uC591\uAC00 (\uC790\uAE08 \uBAA8\uC758\uACC4\uC0B0\uACFC \uAC19\uC740 \uAE08\uC561)", value: price, onChange: (v) => {
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-fields", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { readOnly: Boolean(preset), label: standalone ? "\uB9E4\uB9E4\uAC00 \uB610\uB294 \uBD84\uC591\uAC00" : "\uBD84\uC591\uAC00 (\uC790\uAE08 \uBAA8\uC758\uACC4\uC0B0\uACFC \uAC19\uC740 \uAE08\uC561)", value: price, onChange: (v) => {
             setPrice(v);
             changed();
           }, required: true, min: 1e-4 }),
-          taxMode === "normal" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { readOnly: Boolean(preset), label: standalone ? "\uACFC\uC138\uD45C\uC900 \uCD94\uAC00 \uAE08\uC561 (\uACFC\uC138 \uB300\uC0C1 \uC635\uC158 \uB4F1)" : "\uAE30\uD0C0 \uACFC\uC138\uD45C\uC900 \uCD94\uAC00 \uAE08\uC561", value: extraBase, onChange: (v) => {
+          taxMode === "normal" && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { readOnly: Boolean(preset), label: standalone ? "\uACFC\uC138\uD45C\uC900 \uCD94\uAC00 \uAE08\uC561 (\uACFC\uC138 \uB300\uC0C1 \uC635\uC158 \uB4F1)" : "\uAE30\uD0C0 \uACFC\uC138\uD45C\uC900 \uCD94\uAC00 \uAE08\uC561", value: extraBase, onChange: (v) => {
             setExtraBase(v);
             changed();
           } }),
-          taxMode === "confirmed" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { label: "\uD655\uC778\uBC1B\uC740 \uC138\uAE08 \uCD1D\uC561", value: confirmedTax, onChange: (v) => {
+          taxMode === "confirmed" && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { label: "\uD655\uC778\uBC1B\uC740 \uC138\uAE08 \uCD1D\uC561", value: confirmedTax, onChange: (v) => {
             setConfirmedTax(v);
             changed();
           }, required: true })
         ] }),
-        taxMode === "normal" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-check", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { type: "checkbox", disabled: Boolean(preset), checked: over85, onChange: (e) => {
+        taxMode === "normal" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-check", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("input", { type: "checkbox", disabled: Boolean(preset), checked: over85, onChange: (e) => {
               setOver85(e.target.checked);
               changed();
             } }),
             "\uC804\uC6A9\uBA74\uC801 85\u33A1 \uCD08\uACFC (\uC120\uD0DD\uD55C \uC8FC\uD0DD\uD615 \uAE30\uC900)"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "cost-hint", children: [
-            !standalone && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { className: "cost-hint", children: [
+            !standalone && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
               "\uC120\uD0DD \uC635\uC158 \uC911 \uACFC\uD45C \uD3EC\uD568 \uAE08\uC561: ",
               money(taxableOptions),
               " \xB7 "
@@ -31576,177 +31746,179 @@ function CostCalculator({ initialTab = "\uBAA8\uC758\uACC4\uC0B0", standalone = 
             ". \uC77C\uBC18\uC138\uC728\uC740 6\uC5B5\uC6D0 \uC774\uD558 1%, 6\uC5B5 \uCD08\uACFC~9\uC5B5\uC6D0 \uC774\uD558 1~3%, 9\uC5B5\uC6D0 \uCD08\uACFC 3%\uC785\uB2C8\uB2E4. \uC0DD\uC560\uCD5C\uCD08 \uAC10\uBA74\xB7\uC77C\uC2DC\uC801 2\uC8FC\uD0DD\xB7\uC911\uACFC \uD310\uC815\uC740 \uC790\uB3D9 \uC801\uC6A9\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4."
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "cost-primary", type: "submit", children: "\uCDE8\uB4DD \uAD00\uB828 \uC138\uAE08 \uACC4\uC0B0" }),
-        taxReady && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-result", "aria-live": "polite", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: taxMode === "normal" ? "\uC77C\uBC18\uC138\uC728 \uAE30\uC900 \uC608\uC0C1 \uC138\uAE08" : "\uC9C1\uC811 \uC785\uB825\uD55C \uD655\uC778 \uC138\uC561" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { className: "cost-result-number", children: money(taxTotal) }),
-          taxMode === "normal" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dl", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dt", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { className: "cost-primary", type: "submit", children: "\uCDE8\uB4DD \uAD00\uB828 \uC138\uAE08 \uACC4\uC0B0" }),
+        taxReady && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-result", "aria-live": "polite", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: taxMode === "normal" ? "\uC77C\uBC18\uC138\uC728 \uAE30\uC900 \uC608\uC0C1 \uC138\uAE08" : "\uC9C1\uC811 \uC785\uB825\uD55C \uD655\uC778 \uC138\uC561" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { className: "cost-result-number", children: money(taxTotal) }),
+          taxMode === "normal" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("dl", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("dt", { children: [
                 "\uCDE8\uB4DD\uC138 (",
                 (taxes.rate * 100).toFixed(2),
                 "%)"
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: won(taxes.acquisition) })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dd", { children: won(taxes.acquisition) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "\uC9C0\uBC29\uAD50\uC721\uC138" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: won(taxes.education) })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dt", { children: "\uC9C0\uBC29\uAD50\uC721\uC138" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dd", { children: won(taxes.education) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dt", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("dt", { children: [
                 "\uB18D\uC5B4\uCD0C\uD2B9\uBCC4\uC138 (",
                 over85 ? "0.2%" : "85\u33A1 \uC774\uD558 \uC81C\uC678",
                 ")"
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: won(taxes.rural) })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dd", { children: won(taxes.rural) })
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\uB4F1\uAE30 \uC218\uC218\uB8CC\xB7\uAD6D\uBBFC\uC8FC\uD0DD\uCC44\uAD8C \uD560\uC778\uC561\uC740 \uC81C\uC678\uD569\uB2C8\uB2E4. \uC2E4\uC81C \uACFC\uD45C\uC640 \uC6D0\uB2E8\uC704 \uCC98\uB9AC\uC5D0 \uB530\uB77C \uACE0\uC9C0\uC561\uC774 \uB2EC\uB77C\uC9C8 \uC218 \uC788\uC2B5\uB2C8\uB2E4." })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\uB4F1\uAE30 \uC218\uC218\uB8CC\xB7\uAD6D\uBBFC\uC8FC\uD0DD\uCC44\uAD8C \uD560\uC778\uC561\uC740 \uC81C\uC678\uD569\uB2C8\uB2E4. \uC2E4\uC81C \uACFC\uD45C\uC640 \uC6D0\uB2E8\uC704 \uCC98\uB9AC\uC5D0 \uB530\uB77C \uACE0\uC9C0\uC561\uC774 \uB2EC\uB77C\uC9C8 \uC218 \uC788\uC2B5\uB2C8\uB2E4." }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ResultExport, { spec: { title: "\uCDE8\uB4DD \uAD00\uB828 \uC138\uAE08 \uACC4\uC0B0", headline: { label: taxMode === "normal" ? "\uC77C\uBC18\uC138\uC728 \uAE30\uC900 \uC608\uC0C1 \uC138\uAE08" : "\uC9C1\uC811 \uC785\uB825\uD55C \uD655\uC778 \uC138\uC561", value: money(taxTotal) }, rows: taxMode === "normal" ? [{ label: "\uACFC\uC138\uD45C\uC900", value: money(base) }, { label: `\uCDE8\uB4DD\uC138 (${(taxes.rate * 100).toFixed(2)}%)`, value: won(taxes.acquisition) }, { label: "\uC9C0\uBC29\uAD50\uC721\uC138", value: won(taxes.education) }, { label: `\uB18D\uC5B4\uCD0C\uD2B9\uBCC4\uC138 (${over85 ? "0.2%" : "85\u33A1 \uC774\uD558 \uC81C\uC678"})`, value: won(taxes.rural) }] : [], notes: ["\uB4F1\uAE30 \uC218\uC218\uB8CC\xB7\uAD6D\uBBFC\uC8FC\uD0DD\uCC44\uAD8C \uD560\uC778\uC561\uC740 \uC81C\uC678\uD569\uB2C8\uB2E4. \uC911\uACFC\xB7\uAC10\uBA74\uC740 \uC790\uB3D9 \uD310\uC815\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4."], filename: "hoban-acquisition-tax" } })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "cost-source-note", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { className: "cost-source-note", children: [
           "\uACC4\uC0B0 \uADFC\uAC70: ",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "https://law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0011&lsiSeq=282559&urlMode=lsScJoRltInfoR", target: "_blank", rel: "noopener noreferrer", children: "\uC9C0\uBC29\uC138\uBC95 \uC81C11\uC870" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("a", { href: "https://law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0011&lsiSeq=282559&urlMode=lsScJoRltInfoR", target: "_blank", rel: "noopener noreferrer", children: "\uC9C0\uBC29\uC138\uBC95 \uC81C11\uC870" }),
           " \xB7 ",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "https://www.goheung.go.kr/contentsView.do?pageId=www527", target: "_blank", rel: "noopener noreferrer", children: "\uC9C0\uC790\uCCB4 \uCDE8\uB4DD\uC138 \uC548\uB0B4" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("a", { href: "https://www.goheung.go.kr/contentsView.do?pageId=www527", target: "_blank", rel: "noopener noreferrer", children: "\uC9C0\uC790\uCCB4 \uCDE8\uB4DD\uC138 \uC548\uB0B4" }),
           " (\uD655\uC778 2026.09.10)"
         ] })
       ] }),
-      tab === "DSR\uACC4\uC0B0\uAE30" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", { onSubmit: (e) => {
+      tab === "DSR\uACC4\uC0B0\uAE30" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("form", { onSubmit: (e) => {
         e.preventDefault();
         calculate();
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "\uCD1D\uBD80\uCC44\uC6D0\uB9AC\uAE08\uC0C1\uD658\uBE44\uC728 (DSR) \uACC4\uC0B0" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", { className: "cost-explainer", open: !standalone, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("summary", { children: "DSR\uC774\uB780?" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\uC5F0\uC18C\uB4DD\uC5D0\uC11C \uBAA8\uB4E0 \uB300\uCD9C\uC758 \uC5F0\uAC04 \uC6D0\uAE08\uACFC \uC774\uC790 \uC0C1\uD658\uC561\uC774 \uCC28\uC9C0\uD558\uB294 \uBE44\uC728\uC785\uB2C8\uB2E4. \uC5F0\uC18C\uB4DD 5,000\uB9CC\uC6D0\uC5D0 \uC5F0\uAC04 \uC0C1\uD658\uC561 2,000\uB9CC\uC6D0\uC774\uBA74 DSR\uC740 40%\uC785\uB2C8\uB2E4." }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "DSR = \uC5F0\uAC04 \uC804\uCCB4 \uB300\uCD9C \uC6D0\uB9AC\uAE08 \uC0C1\uD658\uC561 \xF7 \uC5F0\uC18C\uB4DD \xD7 100" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\uC544\uB798 \uACB0\uACFC\uB294 \uC785\uB825\uD55C \uC0C1\uD658 \uC870\uAC74\uC5D0 \uB530\uB978 \uBAA8\uC758 DSR\uC785\uB2C8\uB2E4. \uAE08\uC735\uAE30\uAD00\uC758 \uADDC\uC81C DSR\uC740 \uB300\uCD9C \uC885\uB958\uBCC4 \uC778\uC815 \uB9CC\uAE30\xB7\uC608\uC678\xB7\uC2A4\uD2B8\uB808\uC2A4 \uAE08\uB9AC \uB4F1\uC5D0 \uB530\uB77C \uB2E4\uB985\uB2C8\uB2E4. \uC2E0\uC6A9\uB300\uCD9C \uB4F1\uC740 \uAE08\uC735\uAE30\uAD00\uC5D0\uC11C \uC548\uB0B4\uBC1B\uC740 \u2018DSR \uC0B0\uC815\uC6A9 \uC5F0\uAC04 \uC6D0\uB9AC\uAE08\u2019\uC744 \uC9C1\uC811 \uC785\uB825\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4." })
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: "\uCD1D\uBD80\uCC44\uC6D0\uB9AC\uAE08\uC0C1\uD658\uBE44\uC728 (DSR) \uACC4\uC0B0" }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("details", { className: "cost-explainer", open: !standalone, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("summary", { children: "DSR\uC774\uB780?" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\uC5F0\uC18C\uB4DD\uC5D0\uC11C \uBAA8\uB4E0 \uB300\uCD9C\uC758 \uC5F0\uAC04 \uC6D0\uAE08\uACFC \uC774\uC790 \uC0C1\uD658\uC561\uC774 \uCC28\uC9C0\uD558\uB294 \uBE44\uC728\uC785\uB2C8\uB2E4. \uC5F0\uC18C\uB4DD 5,000\uB9CC\uC6D0\uC5D0 \uC5F0\uAC04 \uC0C1\uD658\uC561 2,000\uB9CC\uC6D0\uC774\uBA74 DSR\uC740 40%\uC785\uB2C8\uB2E4." }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "DSR = \uC5F0\uAC04 \uC804\uCCB4 \uB300\uCD9C \uC6D0\uB9AC\uAE08 \uC0C1\uD658\uC561 \xF7 \uC5F0\uC18C\uB4DD \xD7 100" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\uC544\uB798 \uACB0\uACFC\uB294 \uC785\uB825\uD55C \uC0C1\uD658 \uC870\uAC74\uC5D0 \uB530\uB978 \uBAA8\uC758 DSR\uC785\uB2C8\uB2E4. \uAE08\uC735\uAE30\uAD00\uC758 \uADDC\uC81C DSR\uC740 \uB300\uCD9C \uC885\uB958\uBCC4 \uC778\uC815 \uB9CC\uAE30\xB7\uC608\uC678\xB7\uC2A4\uD2B8\uB808\uC2A4 \uAE08\uB9AC \uB4F1\uC5D0 \uB530\uB77C \uB2E4\uB985\uB2C8\uB2E4. \uC2E0\uC6A9\uB300\uCD9C \uB4F1\uC740 \uAE08\uC735\uAE30\uAD00\uC5D0\uC11C \uC548\uB0B4\uBC1B\uC740 \u2018DSR \uC0B0\uC815\uC6A9 \uC5F0\uAC04 \uC6D0\uB9AC\uAE08\u2019\uC744 \uC9C1\uC811 \uC785\uB825\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4." })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", { className: "cost-explainer", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("summary", { children: "\uC0C1\uD658\uBC29\uBC95\uACFC \uC2A4\uD2B8\uB808\uC2A4 \uAE08\uB9AC" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\uC6D0\uB9AC\uAE08\uADE0\uB4F1: \uB9E4\uB2EC \uC6D0\uAE08\uACFC \uC774\uC790\uC758 \uD569\uACC4\uAC00 \uAC19\uC2B5\uB2C8\uB2E4. \uC6D0\uAE08\uADE0\uB4F1: \uC6D0\uAE08\uC740 \uC77C\uC815\uD558\uACE0 \uC774\uC790\uB294 \uC810\uCC28 \uC904\uC5B4\uB4ED\uB2C8\uB2E4. \uB9CC\uAE30\uC77C\uC2DC: \uB9E4\uB2EC \uC774\uC790\uB97C \uB0B4\uACE0 \uB9CC\uAE30\uC5D0 \uC6D0\uAE08\uC744 \uAC1A\uC2B5\uB2C8\uB2E4." }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\uC794\uC561\uACFC \uB0A8\uC740 \uAE30\uAC04\uC744 \uAE30\uC900\uC73C\uB85C \uC55E\uC73C\uB85C 12\uAC1C\uC6D4\uC758 \uB0A9\uBD80\uC561\uC744 \uD569\uC0B0\uD558\uBA70, \uAC70\uCE58\uAE30\uAC04\uC740 \uC9C0\uC6D0\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. \uB9CC\uAE30\uC77C\uC2DC\uC0C1\uD658\uC758 \uB9CC\uAE30\uAC00 12\uAC1C\uC6D4 \uC548\uC774\uBA74 \uC6D0\uAE08 \uC804\uC561\uC744 \uD3EC\uD568\uD569\uB2C8\uB2E4. \uC774\uB294 \uAE08\uC735\uAE30\uAD00\uC758 \uADDC\uC81C \uC0B0\uC2DD\uACFC \uB2E4\uB97C \uC218 \uC788\uC2B5\uB2C8\uB2E4." }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\uC2A4\uD2B8\uB808\uC2A4 \uAC00\uC0B0\uAE08\uB9AC\uB294 \uC2E4\uC81C \uB0A9\uBD80\uAE08\uB9AC\uC5D0 \uBD99\uB294 \uC774\uC790\uAC00 \uC544\uB2CC \uC2EC\uC0AC\uC6A9 \uAC00\uC815\uC785\uB2C8\uB2E4. \uB300\uCD9C\uBCC4 \uC801\uC6A9 \uAE08\uB9AC\uB97C \uAE08\uC735\uAE30\uAD00\uC5D0\uC11C \uD655\uC778\uD574 \uC785\uB825\uD558\uC138\uC694. \uAE30\uBCF8\uAC12 0%p\uB294 \uC2A4\uD2B8\uB808\uC2A4 \uBBF8\uBC18\uC601\uC774\uBA70 \uD604\uC7AC \uC815\uCC45 \uAE08\uB9AC\uB97C \uB73B\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. \uC5F0\uAC04 \uC6D0\uB9AC\uAE08\uC744 \uC9C1\uC811 \uC785\uB825\uD55C \uB300\uCD9C\uC5D0\uB294 \uCD94\uAC00\uB85C \uAC00\uC0B0\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4." })
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("details", { className: "cost-explainer", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("summary", { children: "\uC0C1\uD658\uBC29\uBC95\uACFC \uC2A4\uD2B8\uB808\uC2A4 \uAE08\uB9AC" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\uC6D0\uB9AC\uAE08\uADE0\uB4F1: \uB9E4\uB2EC \uC6D0\uAE08\uACFC \uC774\uC790\uC758 \uD569\uACC4\uAC00 \uAC19\uC2B5\uB2C8\uB2E4. \uC6D0\uAE08\uADE0\uB4F1: \uC6D0\uAE08\uC740 \uC77C\uC815\uD558\uACE0 \uC774\uC790\uB294 \uC810\uCC28 \uC904\uC5B4\uB4ED\uB2C8\uB2E4. \uB9CC\uAE30\uC77C\uC2DC: \uB9E4\uB2EC \uC774\uC790\uB97C \uB0B4\uACE0 \uB9CC\uAE30\uC5D0 \uC6D0\uAE08\uC744 \uAC1A\uC2B5\uB2C8\uB2E4." }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\uC794\uC561\uACFC \uB0A8\uC740 \uAE30\uAC04\uC744 \uAE30\uC900\uC73C\uB85C \uC55E\uC73C\uB85C 12\uAC1C\uC6D4\uC758 \uB0A9\uBD80\uC561\uC744 \uD569\uC0B0\uD558\uBA70, \uAC70\uCE58\uAE30\uAC04\uC740 \uC9C0\uC6D0\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. \uB9CC\uAE30\uC77C\uC2DC\uC0C1\uD658\uC758 \uB9CC\uAE30\uAC00 12\uAC1C\uC6D4 \uC548\uC774\uBA74 \uC6D0\uAE08 \uC804\uC561\uC744 \uD3EC\uD568\uD569\uB2C8\uB2E4. \uC774\uB294 \uAE08\uC735\uAE30\uAD00\uC758 \uADDC\uC81C \uC0B0\uC2DD\uACFC \uB2E4\uB97C \uC218 \uC788\uC2B5\uB2C8\uB2E4." }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\uC2A4\uD2B8\uB808\uC2A4 \uAC00\uC0B0\uAE08\uB9AC\uB294 \uC2E4\uC81C \uB0A9\uBD80\uAE08\uB9AC\uC5D0 \uBD99\uB294 \uC774\uC790\uAC00 \uC544\uB2CC \uC2EC\uC0AC\uC6A9 \uAC00\uC815\uC785\uB2C8\uB2E4. \uB300\uCD9C\uBCC4 \uC801\uC6A9 \uAE08\uB9AC\uB97C \uAE08\uC735\uAE30\uAD00\uC5D0\uC11C \uD655\uC778\uD574 \uC785\uB825\uD558\uC138\uC694. \uAE30\uBCF8\uAC12 0%p\uB294 \uC2A4\uD2B8\uB808\uC2A4 \uBBF8\uBC18\uC601\uC774\uBA70 \uD604\uC7AC \uC815\uCC45 \uAE08\uB9AC\uB97C \uB73B\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. \uC5F0\uAC04 \uC6D0\uB9AC\uAE08\uC744 \uC9C1\uC811 \uC785\uB825\uD55C \uB300\uCD9C\uC5D0\uB294 \uCD94\uAC00\uB85C \uAC00\uC0B0\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4." })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-fields", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { label: "\uC99D\uBE59 \uAC00\uB2A5\uD55C \uC5F0\uC18C\uB4DD", value: income, onChange: (v) => {
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-fields", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { label: "\uC99D\uBE59 \uAC00\uB2A5\uD55C \uC5F0\uC18C\uB4DD", value: income, onChange: (v) => {
             setIncome(v);
             setDsr(null);
           }, required: true, min: 1e-4 }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-field", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\uBE44\uAD50\uD560 DSR \uBE44\uC728 \xB7 \uB300\uCD9C \uC2B9\uC778 \uAE30\uC900 \uC544\uB2D8" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", { value: limit, onChange: (e) => {
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-field", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "\uBE44\uAD50\uD560 DSR \uBE44\uC728 \xB7 \uB300\uCD9C \uC2B9\uC778 \uAE30\uC900 \uC544\uB2D8" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("select", { value: limit, onChange: (e) => {
               setLimit(e.target.value);
               setDsr(null);
             }, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "40", children: "\uC740\uD589\uAD8C \uCC38\uACE0 40%" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "50", children: "\uBE44\uC740\uD589\uAD8C \uCC38\uACE0 50%" })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "40", children: "\uC740\uD589\uAD8C \uCC38\uACE0 40%" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "50", children: "\uBE44\uC740\uD589\uAD8C \uCC38\uACE0 50%" })
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "cost-description", children: "\uC774\uBC88\uC5D0 \uBC1B\uC744 \uB300\uCD9C\uACFC \uC544\uC9C1 \uAC1A\uACE0 \uC788\uB294 \uB300\uCD9C\uC744 \uD568\uAED8 \uB123\uC5B4\uC8FC\uC138\uC694. \uC5F0\uC18C\uB4DD\uACFC \uB300\uCD9C\uAE08\uC740 \u2018\uB9CC\uC6D0\u2019 \uB2E8\uC704\uB85C \uC785\uB825\uD569\uB2C8\uB2E4." }),
-        number(loan) > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { className: "cost-secondary", type: "button", onClick: () => updateDebt(debts[0].id, { principal: loan, manual: false }), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "cost-description", children: "\uC774\uBC88\uC5D0 \uBC1B\uC744 \uB300\uCD9C\uACFC \uC544\uC9C1 \uAC1A\uACE0 \uC788\uB294 \uB300\uCD9C\uC744 \uD568\uAED8 \uB123\uC5B4\uC8FC\uC138\uC694. \uC5F0\uC18C\uB4DD\uACFC \uB300\uCD9C\uAE08\uC740 \u2018\uB9CC\uC6D0\u2019 \uB2E8\uC704\uB85C \uC785\uB825\uD569\uB2C8\uB2E4." }),
+        number(loan) > 0 && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("button", { className: "cost-secondary", type: "button", onClick: () => updateDebt(debts[0].id, { principal: loan, manual: false }), children: [
           "\uCCAB \uB300\uCD9C\uC5D0 \uBAA8\uC758\uACC4\uC0B0 \uB300\uCD9C\uAE08 ",
           money(number(loan)),
           " \uC801\uC6A9"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "cost-debts", children: debts.map((d, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("fieldset", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("legend", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "cost-debts", children: debts.map((d, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("fieldset", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("legend", { children: [
             "\uB300\uCD9C ",
             index + 1
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-debt-heading", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-field", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\uB300\uCD9C \uC774\uB984" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { value: d.name, maxLength: 60, required: true, onChange: (e) => updateDebt(d.id, { name: e.target.value }) })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-debt-heading", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "\uB300\uCD9C \uC774\uB984" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("input", { value: d.name, maxLength: 60, required: true, onChange: (e) => updateDebt(d.id, { name: e.target.value }) })
             ] }),
-            debts.length > 1 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "cost-remove", type: "button", "aria-label": `\uB300\uCD9C ${index + 1} \uC0AD\uC81C`, onClick: () => {
+            debts.length > 1 && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { className: "cost-remove", type: "button", "aria-label": `\uB300\uCD9C ${index + 1} \uC0AD\uC81C`, onClick: () => {
               setDebts(debts.filter((entry) => entry.id !== d.id));
               setDsr(null);
-            }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_lucide_react.Trash2, { size: 18 }) })
+            }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_lucide_react.Trash2, { size: 18 }) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-check", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { type: "checkbox", checked: d.manual, onChange: (e) => updateDebt(d.id, { manual: e.target.checked }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-check", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("input", { type: "checkbox", checked: d.manual, onChange: (e) => updateDebt(d.id, { manual: e.target.checked }) }),
             "\uAE08\uC735\uAE30\uAD00\uC758 DSR \uC0B0\uC815\uC6A9 \uC5F0\uAC04 \uC6D0\uB9AC\uAE08 \uC9C1\uC811 \uC785\uB825"
           ] }),
-          d.manual ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { label: "\uC5F0\uAC04 \uC6D0\uB9AC\uAE08 \uC0C1\uD658\uC561", value: d.annual, onChange: (v) => updateDebt(d.id, { annual: v }), required: true }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-fields", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { label: "\uB300\uCD9C\uAE08 \uB610\uB294 \uD604\uC7AC \uC794\uC561", value: d.principal, onChange: (v) => updateDebt(d.id, { principal: v }), required: true, min: 1e-4 }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { label: "\uC5F0 \uAE08\uB9AC", unit: "%", value: d.rate, onChange: (v) => updateDebt(d.id, { rate: v }), required: true, max: 100 }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { label: "\uB0A8\uC740 \uB300\uCD9C\uAE30\uAC04", unit: "\uAC1C\uC6D4", value: d.months, onChange: (v) => updateDebt(d.id, { months: v }), required: true, min: 1, max: 600, step: "1" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "cost-field", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\uC0C1\uD658\uBC29\uBC95" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", { value: d.method, onChange: (e) => updateDebt(d.id, { method: e.target.value }), children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "annuity", children: "\uC6D0\uB9AC\uAE08\uADE0\uB4F1" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "principal", children: "\uC6D0\uAE08\uADE0\uB4F1" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "bullet", children: "\uB9CC\uAE30\uC77C\uC2DC" })
+          d.manual ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { label: "\uC5F0\uAC04 \uC6D0\uB9AC\uAE08 \uC0C1\uD658\uC561", value: d.annual, onChange: (v) => updateDebt(d.id, { annual: v }), required: true }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-fields", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { label: "\uB300\uCD9C\uAE08 \uB610\uB294 \uD604\uC7AC \uC794\uC561", value: d.principal, onChange: (v) => updateDebt(d.id, { principal: v }), required: true, min: 1e-4 }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { label: "\uC5F0 \uAE08\uB9AC", unit: "%", value: d.rate, onChange: (v) => updateDebt(d.id, { rate: v }), required: true, max: 100 }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { label: "\uB0A8\uC740 \uB300\uCD9C\uAE30\uAC04", unit: "\uAC1C\uC6D4", value: d.months, onChange: (v) => updateDebt(d.id, { months: v }), required: true, min: 1, max: 600, step: "1" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "cost-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "\uC0C1\uD658\uBC29\uBC95" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("select", { value: d.method, onChange: (e) => updateDebt(d.id, { method: e.target.value }), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "annuity", children: "\uC6D0\uB9AC\uAE08\uADE0\uB4F1" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "principal", children: "\uC6D0\uAE08\uADE0\uB4F1" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "bullet", children: "\uB9CC\uAE30\uC77C\uC2DC" })
               ] })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Amount, { label: "\uC2A4\uD2B8\uB808\uC2A4 \uAC00\uC0B0\uAE08\uB9AC (\uBBF8\uBC18\uC601: 0)", unit: "%p", value: d.stress, onChange: (v) => updateDebt(d.id, { stress: v }), max: 20 })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Amount, { label: "\uC2A4\uD2B8\uB808\uC2A4 \uAC00\uC0B0\uAE08\uB9AC (\uBBF8\uBC18\uC601: 0)", unit: "%p", value: d.stress, onChange: (v) => updateDebt(d.id, { stress: v }), max: 20 })
           ] })
         ] }, d.id)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-button-row", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { className: "cost-secondary", type: "button", disabled: debts.length >= 20, onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-button-row", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("button", { className: "cost-secondary", type: "button", disabled: debts.length >= 20, onClick: () => {
             setDebts([...debts, blankDebt(Math.max(...debts.map((d) => d.id)) + 1)]);
             setDsr(null);
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_lucide_react.Plus, { size: 17 }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_lucide_react.Plus, { size: 17 }),
             "\uB300\uCD9C \uCD94\uAC00"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "cost-primary", type: "submit", children: "DSR \uACC4\uC0B0" })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { className: "cost-primary", type: "submit", children: "DSR \uACC4\uC0B0" })
         ] }),
-        dsr && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-result", "aria-live": "polite", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\uC785\uB825\uD558\uC2E0 \uC870\uAC74\uC73C\uB85C \uACC4\uC0B0\uD55C DSR" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { className: "cost-result-number", children: [
+        dsr && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-result", "aria-live": "polite", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\uC785\uB825\uD558\uC2E0 \uC870\uAC74\uC73C\uB85C \uACC4\uC0B0\uD55C DSR" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("strong", { className: "cost-result-number", children: [
             dsr.ratio.toFixed(2),
             "%"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
             "\uBE44\uAD50 \uAE30\uC900 ",
             dsr.threshold,
             "% ",
             dsr.ratio > dsr.threshold ? "\uCD08\uACFC" : "\uC774\uD558",
             " \xB7 \uB300\uCD9C \uAC00\uB2A5 \uC5EC\uBD80\uB97C \uC758\uBBF8\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4."
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dl", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "\uC5F0\uAC04 \uC6D0\uB9AC\uAE08 \uD569\uACC4" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: money(dsr.annualPayment) })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("dl", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dt", { children: "\uC5F0\uAC04 \uC6D0\uB9AC\uAE08 \uD569\uACC4" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dd", { children: money(dsr.annualPayment) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "\uAC00\uC0B0\uAE08\uB9AC \uBC18\uC601 \uBAA8\uC758 DSR" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dd", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("dt", { children: "\uAC00\uC0B0\uAE08\uB9AC \uBC18\uC601 \uBAA8\uC758 DSR" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("dd", { children: [
                 dsr.stressedRatio.toFixed(2),
                 "%"
               ] })
             ] })
           ] }),
-          dsr.rows.map((r, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "cost-debt-result", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: r.name }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+          dsr.rows.map((r, i) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "cost-debt-result", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: r.name }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
               "\uC5F0\uAC04 ",
               money(r.annual),
               r.monthly !== null && ` \xB7 \uCCAB \uB2EC ${money(r.monthly)}`
             ] })
           ] }, i)),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "LTV\xB7DTI\xB7\uC0C1\uD488\uBCC4 \uD55C\uB3C4\xB7\uC18C\uB4DD \uC778\uC815\xB7\uC911\uB3C4\uAE08 \uB300\uCD9C \uC608\uC678 \uB4F1\uC744 \uC2EC\uC0AC\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. \uAC00\uC0B0\uAE08\uB9AC\uAC00 0\uC774\uBA74 \uC2A4\uD2B8\uB808\uC2A4 DSR \uADDC\uC81C\uB97C \uBC18\uC601\uD55C \uACB0\uACFC\uAC00 \uC544\uB2D9\uB2C8\uB2E4." })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "LTV\xB7DTI\xB7\uC0C1\uD488\uBCC4 \uD55C\uB3C4\xB7\uC18C\uB4DD \uC778\uC815\xB7\uC911\uB3C4\uAE08 \uB300\uCD9C \uC608\uC678 \uB4F1\uC744 \uC2EC\uC0AC\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. \uAC00\uC0B0\uAE08\uB9AC\uAC00 0\uC774\uBA74 \uC2A4\uD2B8\uB808\uC2A4 DSR \uADDC\uC81C\uB97C \uBC18\uC601\uD55C \uACB0\uACFC\uAC00 \uC544\uB2D9\uB2C8\uB2E4." }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ResultExport, { spec: { title: "DSR \uBAA8\uC758\uACC4\uC0B0", headline: { label: `\uBAA8\uC758 DSR (\uBE44\uAD50 \uAE30\uC900 ${dsr.threshold}%)`, value: `${dsr.ratio.toFixed(2)}%` }, rows: [{ label: "\uC5F0\uAC04 \uC6D0\uB9AC\uAE08 \uD569\uACC4", value: money(dsr.annualPayment) }, { label: "\uAC00\uC0B0\uAE08\uB9AC \uBC18\uC601 \uBAA8\uC758 DSR", value: `${dsr.stressedRatio.toFixed(2)}%` }, ...dsr.rows.map((r) => ({ label: r.name, value: `\uC5F0 ${money(r.annual)}` }))], notes: ["\uB300\uCD9C \uAC00\uB2A5 \uC5EC\uBD80\uB97C \uC758\uBBF8\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. LTV\xB7DTI\xB7\uC0C1\uD488\uBCC4 \uD55C\uB3C4\xB7\uC18C\uB4DD \uC778\uC815\uC744 \uC2EC\uC0AC\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4."], filename: "hoban-dsr" } })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "cost-source-note", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { className: "cost-source-note", children: [
           "\uC124\uBA85 \uADFC\uAC70: ",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "https://www.fsc.go.kr/po020201/76750", target: "_blank", rel: "noopener noreferrer", children: "\uAE08\uC735\uC704\uC6D0\uD68C DSR \uC548\uB0B4" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("a", { href: "https://www.fsc.go.kr/po020201/76750", target: "_blank", rel: "noopener noreferrer", children: "\uAE08\uC735\uC704\uC6D0\uD68C DSR \uC548\uB0B4" }),
           " \xB7 ",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "https://www.fsc.go.kr/po010101/81343", target: "_blank", rel: "noopener noreferrer", children: "\uC2A4\uD2B8\uB808\uC2A4 DSR \uAC1C\uB150" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("a", { href: "https://www.fsc.go.kr/po010101/81343", target: "_blank", rel: "noopener noreferrer", children: "\uC2A4\uD2B8\uB808\uC2A4 DSR \uAC1C\uB150" }),
           ". \uC2E4\uC81C \uC801\uC6A9\uC740 \uB300\uCD9C \uC2E4\uD589\uC77C\xB7\uC9C0\uC5ED\xB7\uC0C1\uD488\uC5D0 \uB530\uB77C \uD655\uC778\uD558\uC138\uC694."
         ] })
       ] }),
-      error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "cost-error", role: "alert", children: error })
+      error && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "cost-error", role: "alert", children: error })
     ] })
   ] });
 }
 
 // concepts/vendor/mohamoa-cost/server.tsx
-var import_jsx_runtime2 = __toESM(require_jsx_runtime());
-var render = () => (0, import_server.renderToString)(/* @__PURE__ */ (0, import_jsx_runtime2.jsx)(CostCalculator, { projectSlug: "cheomdan3-a7-hoban-summit" }));
+var import_jsx_runtime3 = __toESM(require_jsx_runtime());
+var render = () => (0, import_server.renderToString)(/* @__PURE__ */ (0, import_jsx_runtime3.jsx)(CostCalculator, { projectSlug: "cheomdan3-a7-hoban-summit" }));
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   render

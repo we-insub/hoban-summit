@@ -10,6 +10,6 @@ const common={bundle:true,jsx:'automatic',define:{'process.env.NODE_ENV':'"produ
 await build({...common,entryPoints:[path.join(folder,'client.tsx')],minify:true,outfile:path.join(root,'concepts/mohamoa-calculator.js')});
 await build({...common,entryPoints:[path.join(folder,'server.tsx')],platform:'node',outfile:path.join(folder,'server.cjs')});
 const require=createRequire(import.meta.url);fs.writeFileSync(path.join(folder,'initial.html'),require(path.join(folder,'server.cjs')).render());
-const files=['CostCalculator.tsx','cost-math.ts','cost-presets.ts','client.tsx','server.tsx'];
+const files=['CostCalculator.tsx','cost-math.ts','cost-presets.ts','client.tsx','server.tsx','export-result.ts','result-export.tsx'];
 fs.writeFileSync(path.join(folder,'build-manifest.json'),JSON.stringify(Object.fromEntries(files.map(f=>[f,createHash('sha256').update(fs.readFileSync(path.join(folder,f))).digest('hex')])),null,2));
 console.log('Mohamoa calculator browser bundle and initial HTML generated.');

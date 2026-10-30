@@ -1,14 +1,19 @@
 {
   "version": "01",
-  "editorial_sha256": "158f3bccbbb44bf259cf06b3f49bf41c0bd738460a2f2fa09c19280ff236650b",
-  "routes_sha256": "a972ebd6e1bda6aaf67e633a27bb1c55669efd27518635d4c9f9df8b9663b950",
+  "editorial_sha256": "208f7b857785715dd502808d50be04c55f9c484c80bce3f524a6acdaefc8c7b3",
+  "routes_sha256": "6f62400da9ed2dd83e9893d4c515f1aec15f07cc4bdcd3585488ce19c1c2ba6c",
   "protected_facts_sources_audio": "preserved",
-  "changed_text_fields": 146,
+  "changed_text_fields": 147,
   "before_after": [
+    {
+      "field": "/title",
+      "before": "호반써밋 첨단3지구 | 위치·주택형·모델하우스 안내",
+      "after": "호반써밋 첨단3지구 모델하우스 | 분양정보·방문 안내"
+    },
     {
       "field": "/description",
       "before": "호반써밋 첨단3지구 A7·A8의 사업지와 805세대 공급 규모, 다섯 가지 주택형을 확인하세요. 마륵동 모델하우스 위치와 방문예약도 안내합니다.",
-      "after": "호반써밋 첨단3지구 A7·A8의 위치와 전체 805세대 공급 규모, 다섯 주택형을 살펴보세요. 광주 서구 마륵동 모델하우스 주소와 방문예약 절차도 확인할 수 있습니다."
+      "after": "호반써밋 첨단3지구 A7·A8의 위치와 다섯 주택형, 공고 기준 분양가를 살펴보세요. 마륵동 모델하우스로 오시는 길과 방문예약 방법도 함께 안내합니다."
     },
     {
       "field": "/answer",
@@ -33,7 +38,7 @@
     {
       "field": "/hero_copy",
       "before": "84㎡대부터 135㎡대까지. 우리 가족에게 맞는 집을 첨단3지구에서 만나보세요.",
-      "after": "84㎡대부터 135㎡대까지, 가족에게 필요한 공간을 찾아보세요."
+      "after": "우리 가족에게 맞는 평면과 분양가를 살펴보세요. 마륵동 모델하우스 위치와 방문예약 방법도 함께 확인할 수 있습니다."
     },
     {
       "field": "/story_title",
