@@ -13,6 +13,16 @@ def split_version(ident):
  editorial=json.loads((ROOT/f'concepts/editorial/{ident}.json').read_text())
  tools=json.loads((ROOT/'concepts/tools-pages.json').read_text())
  tool_copy=json.loads((ROOT/'concepts/tools-copy.json').read_text())[ident]
+ voice_mode=json.loads((ROOT/'concepts/voice.json').read_text())[ident];voice_pairs=json.loads((ROOT/'concepts/voice-strings.json').read_text())['pairs'];voice_to_soft=json.loads((ROOT/'concepts/voice-strings.json').read_text())['formal_to_soft']
+ def voice(html):
+  if voice_mode=='formal':
+   for soft,formal in voice_pairs:html=html.replace(soft,formal)
+  else:
+   for formal,soft in voice_to_soft:html=html.replace(formal,soft)
+  return html
+ placement=json.loads((ROOT/'concepts/audio-placement.json').read_text())
+ for _k,_sites in placement.items():
+  if _k!='_note' and ident not in _sites:editorial['sections'][_k].pop('audio',None)
  for t in tools['pages']:t.update(tool_copy[t['tool']])
  editorial['sections']['calculator']=json.loads((ROOT/'concepts/calculator-page.json').read_text())
  editorial['sections']['calculator'].update({k:v for k,v in json.loads((ROOT/'concepts/calculator-copy.json').read_text())[ident].items() if k in ('intro','question','answer')})
@@ -82,7 +92,7 @@ def split_version(ident):
        for item in items:menu.append(nav_link(*item))
        group.append(trigger);group.append(menu)
       nav.append(group)
-      nav.append(nav_link(tools['real_transactions']['href'],tools['real_transactions']['label']))
+      nav.append(nav_link(tools['real_transactions']['href'],tool_copy.get('realtx_label',tools['real_transactions']['label'])))
       continue
      nav.append(nav_link(base+p['slug']+'/',p['label'],p['section']==current))
     nav.append(nav_link('https://mohamoa.com/','모하모아'))
@@ -110,6 +120,8 @@ def split_version(ident):
     css=doc.new_tag('link',rel='stylesheet',href=('/concepts/enriched.css' if base!='/' else '/enriched.css'));doc.head.append(css)
     if current=='calculator':
      js=doc.new_tag('script',src=('/concepts/mohamoa-calculator.js' if base!='/' else '/mohamoa-calculator.js'));js['defer']='';doc.body.append(js)
+   for el in doc.select('a[href]'):
+    if re.match(r'^https?://(www\.)?mohamoa\.com(/|$)',el['href']) and not el.find_parent('aside',class_='report-audio'):el['rel']=['nofollow','noopener']
    absolute_attrs(doc)
   def metadata(doc,title,desc,url,h1,faqs):
    doc.title.string=title
@@ -146,13 +158,13 @@ def split_version(ident):
   home_h1=editorial.get('home_h1','호반써밋 첨단3지구')
   home.select_one('h1').string=home_h1
   metadata(home,editorial['title'],editorial['description'],origin+'/',home_h1,faqs)
-  (folder/'index.html').write_text(str(home))
+  (folder/'index.html').write_text(voice(str(home)))
   for p in pages:
    key=p['section'];m=editorial['sections'][key];doc=copy.deepcopy(original);main=doc.select_one('main#content');main.clear()
    header=doc.new_tag('header');header['class']=['detail-header','section-wrap']
    bc=doc.new_tag('nav',attrs={'aria-label':'현재 위치'});a=doc.new_tag('a',href=base);a.string='홈';bc.append(a);bc.append(' / '+p['label']);header.append(bc)
    h=doc.new_tag('h1');h.string=p['h1'];header.append(h)
-   lead=doc.new_tag('p');lead.string=('주택형별 공급금액과 납부 조건을 안내합니다. 보유 현금과 대출을 반영한 자금 계산은 분양계산기를 이용해 주세요.' if key=='cost' else m['intro']);header.append(lead);main.append(header)
+   lead=doc.new_tag('p');lead.string=('주택형별 공급금액과 납부 조건을 정리했어요. 가진 현금과 대출을 넣어 필요한 돈을 계산하고 싶다면 분양계산기가 있어요.' if key=='cost' else m['intro']);header.append(lead);main.append(header)
    content=copy.deepcopy(sections[key]);content.select_one('.section-heading').decompose();content.select_one('.section-answer h3').name='h2';main.append(content)
    from sale_content import REFS
    paths={path.split('#')[0] for path,_ in REFS[key]}
@@ -161,31 +173,35 @@ def split_version(ident):
    faqs=list({f['question']:f for f in faqs}.values())
    main.append(faq(doc,faqs))
    source=copy.deepcopy(original.select_one('#sources'));main.append(source)
-   related=doc.new_tag('section');related['class']=['section-wrap','related-pages'];h=doc.new_tag('h2');h.string='함께 살펴보세요';related.append(h)
+   related=doc.new_tag('section');related['class']=['section-wrap','related-pages'];h=doc.new_tag('h2');h.string='이런 페이지도 있어요';related.append(h)
    for other in pages:
     if other==p:continue
     a=doc.new_tag('a',href=base+other['slug']+'/');a.string=other['label']+' ↗';related.append(a)
    main.append(related)
    shared(doc,key);metadata(doc,p['title'],p['description'],origin+'/'+p['slug']+'/',p['h1'],faqs)
-   dest=folder/p['slug'];dest.mkdir(exist_ok=True);(dest/'index.html').write_text(str(doc))
+   dest=folder/p['slug'];dest.mkdir(exist_ok=True);(dest/'index.html').write_text(voice(str(doc)))
   for t in tools['pages']:
    doc=copy.deepcopy(original);main=doc.select_one('main#content');main.clear()
    header=doc.new_tag('header');header['class']=['detail-header','section-wrap']
    bc=doc.new_tag('nav',attrs={'aria-label':'현재 위치'});a=doc.new_tag('a',href=base);a.string='홈';bc.append(a);bc.append(' / '+tools['label']+' / '+t['label']);header.append(bc)
    h=doc.new_tag('h1');h.string=t['h1'];header.append(h)
    lead=doc.new_tag('p');lead.string=t['intro'];header.append(lead);main.append(header)
-   tool_section=fragment('<section class="section-wrap tool-section" id="'+t['tool']+'-tool"><h2 class="sr-only">'+t['label']+'</h2><div data-tool="'+t['tool']+'"'+(' data-areas="'+t['areas']+'"' if t.get('areas') else '')+'></div><noscript><p>계산기를 쓰려면 자바스크립트를 켜 주세요.</p></noscript></section>')
+   tool_section=fragment('<section class="section-wrap tool-section" id="'+t['tool']+'-tool"><h2 class="sr-only">'+t['label']+'</h2><div data-tool="'+t['tool']+'"'+(' data-areas="'+t['areas']+'"' if t.get('areas') else '')+'></div><noscript><p>계산기는 자바스크립트가 켜져 있어야 움직여요.</p></noscript></section>')
    main.append(tool_section)
    main.append(faq(doc,t['faqs']))
-   related=doc.new_tag('section');related['class']=['section-wrap','related-pages'];h=doc.new_tag('h2');h.string='함께 살펴보세요';related.append(h)
+   related=doc.new_tag('section');related['class']=['section-wrap','related-pages'];h=doc.new_tag('h2');h.string='이런 페이지도 있어요';related.append(h)
    for href,text in [(base+'calculator/',tools['cost_label'])]+[(base+o['slug']+'/',o['label']) for o in tools['pages'] if o is not t]+[(base+'price/','분양가'),(base+'visit/','오시는 길')]:
     a=doc.new_tag('a',href=href);a.string=text+' ↗';related.append(a)
    main.append(related)
    shared(doc,t['tool']);metadata(doc,t['title'],t['description'],origin+'/'+t['slug']+'/',t['h1'],t['faqs'])
-   dest=folder/t['slug'];dest.mkdir(exist_ok=True);(dest/'index.html').write_text(str(doc))
+   dest=folder/t['slug'];dest.mkdir(exist_ok=True);(dest/'index.html').write_text(voice(str(doc)))
   urls=[origin+'/']+[origin+'/'+p['slug']+'/' for p in pages]+[origin+'/'+t['slug']+'/' for t in tools['pages']]
   xml='<?xml version="1.0" encoding="UTF-8"?>\n<!-- Local release candidate; do not submit before production noindex and live URL checks. -->\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+escape(u)+'</loc></url>' for u in urls)+'</urlset>\n'
   (folder/'sitemap.xml').write_text(xml)
+  if base=='/':
+   used=''.join(p.read_text(errors='ignore') for p in folder.rglob('index.html'))
+   for f in list((folder/'assets'/'audio').glob('*')) if (folder/'assets'/'audio').exists() else []:
+    if f.name not in used:f.unlink()
   if base=='/':
    for name in ['multipage.js','multipage.css','popup-preference.js','tools.css','mohamoa-tools.js']+(['enriched.css','mohamoa-calculator.js'] if enriched else []):shutil.copy2(ROOT/'concepts'/name,folder/name)
    (folder/'robots.txt').write_text('User-agent: *\nAllow: /\n# Local draft: noindex in HTML and headers; sitemap is a release candidate, not submitted.\n')
@@ -195,7 +211,7 @@ def split_version(ident):
  brief=ROOT/f'concepts/{ident}/PROJECT.md'
  text=brief.read_text()+'''\n## 2026-10-21 메뉴별 페이지 분리 — 로컬 메뉴별 시안\n\n이 절이 앞선 단일 URL·앵커·로컬 canonical 해당 없음 기록보다 우선한다. 메인은 요약과 상세 진입 링크, 각 상세는 해당 주제의 원고·질문·표·공식 도면·FAQ를 제공한다. 기존 첫 답·공식 사실은 보존한다. canonical은 아래 실제 소유 도메인의 예정 상세 URL이며 로컬은 noindex를 유지한다. 운영 배포·색인 요청은 미실행이다.\n\n| 메뉴 | 예정 canonical | title | H1 | 메타 설명 |\n|---|---|---|---|---|\n'''
  for p in pages:
-  text+='| '+p['label']+' | '+origin+'/'+p['slug']+'/ | '+p['title']+' | '+p['h1']+' | '+p['description']+' |\n'
+  text+='| '+p['label']+' | '+origin+'/'+p['slug']+'/ | '+p['title'].replace('|','\\|')+' | '+p['h1'].replace('|','\\|')+' | '+p['description'].replace('|','\\|')+' |\n'
  text+='\n## 상세별 질문·근거·검색 의도\n\n'
  for p in pages:
   m=editorial['sections'][p['section']]

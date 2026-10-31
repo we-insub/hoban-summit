@@ -58,7 +58,11 @@ def verify(ident):
     m=editorial['sections'][p['section']]
     for block in m['details']:
      for paragraph in block['paragraphs']:assert paragraph in doc.get_text(), (route,'missing full paragraph')
-    if m.get('audio'):assert len(doc.select('audio source'))==2 and not doc.select_one('audio').has_attr('autoplay')
+    placement=json.loads((ROOT/'concepts/audio-placement.json').read_text())
+    if m.get('audio') and ident in placement.get(p['section'],[]):assert len(doc.select('audio source'))==2 and not doc.select_one('audio').has_attr('autoplay')
+    else:assert not doc.select('audio'),(route,'audio only on assigned numbers')
+   for e in doc.select('a[href]'):
+    if re.match(r'^https?://(www\.)?mohamoa\.com(/|$)',e['href']) and not e.find_parent('aside',class_='report-audio'):assert 'nofollow' in e.get('rel',[]),(route,'mohamoa link must be nofollow',e['href'])
    for e in doc.select('[href], [src]'):
     val=e.get('href') or e.get('src');parts=urlsplit(val)
     if val.startswith('#'):assert doc.select_one('[id="'+val[1:]+'"]'),(route,val)

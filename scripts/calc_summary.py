@@ -9,6 +9,7 @@ from html import escape
 ROOT=Path(__file__).resolve().parents[1]
 VIEWS={'01':'standard','02':'payment','03':'compare','04':'blocks','05':'firsthome','06':'floors','07':'family','08':'steps','09':'cards','10':'checklist'}
 def man(v): return f'{round(v):,}'
+def signed(v): return ('+'+man(v)) if v>0 else ('−'+man(-v)) if v<0 else '0'  # 음수 앞에 +가 붙지 않게
 def load():
  src=json.loads((ROOT/'concepts/source-data.json').read_text())
  raw=(ROOT/'concepts/vendor/mohamoa-cost/cost-presets.ts').read_text()
@@ -46,7 +47,7 @@ def summary_html(ident,copy):
  elif view=='compare':
   small=min(us,key=lambda u:u['area'])
   ordered=sorted(us,key=lambda u:u['area'])
-  body=''.join(row(label(u),[f'{u["area"]:.2f}㎡',man(u['base']),'기준' if u is small else '+'+man(u['base']-small['base']),man(u['balcony'])],strong=1) for u in ordered)
+  body=''.join(row(label(u),[f'{u["area"]:.2f}㎡',man(u['base']),'기준' if u is small else signed(u['base']-small['base']),man(u['balcony'])],strong=1) for u in ordered)
   html=table(cap+' · 크기순',['주택형(블록)','전용면적','기준층 분양가',f'{small["id"]}형과의 차액','발코니 확장비(선택)'],body)
  elif view=='blocks':
   parts=[]
@@ -71,7 +72,7 @@ def summary_html(ident,copy):
   body=''.join(row(label(u),[man(u['base']),'1,000',man(u['deposit']-1000),man(u['interim']),man(u['balance'])]) for u in us)
   html=table(cap,['주택형(블록)','기준층 분양가','1차 계약금','2차 계약금(나머지)',f'중도금 {i}%',f'잔금 {100-c-i}%'],body)
  elif view=='cards':
-  asks={'84A':'이 주택형의 층별 잔여 세대와 확장 선택 여부를 물어보세요.','84B':'84A와 구조가 어떻게 다른지 모형이나 도면으로 확인하세요.','117A':'발코니 확장 범위와 옵션 비용을 항목별로 물어보세요.','117B':'117A와 비교해 달라지는 구조와 금액을 확인하세요.','135':'확장비와 옵션, 납부 일정을 한꺼번에 확인하세요.'}
+  asks={'84A':'이 주택형의 층별 잔여 세대와 확장 선택 여부를 물어보면 좋아요.','84B':'84A와 구조가 어떻게 다른지 모형이나 도면으로 보면 알 수 있어요.','117A':'발코니 확장 범위와 옵션 비용을 항목별로 물어보면 좋아요.','117B':'117A와 달라지는 구조와 금액을 물어보면 좋아요.','135':'확장비와 옵션, 납부 일정을 한꺼번에 물어보면 좋아요.'}
   items=''.join(f'<li><h4>{label(u)}</h4><dl><div><dt>기준층 분양가</dt><dd>{man(u["base"])}</dd></div><div><dt>발코니 확장비(선택)</dt><dd>{man(u["balcony"])}</dd></div></dl><p>{asks[u["id"]]}</p></li>' for u in us)
   html=f'<p class="calc-summary-caption">{cap}</p><ul class="calc-summary-cards">{items}</ul>'
  else:

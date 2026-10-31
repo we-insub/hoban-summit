@@ -1,0 +1,13 @@
+{
+ "_note": "soft=친근한 해요체, formal=또박또박한 합니다체. 번호의 독자에 맞춰 정한다. 빌더에 박힌 공통 안내문과 검수 기준(audit_copy.py)이 이 값을 따른다.",
+ "01": "soft",
+ "02": "formal",
+ "03": "soft",
+ "04": "formal",
+ "05": "soft",
+ "06": "soft",
+ "07": "formal",
+ "08": "formal",
+ "09": "soft",
+ "10": "formal"
+}

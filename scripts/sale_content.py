@@ -45,7 +45,7 @@ def render_sections(editorial,data,original):
    body+=re.search(r'<figure class="official-image">.*?</figure>',original[key],re.S).group()
    body+=table('공고 기준 주택형별 전용면적·공급면적',['블록·주택형','전용면적','공급면적'],[[u['block']+' · '+u['id']+'형',f'{u["exclusive_area"]:.4f}㎡',f'{u["supply_area"]:.4f}㎡'] for u in units])+cards(m)
   elif key=='directions':
-   body=cards(m)+'<div class="visit-address"><span>호반써밋 첨단3지구 모델하우스</span><strong>광주 서구 마륵동 164-11</strong><p>공식 안내: 오전 10시~오후 5시 30분 · 상무역 2번 출구에서 약 200m</p><p>모하모아 담당자와 방문 시간을 확인한 뒤 방문해 주세요.</p><button class="primary" data-open-booking>방문예약 신청</button> <a class="secondary" href="tel:16005184">전화로 문의하기 ↗</a></div>'
+   body=cards(m)+'<div class="visit-address"><span>호반써밋 첨단3지구 모델하우스</span><strong>광주 서구 마륵동 164-11</strong><p>공식 안내: 오전 10시~오후 5시 30분 · 상무역 2번 출구에서 약 200m</p><p>방문 전에 모하모아 담당자와 시간을 맞추면 헛걸음이 없어요.</p><button class="primary" data-open-booking>방문예약 신청</button> <a class="secondary" href="tel:16005184">전화로 문의하기 ↗</a></div>'
    body+='<p class="source-note">이 페이지의 상담은 모하모아 담당자에게 연결됩니다. 시행사·시공사 공식 상담 창구와는 다릅니다.</p>'
   else:
    price_table=table('2026년 6월 5일 공고의 주택형별 분양가 범위',['주택형','최저~최고 공급금액'],[[u['block']+' · '+u['id']+'형',f'{u["prices"][0]["won"]//10000:,}~{u["prices"][-1]["won"]//10000:,}만원'] for u in units])

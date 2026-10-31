@@ -9,7 +9,7 @@ def frag(s):return BeautifulSoup(s,'html.parser')
 def audio_markup(model,key,asset_base):
  audio=model.get('audio')
  if not audio:return ''
- text='<aside class="report-audio" aria-label="'+esc('모하모아 '+{'location':'생활권','types':'평면','cost':'비용','directions':'방문'}[key]+' 음성 안내')+'"><h2>음성으로 먼저 들어보세요</h2><p>모하모아 리포트 핵심 안내 · '+esc(audio['durationLabel'])+' · 한국어 남성 AI 음성</p><audio controls preload="none"><source src="'+asset_base+audio['aacSrc']+'" type="audio/mp4"><source src="'+asset_base+audio['src']+'" type="audio/mpeg">음성을 재생할 수 없습니다. 아래 대본을 읽어 주세요.</audio><details><summary>음성 안내 대본 보기</summary>'+''.join('<p>'+esc(p)+'</p>' for p in audio['paragraphs'])+'</details><p class="source-note"><a href="'+esc(model['report_url'])+'" target="_blank" rel="noopener">모하모아 원문과 음성 보기 ↗</a></p></aside>'
+ text='<aside class="report-audio" aria-label="'+esc('모하모아 '+{'location':'생활권','types':'평면','cost':'비용','directions':'방문'}[key]+' 음성 안내')+'"><h2>음성으로 먼저 들어보세요</h2><p>모하모아 리포트 핵심 안내 · '+esc(audio['durationLabel'])+' · 한국어 남성 AI 음성</p><audio controls preload="none"><source src="'+asset_base+audio['aacSrc']+'" type="audio/mp4"><source src="'+asset_base+audio['src']+'" type="audio/mpeg">음성을 재생할 수 없습니다. 아래 대본을 읽어 주세요.</audio><details><summary>음성 안내 대본 보기</summary>'+''.join('<p>'+esc(p)+'</p>' for p in audio['paragraphs'])+'</details><p class="source-note"><a href="'+esc(model['report_url'])+'" target="_blank" rel="noopener">'+{'location':'생활권 분석 리포트 원문 읽기','types':'평면 분석 리포트 원문 읽기','cost':'비용 분석 리포트 원문 읽기','directions':'방문 가이드 원문 읽기'}[key]+' ↗</a></p></aside>'
  return text
 def augment(section,model,key,asset_base):
  container=section.select_one('.calc-inner') or section
@@ -30,6 +30,7 @@ def replace_calculator(section,asset_base,audio_model):
  inner=section.select_one('.calc-inner')
  for child in list(inner.children):
   if getattr(child,'name',None) and not child.select_one('.section-answer') and 'section-answer' not in child.get('class',[]) and 'section-heading' not in child.get('class',[]):child.decompose()
- inner.append(frag(audio_markup(audio_model,'cost',asset_base)))
+ audio_html=audio_markup(audio_model,'cost',asset_base)
+ if audio_html:inner.append(frag(audio_html))
  markup=(ROOT/'concepts/vendor/mohamoa-cost/initial.html').read_text()
- inner.append(frag('<div id="mohamoa-calculator">'+markup+'</div><noscript><p>금액 계산과 탭 전환을 사용하려면 자바스크립트를 켜 주세요. 공식 가격표는 분양가 메뉴에서 읽을 수 있습니다.</p></noscript>'))
+ inner.append(frag('<div id="mohamoa-calculator">'+markup+'</div><noscript><p>금액 계산과 탭 전환은 자바스크립트가 켜져 있어야 해요. 공식 가격표는 분양가 메뉴에서 읽을 수 있어요.</p></noscript>'))

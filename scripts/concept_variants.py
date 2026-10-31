@@ -58,7 +58,7 @@ def focus_section(v, data):
         rows = []
         for u in data['units']:
             low, high = u['prices'][0]['won'], u['prices'][-1]['won']
-            rows.append((u['block']+' · '+u['id']+'형',f'{low//10000:,}~{high//10000:,}만원',f'{low*5//10000000:,}만원' if low*5 % 10000000 == 0 else f'{low*.05/10000:,.0f}만원'))
+            rows.append((u['block']+' · '+u['id']+'형',f'{low//10000:,}~{high//10000:,}만원',f'{round(low*.05/10000):,}만원'))
         body = table(['주택형','공고 기준 분양가 범위','최저가 기준 전체 계약금 5%'], rows, '주택형별 가격 범위와 최저가 기준 계약금')
         body += '<p class="focus-note">전체 계약금은 분양가의 5%입니다. 1차 계약금 1,000만원을 납부한 뒤 나머지는 공고상 계약 후 30일 이내에 납부합니다. 표의 계약금은 최저가로 계산한 비교값이며, 선택한 층의 금액은 계산기에서 확인해 주세요.</p>'
         refs = [('images/gonggo7bl_01_v2.pdf#page=8','A7 공급금액'),('images/gonggo8bl_01_v2.pdf#page=12','A8 공급금액')]
