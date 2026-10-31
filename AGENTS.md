@@ -76,3 +76,14 @@ TITLE_FAVICON_GUIDE.md를 읽고 01~10 각각의 홈페이지 title·H1·og:titl
 ## 2026-10-23 최신본 배포·IndexNow
 
 도메인 배포와 Bing·네이버 IndexNow, 구글 사이트맵 제출은 [최신본 배포·IndexNow 안내](PARTNER_INDEXNOW_20261023.md)를 따른다. `scripts/indexnow_submit.py`는 실제 도메인이 최신 빌드와 일치하는 번호만 전송한다.
+
+## 2026-10-31 번호별 독자·말투와 검수 (최신)
+
+01~10은 번호마다 맡은 독자와 말투가 다르다. 독자는 BRIEF.md 표, 말투(soft 해요체 / formal 합니다체)는 `concepts/voice.json`이 정한다. 본문·FAQ·메타를 고칠 때는 `scripts/copy_data/BRIEF.md`와 `/Users/matowe/Desktop/ThaiLiveNow/한국어.md`(작성 원칙)를 먼저 읽고, `scripts/copy_data/NN.py`를 고친 뒤 `python3 scripts/apply_copy.py scripts/copy_data/NN.py`로 반영한다. editorial·routes JSON을 손으로 직접 고치지 않는다.
+
+- 검수 기준: `python3 scripts/audit_copy.py`(번호별 말투·지시문 밀도·독자 표현·메타·기록 문서 일치), `python3 scripts/check_facts.py NN`(새 글의 숫자가 공고 원본에 있는지), 기존 `verify_concepts.py`·`verify_natural_copy.py`. 모두 통과해야 하지만 이는 최소 기준이므로 글을 처음부터 끝까지 읽는 검수(scripts/copy_data/REVIEW.md)를 함께 한다.
+- 번호의 말투를 섞거나 한 말투로 통일하지 않는다. 빌더에 박힌 공통 문장은 `concepts/voice-strings.json`으로 번호의 말투를 따른다.
+- 사실·숫자·조건은 바꾸지 않는다. 계산값은 근거를 주석으로 남긴다. 공개 승인·Git 보류·예약·동의 정책·ctx는 임의로 바꾸지 않는다.
+- 모하모아 링크는 `rel="nofollow"`가 기본이고 본문 속 리포트 링크 10개만 dofollow다. 늘리지 않는다. 음성 안내는 `concepts/audio-placement.json`대로 섹션마다 2개 번호에만 둔다.
+- 수정 전 상태는 태그 `before-persona-rewrite-20261031`(ROLLBACK_20261031.md). 이 시점의 병렬 작성·검수 에이전트 사용은 사용자가 승인했다. 이전의 직렬 작업 지침(2026-10-07)과 충돌하면 이 항목을 따른다.
+- 계산기 표·계약금 같은 숫자 표를 바꿀 때는 표의 모든 만원 값을 `concepts/source-data.json`과 대조한다(2026-10-31에 계약금 표 오류를 고쳤다).
