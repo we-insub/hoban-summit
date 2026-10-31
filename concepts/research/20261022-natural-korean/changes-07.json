@@ -1,6 +1,6 @@
 {
   "version": "07",
-  "editorial_sha256": "a0edefc5f2f21a281e9cc87f8136a3791129fbaf0d08079f019d9efbfd26c908",
+  "editorial_sha256": "1458556cb04c5cbe84f9aea52ee53bca1019df2a8f8051c509dc26ea7ce30007",
   "routes_sha256": "cd4f0eaee1e775dd263aec4347c35c585799415eba6b35c3fd2fe513dd05661d",
   "protected_facts_sources_audio": "preserved",
   "changed_text_fields": 180,
@@ -8,7 +8,7 @@
     {
       "field": "/title",
       "before": "호반써밋 첨단3지구 입지 | 생활시설·학교·교통 계획",
-      "after": "호반써밋 첨단3지구 학부모 분양정보 | 통학·교통"
+      "after": "호반써밋 첨단3지구 학교·교통 | 아이 키우는 집 안내"
     },
     {
       "field": "/description",

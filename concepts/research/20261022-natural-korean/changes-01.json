@@ -1,6 +1,6 @@
 {
   "version": "01",
-  "editorial_sha256": "dcc7bee6419590053c1e407cf8a1bb080b78a3937c1128132265b728a3fa8c97",
+  "editorial_sha256": "297c4e91137a80ad914fcca9ec1ec3df748074d00652e94e7b677f6ee536c88d",
   "routes_sha256": "7c8665292817f61cffed7e0df022a74e2cfad6cf1e17348a6c15b217214b7604",
   "protected_facts_sources_audio": "preserved",
   "changed_text_fields": 161,
@@ -8,7 +8,7 @@
     {
       "field": "/title",
       "before": "호반써밋 첨단3지구 | 위치·주택형·모델하우스 안내",
-      "after": "호반써밋 첨단3지구, 처음이라면 | 분양 안내"
+      "after": "호반써밋 첨단3지구 분양 안내 | 처음 알아보는 분"
     },
     {
       "field": "/description",

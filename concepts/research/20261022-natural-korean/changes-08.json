@@ -1,14 +1,14 @@
 {
   "version": "08",
-  "editorial_sha256": "ab0749d245e48852572500d331e4b233b4d2b058d64b4ada928219d0c37362ee",
-  "routes_sha256": "788f28b1c28120c15f68129d5019878640b5619dd21566d15f95a89974bfdc6d",
+  "editorial_sha256": "dac3be41ae2524369aa54524efd0adbc0c6dc2ea022d1962a5d114f158b5c01c",
+  "routes_sha256": "d5dd6d247b47a12c2d35bcda1f18f8f8f4d26ab96e930884dc600e4ec2ba6941",
   "protected_facts_sources_audio": "preserved",
   "changed_text_fields": 152,
   "before_after": [
     {
       "field": "/title",
       "before": "호반써밋 첨단3지구 A8 | 커뮤니티 시설·배치 안내",
-      "after": "호반써밋 첨단3지구 노부부 분양정보 | A8 단지 시설"
+      "after": "호반써밋 첨단3지구 단지 시설 | 노부부 분양정보"
     },
     {
       "field": "/description",

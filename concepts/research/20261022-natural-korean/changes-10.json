@@ -1,7 +1,7 @@
 {
   "version": "10",
   "editorial_sha256": "8c3050c2a0619389a8f6765b35c4731ed7f7a9a866a0d8ea8336a1b81c11dd49",
-  "routes_sha256": "fb3b95bd8d098cebf44b5da94cb4e59b1e77f300d280331d1e9d87e4b23f658f",
+  "routes_sha256": "1778e82ffe705d8e58d37ca900659df43533f913b7af966b508a8891a6e9202d",
   "protected_facts_sources_audio": "preserved",
   "changed_text_fields": 180,
   "before_after": [

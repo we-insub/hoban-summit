@@ -1,14 +1,14 @@
 {
   "version": "03",
-  "editorial_sha256": "b57786168296468436de37c8c7aa9584dbf6f9f3d16798e5b2d31bcaa030a2b4",
-  "routes_sha256": "914c68660e4ef8119a07ee1fc077aa6a9b41476ece2de9f19858398670770110",
+  "editorial_sha256": "883b69be225faf7c2e9d31bc66b3c1e8d1c4d5ed7d78d470b545a90fab914283",
+  "routes_sha256": "b2e40ddf1cd1fe552267c82df8cd6e8097ab3347aa09035882c54db87591c965",
   "protected_facts_sources_audio": "preserved",
   "changed_text_fields": 158,
   "before_after": [
     {
       "field": "/title",
       "before": "호반써밋 첨단3지구 | 84·117·135형 평면도 안내",
-      "after": "4인 가족 호반써밋 첨단3지구 | 84A·117A 평면 비교"
+      "after": "호반써밋 첨단3지구 평면 비교 | 4인 가족 84A·117A"
     },
     {
       "field": "/description",

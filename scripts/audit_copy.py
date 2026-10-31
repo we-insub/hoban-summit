@@ -13,6 +13,17 @@ DIRECTIVE=re.compile(r'확인해 주세요|확인하세요|확인하셔야|살�
 STIFF=re.compile(r'합니다|습니다')
 SOFT=re.compile(r'해요|이에요|예요|어요|아요|돼요|네요|거든요')  # 나요?·까요? 같은 질문 끝맺음은 두 말투에서 모두 자연스러워 세지 않는다
 PERSONA={'01':r'처음|입문|알아보','02':r'납부|계약금|중도금|잔금|자금','03':r'4인|가족','04':r'A7.{0,6}A8|A7과 A8|두 블록','05':r'신혼|첫 집','06':r'평수|평형|전용|공급면적','07':r'학부모|아이|자녀|학교|부모','08':r'노부부|부모님|어르신','09':r'모델하우스|방문','10':r'비교'}
+
+STOP={'아파트','계산기','계산','변환기','변환','환산','몇','내','제곱미터'}
+def core_tokens(phrase):
+    return [t for t in re.split(r'[\s·]+',phrase) if t and t not in STOP] or [phrase]
+def phrase_ok(phrase,h1,desc):
+    """H1에는 검색어가 그대로, 설명에는 검색어의 핵심 단어 절반 이상이 들어가야 한다."""
+    out=[]
+    if phrase not in h1:out.append(f'H1에 제목의 검색어 "{phrase}"가 없어요')
+    core=core_tokens(phrase);hit=[t for t in core if t in desc]
+    if len(hit)*2<len(core):out.append(f'설명에 검색어의 핵심 단어({"·".join(core)})가 거의 없어요')
+    return out
 def page(n,s):
     p=D/n/s/'index.html'
     return BeautifulSoup(p.read_text(encoding='utf-8'),'html.parser')
@@ -47,6 +58,10 @@ def audit(n,verbose=False):
         d=page(n,s);t=re.sub(r'\s+',' ',' '.join(x.get_text(' ') for x in d.select('.detail-header p, .page-faq')))
         if voice=='soft' and STIFF.search(t) and len(STIFF.findall(t))>len(SOFT.findall(t))*0.4:fails.append((s.strip('/'),'소개·FAQ가 합니다체예요(이 번호는 해요체)'))
         if voice=='formal' and SOFT.search(t) and len(SOFT.findall(t))>len(STIFF.findall(t))*0.5:fails.append((s.strip('/'),'소개·FAQ가 해요체예요(이 번호는 합니다체)'))
+    # 계산기 4종: 제목의 검색어('|' 앞)가 H1과 설명에도 그대로 나와야 한다(검색 표현과 본문이 같은 주제인지)
+    for s_ in ['calculator/']+SLUGS[9:]:
+        d=page(n,s_);phrase=d.title.text.split(' |')[0].strip();h1=d.h1.get_text(' ',strip=True);de=d.head.select_one('meta[name=description]')['content']
+        for msg in phrase_ok(phrase,h1,de):fails.append((s_.strip('/'),msg))
     # 기록: PROJECT.md와 HOME_TITLE_REVISION 기록이 지금 홈 제목과 같은지
     home_title=page(n,'').title.text
     proj=(ROOT/f'concepts/{n}/PROJECT.md').read_text(encoding='utf-8')
@@ -96,6 +111,11 @@ def audit_data(path):
         tone('도구 '+k+' 메타',d['description'],meta=True);tone('도구 '+k+' 본문',' '.join(strs([d['intro'],d['faqs']])))
     tone('계산기 메타',m.CALC['description'],meta=True);tone('계산기 본문',' '.join(strs(list(m.CALC.values())[3:])))
     tone('계산기 표 설명',' '.join(strs(m.SUMMARY)))
+    for k,dd in list(m.TOOLS.items())+[('calculator',m.CALC)]:
+        import json as _j
+        base=_j.loads((ROOT/'concepts/tools-copy.json').read_text(encoding='utf-8'))[n].get(k) if k!='calculator' else _j.loads((ROOT/'concepts/calculator-copy.json').read_text(encoding='utf-8'))[n]
+        phrase=dd.get('title',base['title']).split(' |')[0].strip()
+        for msg in phrase_ok(phrase,dd.get('h1',base['h1']),dd.get('description',base['description'])):fails.append(('도구 '+k,msg))
     hero=' '.join([m.TOP['title'],m.TOP['home_h1'],m.TOP['hero_kicker'],m.TOP['hero_copy'],m.TOP['description']])
     if not re.search(PERSONA[n],hero):fails.append(('홈 제목·H1·첫 소개',f'이 번호의 독자 표현({PERSONA[n]})이 안 보여요'))
     # 옛 문구가 그대로 남았는지(뼈대의 원문 그대로 둔 문장)
